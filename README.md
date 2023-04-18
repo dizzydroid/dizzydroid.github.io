@@ -38,7 +38,7 @@
 ___________________________________________
 
 ## License 📄
-<p align="center"> 
-See the [LICENSE.txt](./LICENSE) file for details.<br>
-© dizzydroid. All rights reserved.
+
+See the [LICENSE.txt](./LICENSE.txt) file for details.<br>
+<p align="center">  © dizzydroid. All rights reserved.
 </p>
