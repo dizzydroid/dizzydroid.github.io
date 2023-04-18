@@ -2915,3 +2915,10 @@ input, select, textarea {
 	.Quotes div:nth-child(even) span {
 		font-weight: bold;
 	}
+
+.center-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: flex-start; /* Align the button to the top edge of the container */
+	padding-top: 0; /* Set padding-top to 0 */
+}
