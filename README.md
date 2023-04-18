@@ -1,4 +1,4 @@
-# dizzydroid's Portfolio
+# dizzydroid's Website
 > A website where I share stuff..
 
 > https://dizzydroid.github.io/
@@ -11,15 +11,12 @@
   </kbd>
 </p>
 
-___________________________________________
-
 
 ## Features 📋
 ⚡️ Fully Responsive on all devices\
 ⚡️ Using HTML5 & CSS3\
 ⚡️ Modern, welcoming design\
 ⚡️ Continuously updated with blogs
-___________________________________________
 
 ## Contributing 💡
 #### Step 1
@@ -41,6 +38,7 @@ ___________________________________________
 ___________________________________________
 
 ## License 📄
-See the [LICENSE.md](./LICENSE) file for details.<br>
+<p align="center"> 
+See the [LICENSE.txt](./LICENSE) file for details.<br>
 © dizzydroid. All rights reserved.
-
+</p>
