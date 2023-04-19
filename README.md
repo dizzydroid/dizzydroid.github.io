@@ -16,7 +16,7 @@
 ⚡️ Fully Responsive on all devices\
 ⚡️ Using HTML5 & CSS3\
 ⚡️ Modern, welcoming design\
-⚡️ Continuously updated with blogs
+⚡️ Continuously updated with blog posts
 
 ## Contributing 💡
 #### Step 1
