@@ -34,7 +34,7 @@
 
 #### Step 3
 
-- 🔃 Create a new pull request.
+- 🔃 **Create a new pull request.**
 ___________________________________________
 
 ## License 📄
