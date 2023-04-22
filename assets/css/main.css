@@ -2916,6 +2916,12 @@ input, select, textarea {
 		font-weight: bold;
 	}
 
+.QuotesBold {
+	font-family: Georgia, serif;
+	color: #696969;
+	font-weight: bold;
+	}
+
 .center-wrapper {
 	display: flex;
 	justify-content: center;
