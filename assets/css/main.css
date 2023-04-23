@@ -2929,6 +2929,18 @@ input, select, textarea {
 	padding-top: 0; /* Set padding-top to 0 */
 }
 
+.roboto {
+	font-family: Roboto, sans-serif;
+	color: #696969;
+	font-weight: 400;
+}
+
+.robotobold {
+	font-family: Roboto, sans-serif;
+	color: #696969;
+	font-weight: bold;
+}
+
 
 /* Google Fonts */
 
