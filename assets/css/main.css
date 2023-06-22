@@ -1943,6 +1943,15 @@ input, select, textarea {
 						background: #3dbaf4;
 					}
 
+				ul.social li a.fa-youtube {
+					background: #c3352e;
+				}
+
+				ul.social li a.fa-github {
+					background: #363636;
+				}
+
+
 				ul.social li a.fa-dribbble {
 					background: #c4376b;
 				}
@@ -3035,3 +3044,4 @@ body {
 		-moz-animation: masked 5s linear infinite, fadeInDown 1.5s both 1;
 		-o-animation: masked 5s linear infinite, fadeInDown 1.5s both 1;
 	}
+
