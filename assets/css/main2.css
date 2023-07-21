@@ -2721,6 +2721,21 @@ input, select, textarea {
 				background-color: #c75b9b;
 			}
 
+
+			.tiles article.style41 > .image:before {
+				background-color: #66BB6A;
+			}
+
+
+			.tiles article.style42 > .image:before {
+				background-color: #FFD54F;
+			}
+
+
+			.tiles article.style43 > .image:before {
+				background-color: #4DB6AC;
+			}
+
 			.tiles article.style5 > .image:before {
 				background-color: #ae85ca;
 			}
