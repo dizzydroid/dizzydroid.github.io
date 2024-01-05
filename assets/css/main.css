@@ -1968,6 +1968,14 @@ input, select, textarea {
 						background: #1075a9;
 					}
 
+				ul.social li a.fa-behance {
+						background: #0067ff;
+				}
+	
+					ul.social li a.fa-behance:hover {
+							background: #0b0b0b;
+					}
+
 				ul.social li a.fa-tumblr {
 					background: #2b4661;
 				}
