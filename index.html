@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dizzydroid - Shehab's Interactive Portfolio</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/personas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/matrix-mode.css">
+    <!-- Font Awesome for GitHub icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="persona-dev">
+    <div id="app">
+        <!-- Loading Screen -->
+        <div id="loading" class="loading-screen">
+            <div class="loading-content">
+                <div class="logo-animation">
+                    <h1 class="animated-logo">dizzydroid</h1>
+                    <p class="loading-subtitle">Initializing system...</p>
+                    <div class="floating-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="hidden">
+            <!-- Navigation -->
+            <nav class="main-nav">
+                <div class="nav-brand">
+                    <a href="#" class="brand-link">dizzydroid</a>
+                </div>
+                <div class="nav-links" id="dynamic-nav">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#blog" class="nav-link">Blog</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                
+                <!-- Persona Selector -->
+                <div class="persona-selector">
+                    <div class="persona-tooltip">Choose your view</div>
+                    <div class="persona-icons">
+                        <div class="persona-icon student" data-persona="student" title="Student/Learner">
+                            <div class="icon-inner">🎓</div>
+                            <div class="icon-label">Student</div>
+                        </div>
+                        <div class="persona-icon recruiter" data-persona="recruiter" title="Recruiter/HR">
+                            <div class="icon-inner">💼</div>
+                            <div class="icon-label">Recruiter</div>
+                        </div>
+                        <div class="persona-icon dev active" data-persona="dev" title="Fellow Developer">
+                            <div class="icon-inner">💻</div>
+                            <div class="icon-label">Developer</div>
+                        </div>
+                        <div class="persona-icon other" data-persona="other" title="Just Curious">
+                            <div class="icon-inner">🌟</div>
+                            <div class="icon-label">Explorer</div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="persona-greeting">
+                        <span class="greeting-badge" id="persona-badge">Welcome, Fellow Developer! 💻</span>
+                    </div>
+                    
+                    <h1 class="hero-title">
+                        Hey! I'm <span class="highlight">Shehab</span>
+                        <br>
+                        <span class="dynamic-subtitle" id="hero-subtitle">A passionate developer who loves clean code</span>
+                    </h1>
+                    
+                    <!-- Dynamic value proposition -->
+                    <div class="value-proposition" id="value-prop">
+                        <p class="hero-description">Building meaningful software solutions with modern technologies, always learning something new, and sharing the journey with the community.</p>
+                    </div>
+
+                    <!-- Live Stats -->
+                    <div class="hero-stats" id="dynamic-stats">
+                        <div class="stat">
+                            <div class="stat-number" data-target="25" data-suffix="+">0+</div>
+                            <div class="stat-label">Open Source Contributions</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="30" data-suffix="+">0+</div>
+                            <div class="stat-label">GitHub Repositories</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number" data-target="15" data-suffix="+">0+</div>
+                            <div class="stat-label">Projects Built</div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic CTAs -->
+                    <div class="hero-actions" id="dynamic-actions">
+                        <a href="#projects" class="btn-primary">
+                            <span>Explore My Code</span>
+                            <span class="btn-icon">→</span>
+                        </a>
+                        <a href="https://github.com/dizzydroid" class="btn-secondary" target="_blank">
+                            <span>Check GitHub</span>
+                            <i class="fab fa-github btn-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Neofetch Terminal -->
+                <div class="hero-visual">
+                    <div class="neofetch-terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-controls">
+                                <span class="terminal-control close"></span>
+                                <span class="terminal-control minimize"></span>
+                                <span class="terminal-control maximize"></span>
+                            </div>
+                            <span class="terminal-title" id="terminal-title">shehab@portfolio:~$</span>
+                        </div>
+                        <div class="neofetch-content" id="neofetch-content">
+                            <div class="neofetch-header">
+                                <div class="neofetch-logo" id="neofetch-logo">💻</div>
+                                <div class="neofetch-info" id="neofetch-info">
+                                    <!-- Content will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="neofetch-bar">
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                                <div class="bar-segment"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Preview Sections -->
+            <section class="quick-preview">
+                <div class="container">
+                    <div class="preview-grid">
+                        <div class="preview-card" id="about-preview">
+                            <div class="preview-icon">👨‍💻</div>
+                            <h3>About Me</h3>
+                            <p>Computer Science student with a passion for building things that matter</p>
+                            <a href="#about" class="preview-link">Learn more →</a>
+                        </div>
+                        
+                        <div class="preview-card" id="projects-preview">
+                            <div class="preview-icon">🚀</div>
+                            <h3>Featured Projects</h3>
+                            <p>From web apps to creative experiments, check out what I've been building</p>
+                            <a href="#projects" class="preview-link">View projects →</a>
+                        </div>
+                        
+                        <div class="preview-card" id="blog-preview">
+                            <div class="preview-icon">✍️</div>
+                            <h3>The DizzyBlog</h3>
+                            <p>Thoughts on tech, learning experiences, and random discoveries</p>
+                            <a href="#blog" class="preview-link">Read posts →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Floating Action Button for Persona Reset -->
+            <div class="floating-action">
+                <button id="persona-reset" class="fab" title="Change your view">
+                    <span class="fab-icon">🎨</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/persona-engine.js"></script>
+    <script src="assets/js/easter-eggs.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
