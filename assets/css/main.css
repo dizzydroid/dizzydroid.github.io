@@ -406,6 +406,24 @@ body {
     transform: translateX(3px);
 }
 
+.btn-primary i,
+.btn-secondary i {
+    margin-left: 8px;
+    font-size: 20px; /* Increased from 16px */
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fab.fa-github {
+    font-size: 18px !important;
+}
+
 /* Hero Visual - Code Window */
 .hero-visual {
     flex: 1;
@@ -698,3 +716,4 @@ body {
         font-size: 1rem;
     }
 }
+

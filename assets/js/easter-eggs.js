@@ -17,8 +17,32 @@ class EasterEggs {
         this.setupTypingEasterEgg();
         this.setupTimeBasedEasterEggs();
         this.loadMatrixState();
+        this._bindLogoClickToExitMatrix();
     }
     
+      _bindLogoClickToExitMatrix() {
+        const animatedLogoH1 = document.querySelector('#loading .animated-logo');
+        if (animatedLogoH1) {
+            animatedLogoH1.addEventListener('click', () => {
+                if (document.body.classList.contains('matrix-mode-active')) {
+                    this.exitMatrixMode();
+                }
+            });
+        }
+        // Bind nav brand link to exit matrix mode
+        const navBrandLink = document.querySelector('.main-nav .nav-brand .brand-link');
+        if (navBrandLink) {
+            navBrandLink.addEventListener('click', (event) => {
+                if (document.body.classList.contains('matrix-mode-active')) {
+                    event.preventDefault(); // Prevent default link navigation
+                    this.exitMatrixMode();
+                }
+                // If not in matrix mode, the link will behave as usual.
+            });
+        }
+    }
+
+
     setupKonamiCode() {
         document.addEventListener('keydown', (e) => {
             this.keysPressed.push(e.keyCode);
@@ -123,8 +147,6 @@ class EasterEggs {
             this.exitMatrixMode();
         }
         
-        // Save state
-        localStorage.setItem('matrixMode', this.matrixMode);
     }
     
     enterMatrixMode() {
@@ -146,7 +168,8 @@ class EasterEggs {
         this.stopMatrixEffects();
         document.body.classList.remove('matrix-mode-active');
         this.restoreOriginalContent();
-        
+        console.log('Exiting Matrix Mode via logo click.'); // Placeholder for actual logic
+
         this.showSuccessMessage('🔵 BACK TO REALITY 🔵<br>Matrix mode deactivated');
     }
     

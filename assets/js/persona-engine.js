@@ -142,12 +142,7 @@ class PersonaEngine {
                 this.switchPersona(persona);
             });
         });
-        
-        // FAB reset button
-        document.getElementById('persona-reset').addEventListener('click', () => {
-            this.showPersonaSelector();
-        });
-        
+
         // Terminal control interactions
         document.querySelector('.terminal-control.close').addEventListener('click', () => {
             this.minimizeTerminal();
@@ -220,17 +215,17 @@ class PersonaEngine {
             </div>
         `).join('');
     }
-    
+        
     updateActions(actions) {
         const actionsContainer = document.getElementById('dynamic-actions');
         actionsContainer.innerHTML = actions.map((action, index) => `
             <a href="${action.href}" class="${index === 0 ? 'btn-primary' : 'btn-secondary'}" ${action.href.startsWith('http') ? 'target="_blank"' : ''}>
                 <span>${action.text}</span>
-                <i class="${action.icon} btn-icon"></i>
+                <i class="${action.icon}"></i>
             </a>
         `).join('');
     }
-    
+        
     updateNeofetchTerminal(neofetchConfig) {
         // Update terminal title
         document.getElementById('terminal-title').textContent = `${neofetchConfig.user}:~$ neofetch`;

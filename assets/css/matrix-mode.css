@@ -47,6 +47,11 @@
     border: 1px solid #00ff00 !important;
 }
 
+/* Hide the entire Persona Selector in Matrix Mode */
+.matrix-mode-active .persona-selector {
+    display: none !important;
+}
+
 /* Matrix Mode Hero Section */
 .matrix-mode-active .hero {
     background: linear-gradient(135deg, #000000 0%, #001100 100%) !important;
