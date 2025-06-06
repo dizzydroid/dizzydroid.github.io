@@ -576,8 +576,6 @@ drwxr-xr-x  8 shehab dev  4096 Jun  5 22:48 ../
         devMessage.className = 'dev-tools-warning';
         devMessage.innerHTML = `
             <div>👨‍💻 Hello, fellow developer!</div>
-            <div>Inspecting the code? I like your style!</div>
-            <div>🔍 Feel free to explore the source code</div>
         `;
         document.body.appendChild(devMessage);
         

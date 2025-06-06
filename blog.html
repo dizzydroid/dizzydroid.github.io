@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - dizzydroid</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/personas.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">dizzydroid</a>
+            </div>
+            <div class="nav-links">
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            
+            <!-- Persona Selector -->
+            <div class="persona-selector">
+                <div class="persona-tooltip">Choose your view</div>
+                <div class="persona-icons">
+                    <div class="persona-icon student" data-persona="student" title="Student/Learner">
+                        <div class="icon-inner">🎓</div>
+                        <div class="icon-label">Student</div>
+                    </div>
+                    <div class="persona-icon recruiter" data-persona="recruiter" title="Recruiter/HR">
+                        <div class="icon-inner">💼</div>
+                        <div class="icon-label">Recruiter</div>
+                    </div>
+                    <div class="persona-icon dev active" data-persona="dev" title="Fellow Developer">
+                        <div class="icon-inner">💻</div>
+                        <div class="icon-label">Developer</div>
+                    </div>
+                    <div class="persona-icon other" data-persona="other" title="Just Curious">
+                        <div class="icon-inner">🌟</div>
+                        <div class="icon-label">Explorer</div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Blog Content -->
+        <main class="page-content">
+            <div class="container">
+                <!-- Page Header -->
+                <section class="page-header">
+                    <div class="header-content">
+                        <h1 class="page-title">The DizzyBlog</h1>
+                        <p class="page-subtitle">Thoughts on tech, learning experiences, and random discoveries</p>
+                    </div>
+                </section>
+
+                <!-- Coming Soon -->
+                <section class="coming-soon">
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon">📝</div>
+                        <h2>Blog Coming Soon!</h2>
+                        <p>I'm working on creating an awesome blog platform where I'll share my coding journey, tutorials, tech insights, and random thoughts. It'll be dynamic, interactive, and full of useful content!</p>
+                        
+                        <div class="temp-links">
+                            <a href="https://www.x.com/shehabtweets" target="_blank" class="btn-primary">
+                                <span>Follow for Updates</span>
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>dizzydroid</h3>
+                        <p>Redefining lives, one line of code at a time.</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="https://www.x.com/shehabtweets" target="_blank" class="social-link" title="Twitter">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            <a href="https://github.com/dizzydroid" target="_blank" class="social-link" title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-link" title="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" class="social-link" title="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://www.behance.net/dizzydroid" target="_blank" class="social-link" title="Behance">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
+                </div>
+            </div>
+        </footer>
+    </div>    <!-- Scripts -->
+    <script src="assets/js/persona-loader.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

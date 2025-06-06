@@ -2,6 +2,7 @@
 
 /* Student Theme - Dark Blue */
 .persona-student {
+    --navbar-color: 15, 23, 42, 0.9; 
     --primary-color: #60a5fa;
     --secondary-color: #3b82f6;
     --accent-color: #93c5fd;
@@ -17,6 +18,7 @@
 
 /* Recruiter Theme - Dark Red */
 .persona-recruiter {
+    --navbar-color: rgb(183, 28, 28, 0.9); 
     --primary-color: #ef4444;
     --secondary-color: #dc2626;
     --accent-color: #f87171;
@@ -32,6 +34,7 @@
 
 /* Developer Theme - Dark Green */
 .persona-dev {
+    --navbar-color: 0, 77, 64, 0.9;
     --primary-color: #34d399;
     --secondary-color: #10b981;
     --accent-color: #6ee7b7;
@@ -47,6 +50,7 @@
 
 /* Explorer Theme - Dark Orange/Yellow */
 .persona-other {
+    --navbar-color: 19, 20, 24, 0.9;
     --primary-color: #fbbf24;
     --secondary-color: #f59e0b;
     --accent-color: #fcd34d;
@@ -326,6 +330,38 @@
     z-index: 100001;
     min-width: 300px;
     text-align: center;
+}
+
+/* Dev Tools Warning Message */
+.dev-tools-warning {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+    color: var(--text-primary);
+    padding: 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    z-index: 100001;
+    text-align: center;
+    box-shadow: 
+        0 0 20px rgba(var(--primary-color-rgb), 0.4),
+        0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: devToolsGlow 2s ease-in-out infinite alternate;
+    max-width: 400px;
+    min-width: 300px;
+}
+
+.dev-tools-warning div {
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.dev-tools-warning div:last-child {
+    margin-bottom: 0;
 }
 
 /* Terminal Neofetch Styling (existing styles remain the same) */
@@ -608,6 +644,19 @@
 @keyframes scanline {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(100%); }
+}
+
+@keyframes devToolsGlow {
+    from { 
+        box-shadow: 
+            0 0 20px rgba(var(--primary-color-rgb), 0.4),
+            0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    to { 
+        box-shadow: 
+            0 0 30px rgba(var(--primary-color-rgb), 0.6),
+            0 15px 40px rgba(0, 0, 0, 0.4);
+    }
 }
 
 /* Responsive Matrix Mode */

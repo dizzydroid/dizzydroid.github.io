@@ -10,9 +10,8 @@ class PersonaEngine {
                     { label: 'Courses Completed', value: 15, suffix: '+' },
                     { label: 'Study Projects', value: 20, suffix: '+' },
                     { label: 'Coffee Cups/Week', value: 9, suffix: '+' }
-                ],
-                actions: [
-                    { text: 'Study Projects', icon: '📚', href: '#projects' },
+                ],                actions: [
+                    { text: 'Study Projects', icon: '📚', href: 'projects.html' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
                 ],
                 neofetch: {
@@ -38,9 +37,8 @@ class PersonaEngine {
                     { label: 'Projects Completed', value: 15, suffix: '+' },
                     { label: 'Technical Skills', value: 12, suffix: '+' },
                     { label: 'Soft Skills', value: 8, suffix: '+' }
-                ],
-                actions: [
-                    { text: 'View Resume', icon: 'fa-solid fa-file', iconStyle: 'color:rgb(255, 164, 164);', href: '#resume' },
+                ],                actions: [
+                    { text: 'View Resume', icon: 'fa-solid fa-file', iconStyle: 'color:rgb(255, 164, 164);', href: 'contact.html' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
                 ],
                 neofetch: {
@@ -65,9 +63,8 @@ class PersonaEngine {
                     { label: 'GitHub Repos', value: 30, suffix: '+' },
                     { label: 'Commits This Year', value: 500, suffix: '+' },
                     { label: 'Open Source Contributions', value: 25, suffix: '+' }
-                ],
-                actions: [
-                    { text: 'Explore Code', icon: '🔍', href: '#projects' },
+                ],                actions: [
+                    { text: 'Explore Code', icon: '🔍', href: 'projects.html' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
                 ],
                 neofetch: {
@@ -94,7 +91,7 @@ class PersonaEngine {
                     { label: 'Creative Ideas', value: 50, suffix: '+' }
                 ],
                 actions: [
-                    { text: 'Fun Projects', icon: '🎨', href: '#misc_projects' },
+                    { text: 'Fun Projects', icon: '🎨', href: 'projects.html' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
                 ],
                 neofetch: {
