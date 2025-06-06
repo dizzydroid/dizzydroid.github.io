@@ -4,12 +4,12 @@ class PersonaEngine {
         this.personas = {
             student: {
                 badge: 'Welcome, Fellow Learner! 🎓',
-                subtitle: 'A passionate CS student exploring the vast world of technology',
-                description: 'Computer Science student with insatiable curiosity for everything tech. Currently diving deep into algorithms, web development, and building projects that challenge my understanding.',
+                subtitle: 'A passionate CS student exploring the vast world of tech.',
+                description: 'Computer Science student with insatiable curiosity for everything tech. Constantly building projects that challenge my understanding.',
                 stats: [
                     { label: 'Courses Completed', value: 15, suffix: '+' },
                     { label: 'Study Projects', value: 20, suffix: '+' },
-                    { label: 'Hours Coding/Week', value: 25, suffix: '+' }
+                    { label: 'Coffee Cups/Week', value: 9, suffix: '+' }
                 ],
                 actions: [
                     { text: 'Study Projects', icon: '📚', href: '#projects' },
@@ -21,10 +21,10 @@ class PersonaEngine {
                     title: 'CS Student',
                     lines: [
                         { label: 'Status', value: 'Learning & Growing' },
-                        { label: 'Major', value: 'Computer Science' },
-                        { label: 'Year', value: 'Sophomore' },
-                        { label: 'Focus', value: 'Full-Stack Development' },
-                        { label: 'Languages', value: 'JavaScript, Python, C++' },
+                        { label: 'Major', value: 'Computer Engineering' },
+                        { label: 'Interests', value: 'Open Source, AI, Web Dev' },
+                        { label: 'Hobbies', value: 'Coding, Gaming, Reading' },
+                        { label: 'Languages', value: 'Java, C, C++, Python, Javascript' },
                         { label: 'Goal', value: 'Build Amazing Things' },
                         { label: 'Motto', value: 'Always stay curious' }
                     ]
@@ -35,12 +35,12 @@ class PersonaEngine {
                 subtitle: 'A motivated CS student ready to make an impact',
                 description: 'Dedicated Computer Science student with strong problem-solving skills, project experience, and genuine passion for technology. Ready to contribute to innovative teams and grow professionally.',
                 stats: [
-                    { label: 'GPA', value: 3.8, suffix: '/4.0' },
                     { label: 'Projects Completed', value: 15, suffix: '+' },
-                    { label: 'Technical Skills', value: 12, suffix: '+' }
+                    { label: 'Technical Skills', value: 12, suffix: '+' },
+                    { label: 'Soft Skills', value: 8, suffix: '+' }
                 ],
                 actions: [
-                    { text: 'View Resume', icon: '📄', href: '#resume' },
+                    { text: 'View Resume', icon: 'fa-solid fa-file', iconStyle: 'color:rgb(255, 164, 164);', href: '#resume' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
                 ],
                 neofetch: {
@@ -51,7 +51,6 @@ class PersonaEngine {
                         { label: 'Name', value: 'Shehab Mahmoud' },
                         { label: 'Role', value: 'CS Student & Developer' },
                         { label: 'Experience', value: '2+ Years Projects' },
-                        { label: 'Skills', value: 'Full-Stack Development' },
                         { label: 'Strengths', value: 'Problem Solving, Learning' },
                         { label: 'Availability', value: 'Open to Opportunities' },
                         { label: 'Work Style', value: 'Collaborative & Driven' }
@@ -74,15 +73,14 @@ class PersonaEngine {
                 neofetch: {
                     logo: '💻',
                     user: 'dev@terminal',
-                    title: 'Full-Stack Developer',
+                    title: 'Exhausted Developer',
                     lines: [
                         { label: 'Host', value: 'Shehab\'s Workstation' },
-                        { label: 'OS', value: 'Creativity OS v2.0' },
-                        { label: 'Uptime', value: 'Always Learning' },
-                        { label: 'Shell', value: '/bin/innovation' },
-                        { label: 'Packages', value: 'React, Node.js, Python' },
-                        { label: 'Memory', value: 'Unlimited Curiosity' },
-                        { label: 'Status', value: 'Building & Sharing' }
+                        { label: 'OS', value: 'Arch' },
+                        { label: 'Uptime', value: '42 hrs' },
+                        { label: 'Shell', value: 'zsh' },
+                        { label: 'Packages', value: 'Java, Python, Node.js' },
+                        { label: 'Status', value: 'stuck in Vim' }
                     ]
                 }
             },
@@ -91,12 +89,12 @@ class PersonaEngine {
                 subtitle: 'A creative soul on an endless journey of discovery',
                 description: 'Creative problem-solver who finds joy in experimenting with new technologies, building fun projects, and sharing discoveries along this amazing journey of continuous learning.',
                 stats: [
-                    { label: 'Fun Projects', value: 18, suffix: '+' },
+                    { label: 'Fun Projects', value: 19, suffix: '+' },
                     { label: 'Experiments Tried', value: 35, suffix: '+' },
                     { label: 'Creative Ideas', value: 50, suffix: '+' }
                 ],
                 actions: [
-                    { text: 'Fun Projects', icon: '🎨', href: '#projects' },
+                    { text: 'Fun Projects', icon: '🎨', href: '#misc_projects' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
                 ],
                 neofetch: {
@@ -109,8 +107,7 @@ class PersonaEngine {
                         { label: 'Passion', value: 'Building Cool Stuff' },
                         { label: 'Energy', value: 'Powered by Coffee' },
                         { label: 'Philosophy', value: 'Life is an Adventure' },
-                        { label: 'Current Quest', value: 'Next Big Idea' },
-                        { label: 'Fun Fact', value: 'Loves Random Projects' }
+                        { label: 'Current Quest', value: 'Next Big Idea' }
                     ]
                 }
             }
@@ -221,7 +218,7 @@ class PersonaEngine {
         actionsContainer.innerHTML = actions.map((action, index) => `
             <a href="${action.href}" class="${index === 0 ? 'btn-primary' : 'btn-secondary'}" ${action.href.startsWith('http') ? 'target="_blank"' : ''}>
                 <span>${action.text}</span>
-                <i class="${action.icon}"></i>
+                <i class="${action.icon}" ${action.iconStyle ? `style="${action.iconStyle}"` : ''}></i>
             </a>
         `).join('');
     }

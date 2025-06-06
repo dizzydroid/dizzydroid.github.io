@@ -16,33 +16,17 @@ class EasterEggs {
         this.setupDevToolsDetection();
         this.setupTypingEasterEgg();
         this.setupTimeBasedEasterEggs();
-        this.loadMatrixState();
-        this._bindLogoClickToExitMatrix();
+        this.checkMatrixMode();
     }
     
-      _bindLogoClickToExitMatrix() {
-        const animatedLogoH1 = document.querySelector('#loading .animated-logo');
-        if (animatedLogoH1) {
-            animatedLogoH1.addEventListener('click', () => {
-                if (document.body.classList.contains('matrix-mode-active')) {
-                    this.exitMatrixMode();
-                }
-            });
-        }
-        // Bind nav brand link to exit matrix mode
-        const navBrandLink = document.querySelector('.main-nav .nav-brand .brand-link');
-        if (navBrandLink) {
-            navBrandLink.addEventListener('click', (event) => {
-                if (document.body.classList.contains('matrix-mode-active')) {
-                    event.preventDefault(); // Prevent default link navigation
-                    this.exitMatrixMode();
-                }
-                // If not in matrix mode, the link will behave as usual.
-            });
+    checkMatrixMode() {
+        // Check if matrix mode was previously activated
+        if (localStorage.getItem('matrixMode') === 'true') {
+            this.matrixMode = true;
+            this.activateMatrixMode(false);
         }
     }
-
-
+    
     setupKonamiCode() {
         document.addEventListener('keydown', (e) => {
             this.keysPressed.push(e.keyCode);
@@ -55,7 +39,12 @@ class EasterEggs {
             // Check if konami code is entered
             if (this.keysPressed.length === this.konamiCode.length && 
                 this.keysPressed.every((key, index) => key === this.konamiCode[index])) {
-                this.toggleMatrixMode();
+                
+                if (this.matrixMode) {
+                    this.exitMatrixMode();
+                } else {
+                    this.activateKonamiEasterEgg();
+                }
             }
         });
     }
@@ -81,7 +70,6 @@ class EasterEggs {
     }
     
     setupDevToolsDetection() {
-        // Detect if dev tools are opened
         let devtools = {
             open: false,
             orientation: null
@@ -102,7 +90,7 @@ class EasterEggs {
     
     setupTypingEasterEgg() {
         let typedText = '';
-        const secretWords = ['hack', 'coffee', 'debug', 'sudo', 'exit'];
+        const secretWords = ['matrix', 'hack', 'coffee', 'debug', 'sudo', 'exit'];
         
         document.addEventListener('keypress', (e) => {
             typedText += e.key.toLowerCase();
@@ -137,375 +125,332 @@ class EasterEggs {
         }
     }
     
-    // Matrix Mode Implementation
-    toggleMatrixMode() {
-        this.matrixMode = !this.matrixMode;
-        
-        if (this.matrixMode) {
-            this.enterMatrixMode();
-        } else {
-            this.exitMatrixMode();
-        }
-        
+    // Easter Egg Activation Methods
+    activateKonamiEasterEgg() {
+        // Brief matrix effect before transformation
+        this.createMatrixTransition(() => {
+            this.activateMatrixMode(true);
+        });
     }
     
-    enterMatrixMode() {
-        // Show transition effect
-        this.createMatrixTransition();
+    activateMatrixMode(showMessage = true) {
+        this.matrixMode = true;
+        localStorage.setItem('matrixMode', 'true');
         
-        setTimeout(() => {
-            // Apply Matrix styles
-            document.body.classList.add('matrix-mode-active');
-            this.transformContentToMatrix();
-            this.startMatrixEffects();
-            
-            this.showSuccessMessage('▓▒░ WELCOME TO THE MATRIX ░▒▓<br>╔═══════════════════╗<br>║  REALITY HACKED   ║<br>╚═══════════════════╝');
-        }, 1500);
+        // Add matrix mode class to body
+        document.body.classList.add('matrix-mode-active');
+        
+        // Transform the entire site
+        this.transformToMatrix();
+        
+        if (showMessage) {
+            setTimeout(() => {
+                this.showMatrixMessage('WELCOME TO THE MATRIX');
+                this.typeMatrixMessage('You are now in the Matrix... Or are you?');
+            }, 1000);
+        }
     }
     
     exitMatrixMode() {
-        // Remove Matrix effects
-        this.stopMatrixEffects();
-        document.body.classList.remove('matrix-mode-active');
-        this.restoreOriginalContent();
-        console.log('Exiting Matrix Mode via logo click.'); // Placeholder for actual logic
-
-        this.showSuccessMessage('🔵 BACK TO REALITY 🔵<br>Matrix mode deactivated');
-    }
-    
-    createMatrixTransition() {
-        const overlay = document.createElement('div');
-        overlay.className = 'matrix-transition';
-        overlay.innerHTML = `
-            <div class="matrix-loader">
-                <div class="matrix-text">
-                    <div class="glitch-text">INITIALIZING MATRIX PROTOCOL...</div>
-                    <div class="loading-bar">
-                        <div class="loading-progress"></div>
-                    </div>
-                    <div class="matrix-code">
-                        <span>010001000110100001101001011100110010000001101001011100110010000001110100</span>
-                        <span>011010000110010100100000011100100110010101100001011011000010000001110111</span>
-                        <span>011011110111001001101100011001000010111000100000010101000110000001101011</span>
-                    </div>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(overlay);
+        this.matrixMode = false;
+        localStorage.removeItem('matrixMode');
         
-        // Create matrix rain during transition
-        this.createTransitionMatrixRain(overlay);
+        // Remove matrix mode class
+        document.body.classList.remove('matrix-mode-active');
+        
+        // Show exit message
+        this.showMatrixMessage('EXITING MATRIX MODE...');
         
         setTimeout(() => {
-            document.body.removeChild(overlay);
+            location.reload(); // Reload to restore normal mode
         }, 1500);
     }
     
-    transformContentToMatrix() {
-        // Transform text content to Matrix style
-        const textElements = document.querySelectorAll('h1, h2, h3, p, span, a, .nav-link, .btn-primary, .btn-secondary');
-        
-        textElements.forEach(element => {
-            if (!element.classList.contains('matrix-original')) {
-                element.classList.add('matrix-original');
-                element.dataset.originalText = element.textContent;
+    transformToMatrix() {
+        // Create matrix overlay interface
+        const matrixOverlay = document.createElement('div');
+        matrixOverlay.id = 'matrix-overlay';
+        matrixOverlay.innerHTML = `
+            <div class="matrix-header">
+                <div class="matrix-title">
+                    ██████╗ ██╗███████╗███████╗██╗   ██╗██████╗ ██████╗  ██████╗ ██╗██████╗ 
+                    ██╔══██╗██║╚══███╔╝╚══███╔╝╚██╗ ██╔╝██╔══██╗██╔══██╗██╔═══██╗██║██╔══██╗
+                    ██║  ██║██║  ███╔╝   ███╔╝  ╚████╔╝ ██║  ██║██████╔╝██║   ██║██║██║  ██║
+                    ██║  ██║██║ ███╔╝   ███╔╝    ╚██╔╝  ██║  ██║██╔══██╗██║   ██║██║██║  ██║
+                    ██████╔╝██║███████╗███████╗   ██║   ██████╔╝██║  ██║╚██████╔╝██║██████╔╝
+                    ╚═════╝ ╚═╝╚══════╝╚══════╝   ╚═╝   ╚═════╝ ╚═╝  ╚═╝ ╚═════╝ ╚═╝╚═════╝ 
+                </div>
+                <div class="matrix-subtitle">RETRO TERMINAL INTERFACE v2.0</div>
+                <div class="matrix-status">STATUS: CONNECTED TO THE MATRIX</div>
+            </div>
+            
+            <div class="matrix-nav">
+                <span class="matrix-prompt">root@matrix:~$</span>
+                <span class="matrix-nav-items">
+                    <span class="matrix-nav-item" data-section="about">[1] ABOUT.EXE</span>
+                    <span class="matrix-nav-item" data-section="projects">[2] PROJECTS.BAT</span>
+                    <span class="matrix-nav-item" data-section="blog">[3] BLOG.COM</span>
+                    <span class="matrix-nav-item" data-section="contact">[4] CONTACT.SYS</span>
+                    <span class="matrix-nav-item exit-matrix">[ESC] EXIT_MATRIX</span>
+                </span>
+            </div>
+            
+            <div class="matrix-content">
+                <div class="matrix-section active" id="matrix-main">
+                    <div class="matrix-ascii-art">
+    ╔══════════════════════════════════════════════════════════════╗
+    ║                    SHEHAB.EXE - DEVELOPER PROFILE            ║
+    ╠══════════════════════════════════════════════════════════════╣
+    ║                                                              ║
+    ║  > NAME: SHEHAB MAHMOUD                                      ║
+    ║  > OCCUPATION: COMPUTER_SCIENCE_STUDENT.EXE                  ║
+    ║  > STATUS: ALWAYS_LEARNING.BAT                               ║
+    ║  > LOCATION: PROBABLY_EARTH.SYS                              ║
+    ║                                                              ║
+    ║  [SKILLS_LOADED]                                             ║
+    ║  ► JAVASCRIPT ████████████ 90%                               ║
+    ║  ► PYTHON     ████████░░░ 85%                                ║
+    ║  ► REACT      ████████░░░ 80%                                ║
+    ║  ► NODE.JS    ███████░░░░ 75%                                ║
+    ║  ► HTML/CSS   ██████████ 95%                                 ║
+    ║                                                              ║
+    ║  [STATS_DISPLAY]                                             ║
+    ║  ► GITHUB_REPOS: 30+                                         ║
+    ║  ► COMMITS_2024: 500+                                        ║
+    ║  ► COFFEE_CONSUMED: ∞                                        ║
+    ║  ► BUGS_FIXED: 99.9% (the 0.1% are features)                 ║
+    ║                                                              ║
+    ╚══════════════════════════════════════════════════════════════╝
+                    </div>
+                    
+                    <div class="matrix-terminal-output">
+                        <div class="terminal-line">$ whoami</div>
+                        <div class="terminal-response">shehab_mahmoud</div>
+                        <div class="terminal-line">$ ls -la skills/</div>
+                        <div class="terminal-response">
+drwxr-xr-x  2 shehab dev  4096 Jun  5 22:48 ./
+drwxr-xr-x  8 shehab dev  4096 Jun  5 22:48 ../
+-rwxr-xr-x  1 shehab dev  9001 Jun  5 22:48 javascript.exe
+-rwxr-xr-x  1 shehab dev  8500 Jun  5 22:48 python.py
+-rwxr-xr-x  1 shehab dev  8000 Jun  5 22:48 react.jsx
+-rwxr-xr-x  1 shehab dev  7500 Jun  5 22:48 nodejs.js
+-rwxr-xr-x  1 shehab dev  9500 Jun  5 22:48 html_css.web
+                        </div>
+                        <div class="terminal-line">$ cat motto.txt</div>
+                        <div class="terminal-response">An optimist, a human. ~ Always learning.</div>
+                        <div class="terminal-line">$ echo $STATUS</div>
+                        <div class="terminal-response">Ready to build amazing things!</div>
+                        <div class="terminal-cursor">█</div>
+                    </div>
+                </div>
                 
-                // Convert to Matrix-style text
-                if (element.tagName === 'H1' || element.classList.contains('hero-title')) {
-                    element.innerHTML = this.convertToMatrixTitle(element.textContent);
-                } else {
-                    element.textContent = this.convertToMatrixText(element.textContent);
-                }
-            }
-        });
-        
-        // Transform the neofetch terminal
-        this.transformNeofetchToMatrix();
-        
-        // Transform stats
-        this.transformStatsToMatrix();
-    }
-    
-    transformNeofetchToMatrix() {
-        const neofetchInfo = document.getElementById('neofetch-info');
-        if (neofetchInfo) {
-            neofetchInfo.innerHTML = `
-                <div class="neofetch-line">
-                    <span class="neofetch-label">USER:</span>
-                    <span class="neofetch-value">█▓▒░ NEO ░▒▓█</span>
+                <div class="matrix-section" id="matrix-about">
+                    <div class="matrix-ascii-art">
+    ╔══════════════════════════════════════════════════════════════╗
+    ║                        ABOUT_ME.TXT                          ║
+    ╠══════════════════════════════════════════════════════════════╣
+    ║                                                              ║
+    ║  Computer Science student with a passion for creating        ║
+    ║  meaningful software solutions. I believe in clean code,     ║
+    ║  continuous learning, and the power of collaboration.        ║
+    ║                                                              ║
+    ║  Currently exploring:                                        ║
+    ║  • Full-stack web development                                ║
+    ║  • Modern JavaScript frameworks                              ║
+    ║  • Backend architecture                                      ║
+    ║  • Open source contribution                                  ║
+    ║                                                              ║
+    ║  When I'm not coding, you'll find me:                        ║
+    ║  • Learning new technologies                                 ║
+    ║  • Reading tech blogs                                        ║
+    ║  • Building side projects                                    ║
+    ║  • Drinking way too much coffee                              ║
+    ║                                                              ║
+    ╚══════════════════════════════════════════════════════════════╝
+                    </div>
                 </div>
-                <div class="neofetch-line">
-                    <span style="color: #00ff00;">╔══════════════════════╗</span>
+                
+                <div class="matrix-section" id="matrix-projects">
+                    <div class="matrix-ascii-art">
+    ╔══════════════════════════════════════════════════════════════╗
+    ║                     PROJECT_LIST.BAT                         ║
+    ╠══════════════════════════════════════════════════════════════╣
+    ║                                                              ║
+    ║  [1] ASU_SOPHOMORE_PROJECT.EXE                               ║
+    ║      Complete project with source code and documentation     ║
+    ║      LANG: C++, Python | STATUS: COMPLETED                   ║
+    ║                                                              ║
+    ║  [2] ASU_SHEET_SOLUTIONS.BAT                                 ║
+    ║      Practice sheets with solutions and code samples         ║
+    ║      LANG: Multiple | STATUS: ACTIVE                         ║
+    ║                                                              ║
+    ║  [3] QUOTES_GENERATOR.WEB                                    ║
+    ║      Random quote generator with beautiful UI                ║
+    ║      LANG: HTML, CSS, JS | STATUS: LIVE                      ║
+    ║                                                              ║
+    ║  [4] EARTH_DAY_QUIZ.APP                                      ║
+    ║      Interactive quiz about environmental awareness          ║
+    ║      LANG: JavaScript | STATUS: COMPLETED                    ║
+    ║                                                              ║
+    ║  [5] WEATHER_APP.PY                                          ║
+    ║      Python weather app using OpenWeather API                ║
+    ║      LANG: Python | STATUS: FUNCTIONAL                       ║
+    ║                                                              ║
+    ║  [6] THIS_PORTFOLIO.MATRIX                                   ║
+    ║      Interactive portfolio with easter eggs                  ║
+    ║      LANG: HTML, CSS, JS | STATUS: YOU_ARE_HERE              ║
+    ║                                                              ║
+    ╚══════════════════════════════════════════════════════════════╝
+                    </div>
                 </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">HOST:</span>
-                    <span class="neofetch-value">MATRIX.REALITY.HACK</span>
+                
+                <div class="matrix-section" id="matrix-contact">
+                    <div class="matrix-ascii-art">
+    ╔══════════════════════════════════════════════════════════════╗
+    ║                    CONTACT_INFO.SYS                          ║
+    ╠══════════════════════════════════════════════════════════════╣
+    ║                                                              ║
+    ║  ESTABLISHING CONNECTION...                                  ║
+    ║  ████████████████████████████████████████ 100%               ║
+    ║  CONNECTION ESTABLISHED!                                     ║
+    ║                                                              ║
+    ║  EMAIL    : shehabmahmoud2003@gmail.com                      ║
+    ║  GITHUB   : github.com/dizzydroid                            ║
+    ║  TWITTER  : @shehabtweets                                    ║
+    ║  LINKEDIN : linkedin.com/in/ShehabMahmoud                    ║
+    ║  LOCATION : Probably Earth                                   ║
+    ║                                                              ║
+    ║  PREFERRED_CONTACT_METHOD: EMAIL                             ║
+    ║  RESPONSE_TIME: Usually within 24 hours                      ║
+    ║  AVAILABILITY: Open to collaboration & opportunities         ║
+    ║                                                              ║
+    ║  WARNING: If you get rickrolled, it's not on me ;)           ║
+    ║                                                              ║
+    ╚══════════════════════════════════════════════════════════════╝
+                    </div>
                 </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">OS:</span>
-                    <span class="neofetch-value">REALITY v0.1-BETA</span>
+            </div>
+            
+            <div class="matrix-footer">
+                <div class="matrix-status-bar">
+                    <span>MATRIX_MODE: ACTIVE</span>
+                    <span>USER: NEO</span>
+                    <span>TIME: ${new Date().toLocaleTimeString()}</span>
+                    <span>KONAMI_CODE: ↑↑↓↓←→←→BA to EXIT</span>
                 </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">KERNEL:</span>
-                    <span class="neofetch-value">CONSCIOUSNESS 4.2.0</span>
-                </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">SHELL:</span>
-                    <span class="neofetch-value">/BIN/REDPILL</span>
-                </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">MEMORY:</span>
-                    <span class="neofetch-value">∞ GB (UNLIMITED)</span>
-                </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">STATUS:</span>
-                    <span class="neofetch-value">AWAKE IN SIMULATION</span>
-                </div>
-                <div class="neofetch-line">
-                    <span class="neofetch-label">POWER:</span>
-                    <span class="neofetch-value">OVER 9000</span>
-                </div>
-                <div class="neofetch-line">
-                    <span style="color: #00ff00;">╚══════════════════════╝</span>
-                </div>
-                <div class="neofetch-line">
-                    <span class="terminal-cursor">█</span>
-                </div>
-            `;
-        }
-        
-        // Change logo
-        const logo = document.getElementById('neofetch-logo');
-        if (logo) {
-            logo.textContent = '⚡';
-        }
-        
-        // Change terminal title
-        const terminalTitle = document.getElementById('terminal-title');
-        if (terminalTitle) {
-            terminalTitle.textContent = 'neo@matrix:~$ wake_up';
-        }
-    }
-    
-    transformStatsToMatrix() {
-        const stats = document.querySelectorAll('.stat-label');
-        const matrixStats = [
-            'REALITY GLITCHES',
-            'CODE LINES HACKED',
-            'SIMULATIONS BROKEN'
-        ];
-        
-        stats.forEach((stat, index) => {
-            if (matrixStats[index]) {
-                stat.textContent = matrixStats[index];
-            }
-        });
-    }
-    
-    convertToMatrixTitle(text) {
-        // Convert name to Matrix-style with special characters
-        return text
-            .replace(/Shehab/gi, '█▓▒░ NEO ░▒▓█')
-            .replace(/dizzydroid/gi, '╔═══ MATRIX HACKER ═══╗')
-            .replace(/Hey!/gi, '▓▒░ WAKE UP ░▒▓')
-            .replace(/Hello/gi, '▓▒░ GREETINGS ░▒▓');
-    }
-    
-    convertToMatrixText(text) {
-        // Convert regular text to Matrix-style
-        const matrixPhrases = {
-            'developer': 'CODE WARRIOR',
-            'student': 'DIGITAL APPRENTICE',
-            'Computer Science': 'REALITY HACKING',
-            'projects': 'SIMULATIONS',
-            'GitHub': 'CODE VAULT',
-            'passionate': 'AWAKENED',
-            'learning': 'DOWNLOADING KNOWLEDGE',
-            'building': 'CONSTRUCTING REALITY',
-            'Portfolio': 'DIGITAL IDENTITY',
-            'Contact': 'ESTABLISH CONNECTION',
-            'About': 'IDENTITY.EXE',
-            'Blog': 'THOUGHT_STREAM.LOG'
-        };
-        
-        let result = text;
-        for (const [key, value] of Object.entries(matrixPhrases)) {
-            const regex = new RegExp(key, 'gi');
-            result = result.replace(regex, value);
-        }
-        
-        return result;
-    }
-    
-    startMatrixEffects() {
-        // Continuous matrix rain
-        this.matrixRainInterval = setInterval(() => {
-            this.createMatrixRainDrop();
-        }, 200);
-        
-        // Glitch effect on random elements
-        this.glitchInterval = setInterval(() => {
-            this.createRandomGlitch();
-        }, 3000);
-        
-        // Terminal cursor blinking
-        this.startTerminalEffects();
-    }
-    
-    stopMatrixEffects() {
-        if (this.matrixRainInterval) {
-            clearInterval(this.matrixRainInterval);
-        }
-        if (this.glitchInterval) {
-            clearInterval(this.glitchInterval);
-        }
-    }
-    
-    createMatrixRainDrop() {
-        const drop = document.createElement('div');
-        drop.className = 'matrix-rain-drop';
-        drop.style.cssText = `
-            position: fixed;
-            top: -50px;
-            left: ${Math.random() * 100}%;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-            font-size: ${Math.random() * 10 + 12}px;
-            z-index: 1;
-            pointer-events: none;
-            animation: matrixRainFall ${Math.random() * 5 + 3}s linear forwards;
-            text-shadow: 0 0 5px #00ff00;
+            </div>
         `;
         
-        // Random matrix characters
-        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコサシスセソタチツテト日本語';
+        document.body.appendChild(matrixOverlay);
+        
+        // Add navigation functionality
+        this.setupMatrixNavigation();
+        
+        // Start matrix rain background
+        this.startMatrixRain();
+        
+        // Type out the terminal
+        this.typeMatrixTerminal();
+    }
+    
+    setupMatrixNavigation() {
+        document.querySelectorAll('.matrix-nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                const section = e.target.dataset.section;
+                
+                if (e.target.classList.contains('exit-matrix')) {
+                    this.exitMatrixMode();
+                    return;
+                }
+                
+                // Hide all sections
+                document.querySelectorAll('.matrix-section').forEach(s => {
+                    s.classList.remove('active');
+                });
+                
+                // Show selected section
+                if (section) {
+                    document.getElementById(`matrix-${section}`).classList.add('active');
+                } else {
+                    document.getElementById('matrix-main').classList.add('active');
+                }
+                
+                // Update nav highlighting
+                document.querySelectorAll('.matrix-nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                e.target.classList.add('active');
+                
+                // Play terminal sound effect (if you want to add sound)
+                this.playTerminalSound();
+            });
+        });
+    }
+    
+    startMatrixRain() {
+        const matrixRain = document.createElement('div');
+        matrixRain.className = 'matrix-background-rain';
+        document.getElementById('matrix-overlay').appendChild(matrixRain);
+        
+        // Create falling characters
+        setInterval(() => {
+            if (this.matrixMode) {
+                this.createMatrixDrop(matrixRain);
+            }
+        }, 200);
+    }
+    
+    createMatrixDrop(container) {
+        const drop = document.createElement('div');
+        drop.className = 'matrix-drop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (Math.random() * 5 + 3) + 's';
+        
+        // Matrix characters
+        const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオカキクケコ♦♠♣♥';
         drop.textContent = chars[Math.floor(Math.random() * chars.length)];
         
-        document.body.appendChild(drop);
+        container.appendChild(drop);
         
         setTimeout(() => {
-            document.body.removeChild(drop);
+            if (container.contains(drop)) {
+                container.removeChild(drop);
+            }
         }, 8000);
     }
     
-    createRandomGlitch() {
-        const elements = document.querySelectorAll('.matrix-original');
-        if (elements.length > 0) {
-            const randomElement = elements[Math.floor(Math.random() * elements.length)];
-            randomElement.classList.add('matrix-glitch');
-            
+    typeMatrixTerminal() {
+        const terminalLines = document.querySelectorAll('.terminal-line, .terminal-response');
+        terminalLines.forEach((line, index) => {
+            line.style.opacity = '0';
             setTimeout(() => {
-                randomElement.classList.remove('matrix-glitch');
-            }, 500);
-        }
-    }
-    
-    startTerminalEffects() {
-        // Add some terminal-style prompts occasionally
-        setInterval(() => {
-            if (this.matrixMode) {
-                this.addTerminalPrompt();
-            }
-        }, 10000);
-    }
-    
-    addTerminalPrompt() {
-        const prompts = [
-            'neo@matrix:~$ ls -la reality/',
-            'neo@matrix:~$ sudo wake_up',
-            'neo@matrix:~$ cat /dev/truth',
-            'neo@matrix:~$ rm -rf illusion/*',
-            'neo@matrix:~$ chmod 777 mind.exe'
-        ];
-        
-        const prompt = document.createElement('div');
-        prompt.className = 'floating-terminal-prompt';
-        prompt.textContent = prompts[Math.floor(Math.random() * prompts.length)];
-        prompt.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #00ff00;
-            color: #00ff00;
-            padding: 0.5rem;
-            font-family: 'Courier New', monospace;
-            font-size: 0.875rem;
-            z-index: 1002;
-            animation: terminalPromptSlide 4s ease-in-out;
-        `;
-        
-        document.body.appendChild(prompt);
-        
-        setTimeout(() => {
-            document.body.removeChild(prompt);
-        }, 4000);
-    }
-    
-    createTransitionMatrixRain(container) {
-        for (let i = 0; i < 30; i++) {
-            setTimeout(() => {
-                const rain = document.createElement('div');
-                rain.className = 'transition-matrix-rain';
-                rain.style.cssText = `
-                    position: absolute;
-                    top: -100px;
-                    left: ${Math.random() * 100}%;
-                    color: #00ff00;
-                    font-family: 'Courier New', monospace;
-                    font-size: 16px;
-                    animation: matrixRainFall 2s linear forwards;
-                    text-shadow: 0 0 10px #00ff00;
-                `;
-                
-                // Create column of characters
-                let column = '';
-                for (let j = 0; j < 20; j++) {
-                    const chars = '01アイウエオカキクケコサシスセソ';
-                    column += chars[Math.floor(Math.random() * chars.length)] + '<br>';
-                }
-                rain.innerHTML = column;
-                
-                container.appendChild(rain);
-                
-                setTimeout(() => {
-                    container.removeChild(rain);
-                }, 2000);
-            }, i * 50);
-        }
-    }
-    
-    restoreOriginalContent() {
-        const matrixElements = document.querySelectorAll('.matrix-original');
-        matrixElements.forEach(element => {
-            if (element.dataset.originalText) {
-                element.textContent = element.dataset.originalText;
-            }
-            element.classList.remove('matrix-original');
-            delete element.dataset.originalText;
+                line.style.opacity = '1';
+                line.style.animation = 'matrixType 0.5s ease';
+            }, index * 300);
         });
+    }
+    
+    playTerminalSound() {
+        // Create a subtle click sound effect
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
         
-        // Restore neofetch (will be handled by persona engine)
-        if (window.personaEngine) {
-            window.personaEngine.updateNeofetchTerminal(
-                window.personaEngine.personas[window.personaEngine.currentPersona].neofetch
-            );
-        }
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+        
+        oscillator.start();
+        oscillator.stop(audioContext.currentTime + 0.1);
     }
     
-    loadMatrixState() {
-        const saved = localStorage.getItem('matrixMode');
-        if (saved === 'true') {
-            this.matrixMode = true;
-            // Apply matrix mode after page loads
-            setTimeout(() => {
-                this.enterMatrixMode();
-            }, 2000);
-        }
-    }
-    
-    // Other Easter Egg Methods (unchanged)
+    // Other easter egg methods remain the same...
     activatePartyMode() {
+        if (this.matrixMode) return; // Don't party in matrix mode
+        
         document.body.classList.add('party-mode');
         this.createConfetti();
         this.showSuccessMessage('🎊 PARTY MODE ACTIVATED! 🎊<br>You clicked like a maniac!');
@@ -517,17 +462,71 @@ class EasterEggs {
     
     activateWordEasterEgg(word) {
         const messages = {
-            'hack': 'Hacker detected! 👨‍💻 *plays cyberpunk music*',
+            'matrix': 'You\'re already in the Matrix! 😎',
+            'hack': 'Hacker detected! 👨‍💻',
             'coffee': '☕ Coffee is the fuel of developers!',
-            'debug': '🐛 May your bugs be few and your fixes be swift!',
+            'debug': '🐛 May your bugs be few and fixes swift!',
             'sudo': '🔐 With great power comes great responsibility!',
-            'exit': this.matrixMode ? 'Type KONAMI code to exit Matrix!' : 'There is no exit... only return'
+            'exit': this.matrixMode ? 'Type Konami code to exit Matrix! ↑↑↓↓←→←→BA' : 'Exit what? You\'re not in anything special! 🤔'
         };
         
         this.showSuccessMessage(messages[word]);
     }
     
+    createMatrixTransition(callback) {
+        const transition = document.createElement('div');
+        transition.className = 'matrix-transition';
+        transition.innerHTML = `
+            <div class="transition-text">ENTERING THE MATRIX...</div>
+            <div class="loading-bar">
+                <div class="loading-fill"></div>
+            </div>
+        `;
+        document.body.appendChild(transition);
+        
+        setTimeout(() => {
+            callback();
+            document.body.removeChild(transition);
+        }, 2000);
+    }
+    
+    showMatrixMessage(message) {
+        const matrixMsg = document.createElement('div');
+        matrixMsg.className = 'matrix-message';
+        matrixMsg.textContent = message;
+        document.body.appendChild(matrixMsg);
+        
+        setTimeout(() => {
+            if (document.body.contains(matrixMsg)) {
+                document.body.removeChild(matrixMsg);
+            }
+        }, 3000);
+    }
+    
+    typeMatrixMessage(message) {
+        const typeMsg = document.createElement('div');
+        typeMsg.className = 'matrix-typing-message';
+        document.body.appendChild(typeMsg);
+        
+        let i = 0;
+        const typeInterval = setInterval(() => {
+            typeMsg.textContent += message[i];
+            i++;
+            if (i >= message.length) {
+                clearInterval(typeInterval);
+                setTimeout(() => {
+                    if (document.body.contains(typeMsg)) {
+                        document.body.removeChild(typeMsg);
+                    }
+                }, 2000);
+            }
+        }, 50);
+    }
+    
+    // Keep existing methods for other easter eggs...
     activateNightMode() {
+        if (this.matrixMode) return;
+        
         const nightMessage = document.createElement('div');
         nightMessage.style.cssText = `
             position: fixed;
@@ -546,11 +545,15 @@ class EasterEggs {
         document.body.appendChild(nightMessage);
         
         setTimeout(() => {
-            document.body.removeChild(nightMessage);
+            if (document.body.contains(nightMessage)) {
+                document.body.removeChild(nightMessage);
+            }
         }, 4000);
     }
     
     addFridayVibes() {
+        if (this.matrixMode) return;
+        
         const styles = document.createElement('style');
         styles.textContent = `
             @keyframes fridayVibes {
@@ -567,13 +570,14 @@ class EasterEggs {
     }
     
     showDevToolsMessage() {
+        if (this.matrixMode) return;
+        
         const devMessage = document.createElement('div');
         devMessage.className = 'dev-tools-warning';
         devMessage.innerHTML = `
             <div>👨‍💻 Hello, fellow developer!</div>
             <div>Inspecting the code? I like your style!</div>
             <div>🔍 Feel free to explore the source code</div>
-            <div>💡 Try the Konami code for a surprise!</div>
         `;
         document.body.appendChild(devMessage);
         
@@ -605,13 +609,17 @@ class EasterEggs {
                 document.body.appendChild(confetti);
                 
                 setTimeout(() => {
-                    document.body.removeChild(confetti);
+                    if (document.body.contains(confetti)) {
+                        document.body.removeChild(confetti);
+                    }
                 }, 5000);
             }, i * 50);
         }
     }
     
     showSuccessMessage(message) {
+        if (this.matrixMode) return; // Don't show regular messages in matrix mode
+        
         const popup = document.createElement('div');
         popup.className = 'konami-success';
         popup.innerHTML = message;
@@ -620,19 +628,15 @@ class EasterEggs {
         setTimeout(() => {
             popup.style.animation = 'successPop 0.5s ease-out reverse';
             setTimeout(() => {
-                document.body.removeChild(popup);
+                if (document.body.contains(popup)) {
+                    document.body.removeChild(popup);
+                }
             }, 500);
         }, 3000);
     }
 }
 
-// Initialize easter eggs and make persona engine available globally
+// Initialize easter eggs
 document.addEventListener('DOMContentLoaded', () => {
     new EasterEggs();
-    
-    // Make persona engine globally accessible for matrix mode
-    setTimeout(() => {
-        window.personaEngine = document.personaEngine || 
-            document.querySelector('script[src*="persona-engine"]')?.personaEngine;
-    }, 1000);
 });
