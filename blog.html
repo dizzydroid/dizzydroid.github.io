@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="assets/css/blog.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="description" content="DizzyBlog - Thoughts on tech, learning experiences, and random discoveries from dizzydroid">
 </head>
 <body>
     <div id="app">
         <!-- Navigation -->
-        <nav class="main-nav">                <div class="nav-brand">
-                    <a href="index.html" class="brand-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">dizzydroid</a>
-                </div>
+        <nav class="main-nav">                
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">dizzydroid</a>
+            </div>
             <div class="nav-links" id="mobile-menu">
                 <a href="index.html" class="nav-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">Home</a>
                 <a href="about.html" class="nav-link">About</a>
@@ -72,13 +74,13 @@
                 <section class="blog-header-section">
                     <div class="blog-header">
                         <div class="blog-search">
-                            <input type="text" placeholder="Search articles..." id="blog-search-input">
-                            <button type="button"><i class="fas fa-search"></i></button>
+                            <input type="text" placeholder="Search articles..." id="blog-search-input" aria-label="Search blog posts">
+                            <button type="button" aria-label="Search"><i class="fas fa-search"></i></button>
                         </div>
                         <div class="blog-filters">
                             <div class="blog-filter-dropdown">
                                 <div class="filter-btn" id="sort-filter-btn">
-                                    <span>Sort By</span>
+                                    <span>Newest First</span>
                                     <i class="fas fa-chevron-down"></i>
                                 </div>
                                 <div class="filter-dropdown" id="sort-dropdown">
@@ -96,145 +98,31 @@
                         <div class="category-tag" data-category="design">Design</div>
                         <div class="category-tag" data-category="tutorials">Tutorials</div>
                         <div class="category-tag" data-category="tools">Dev Tools</div>
-                        <div class="category-tag" data-category="thoughts">Random Thoughts</div>
+                        <div class="category-tag" data-category="artificial-intelligence">Artificial Intelligence</div>
+                        <div class="category-tag" data-category="cybersecurity">Cybersecurity</div>
+                        <div class="category-tag" data-category="thoughts">Thoughts</div>
                     </div>
                 </section>
 
                 <!-- Featured Post -->
                 <section class="featured-post-section">
-                    <div class="featured-post">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Building a Full Stack App with React and Node.js" class="featured-post-img">
-                        <div class="featured-post-content">
-                            <div>
-                                <span class="featured-tag">Featured</span>
-                                <h2 class="featured-title">Building a Full Stack App with React and Node.js</h2>
-                                <p class="featured-excerpt">In this comprehensive guide, I'll walk you through creating a full stack web application from scratch using React for the frontend and Node.js for the backend. We'll cover project structure, authentication, database integration, and deployment strategies.</p>
-                            </div>
-                            <div>
-                                <div class="featured-meta">
-                                    <span><i class="far fa-calendar"></i> June 5, 2025</span>
-                                    <span><i class="far fa-clock"></i> 15 min read</span>
-                                </div>
-                                <a href="blog/building-full-stack-app.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- This will be populated by JavaScript -->
                 </section>
 
                 <!-- Blog Posts Grid -->
                 <section class="blog-posts">
+                    <!-- This div will be populated by JavaScript -->
                     <div class="blog-grid" id="blog-posts-container">
-                        <!-- Blog Post 1 -->
-                        <div class="blog-post" data-category="coding">
-                            <div class="blog-post-img-container">
-                                <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="5 VS Code Extensions Every Developer Needs" class="blog-post-img">
-                            </div>
-                            <div class="blog-post-content">
-                                <span class="blog-post-tag">Tools</span>
-                                <h3 class="blog-post-title">5 VS Code Extensions Every Developer Needs</h3>
-                                <p class="blog-post-excerpt">Discover the essential VS Code extensions that will supercharge your productivity and make coding a more enjoyable experience. From better IntelliSense to Git integration.</p>
-                                <div class="blog-post-meta">
-                                    <span><i class="far fa-calendar"></i> June 2, 2025</span>
-                                    <span><i class="far fa-clock"></i> 7 min read</span>
-                                </div>
-                                <a href="blog/vscode-extensions.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Blog Post 2 -->
-                        <div class="blog-post" data-category="design">
-                            <div class="blog-post-img-container">
-                                <img src="https://images.unsplash.com/photo-1618788372246-79faff0c3742?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Design Principles Every Developer Should Know" class="blog-post-img">
-                            </div>
-                            <div class="blog-post-content">
-                                <span class="blog-post-tag">Design</span>
-                                <h3 class="blog-post-title">Design Principles Every Developer Should Know</h3>
-                                <p class="blog-post-excerpt">Even if you're not a designer, understanding basic design principles can help you create more user-friendly applications. Learn about color theory, typography, and layout basics.</p>
-                                <div class="blog-post-meta">
-                                    <span><i class="far fa-calendar"></i> May 28, 2025</span>
-                                    <span><i class="far fa-clock"></i> 10 min read</span>
-                                </div>
-                                <a href="blog/design-principles.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Blog Post 3 -->
-                        <div class="blog-post" data-category="tutorials">
-                            <div class="blog-post-img-container">
-                                <img src="https://images.unsplash.com/photo-1617042375876-a13e36732a04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Getting Started with TypeScript" class="blog-post-img">
-                            </div>
-                            <div class="blog-post-content">
-                                <span class="blog-post-tag">Tutorials</span>
-                                <h3 class="blog-post-title">Getting Started with TypeScript</h3>
-                                <p class="blog-post-excerpt">TypeScript has become essential in modern web development. This beginner-friendly tutorial will introduce you to TypeScript's core concepts and how to set up your first project.</p>
-                                <div class="blog-post-meta">
-                                    <span><i class="far fa-calendar"></i> May 20, 2025</span>
-                                    <span><i class="far fa-clock"></i> 12 min read</span>
-                                </div>
-                                <a href="blog/typescript-tutorial.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Blog Post 4 -->
-                        <div class="blog-post" data-category="thoughts">
-                            <div class="blog-post-img-container">
-                                <img src="https://images.unsplash.com/photo-1564865878688-9a244444042a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="The Future of Web Development" class="blog-post-img">
-                            </div>
-                            <div class="blog-post-content">
-                                <span class="blog-post-tag">Thoughts</span>
-                                <h3 class="blog-post-title">The Future of Web Development</h3>
-                                <p class="blog-post-excerpt">From AI-powered coding assistants to WebAssembly, what does the future hold for web development? Here's my take on the trends that will shape our field in the coming years.</p>
-                                <div class="blog-post-meta">
-                                    <span><i class="far fa-calendar"></i> May 15, 2025</span>
-                                    <span><i class="far fa-clock"></i> 8 min read</span>
-                                </div>
-                                <a href="blog/future-web-development.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Blog Post 5 -->
-                        <div class="blog-post" data-category="coding">
-                            <div class="blog-post-img-container">
-                                <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2031&q=80" alt="Clean Code Practices in JavaScript" class="blog-post-img">
-                            </div>
-                            <div class="blog-post-content">
-                                <span class="blog-post-tag">Coding</span>
-                                <h3 class="blog-post-title">Clean Code Practices in JavaScript</h3>
-                                <p class="blog-post-excerpt">Learning to write clean, maintainable code is crucial for any developer. In this article, I share practical examples and best practices for writing cleaner JavaScript code.</p>
-                                <div class="blog-post-meta">
-                                    <span><i class="far fa-calendar"></i> May 8, 2025</span>
-                                    <span><i class="far fa-clock"></i> 9 min read</span>
-                                </div>
-                                <a href="blog/clean-javascript.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        </div>
-
-                        <!-- Blog Post 6 -->
-                        <div class="blog-post" data-category="tutorials">
-                            <div class="blog-post-img-container">
-                                <img src="https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80" alt="Building a REST API with Express.js" class="blog-post-img">
-                            </div>
-                            <div class="blog-post-content">
-                                <span class="blog-post-tag">Tutorials</span>
-                                <h3 class="blog-post-title">Building a REST API with Express.js</h3>
-                                <p class="blog-post-excerpt">Follow this step-by-step guide to create a robust REST API using Express.js and MongoDB. We'll implement authentication, validation, error handling, and more.</p>
-                                <div class="blog-post-meta">
-                                    <span><i class="far fa-calendar"></i> May 1, 2025</span>
-                                    <span><i class="far fa-clock"></i> 15 min read</span>
-                                </div>
-                                <a href="blog/express-rest-api.html" class="read-more">Read Article <i class="fas fa-arrow-right"></i></a>
-                            </div>
+                        <div class="blog-loading">
+                            <div class="loading-spinner"></div>
+                            <p>Loading blog posts...</p>
                         </div>
                     </div>
                 </section>
 
                 <!-- Pagination -->
                 <section class="blog-pagination">
-                    <div class="pagination-btn"><i class="fas fa-chevron-left"></i></div>
-                    <div class="pagination-btn active">1</div>
-                    <div class="pagination-btn">2</div>
-                    <div class="pagination-btn">3</div>
-                    <div class="pagination-btn"><i class="fas fa-chevron-right"></i></div>
+                    <!-- This will be populated by JavaScript -->
                 </section>
             </div>
         </main>
@@ -275,7 +163,9 @@
                 </div>
             </div>
         </footer>
-    </div>    <!-- Scripts -->
+    </div>    
+
+    <!-- Scripts -->
     <script src="assets/js/hamburger-menu.js"></script>
     <script src="assets/js/persona-loader.js"></script>
     <script src="assets/js/animations.js"></script>
