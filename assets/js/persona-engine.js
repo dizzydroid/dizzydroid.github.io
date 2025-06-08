@@ -121,11 +121,25 @@ class PersonaEngine {
     }
     
     showLoading() {
-        setTimeout(() => {
+        // Check if this is the first visit or a direct page load
+        const hasVisitedBefore = sessionStorage.getItem('hasVisitedBefore');
+        
+        if (hasVisitedBefore) {
+            // Skip loading animation for returning visitors
             document.getElementById('loading').classList.add('hidden');
             document.getElementById('main-content').classList.remove('hidden');
             this.startCountUpAnimations();
-        }, 1500);
+        } else {
+            // First visit, show loading animation
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                this.startCountUpAnimations();
+                
+                // Set the flag that user has visited before
+                sessionStorage.setItem('hasVisitedBefore', 'true');
+            }, 1500);
+        }
     }
     
     bindEvents() {

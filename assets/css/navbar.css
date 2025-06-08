@@ -1,0 +1,189 @@
+/* navbar.css - Navigation enhancements */
+
+/* Navigation layout */
+.main-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Active page indicator */
+.nav-link {
+    position: relative;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+}
+
+.nav-link:not(.active)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.nav-link:not(.active):hover::after {
+    transform: scaleX(1);
+}
+
+/* Mobile navigation */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    margin-right: 15px;
+    z-index: 102;
+    order: 0; /* Position before the logo */
+}
+
+.hamburger-menu span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: var(--text-primary);
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.hamburger-menu span:nth-child(1) {
+    top: 0px;
+}
+
+.hamburger-menu span:nth-child(2), .hamburger-menu span:nth-child(3) {
+    top: 9px;
+}
+
+.hamburger-menu span:nth-child(4) {
+    top: 18px;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+    top: 9px;
+    width: 0%;
+    left: 50%;
+}
+
+.hamburger-menu.open span:nth-child(2) {
+    transform: rotate(45deg);
+}
+
+.hamburger-menu.open span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+
+.hamburger-menu.open span:nth-child(4) {
+    top: 9px;
+    width: 0%;
+    left: 50%;
+}
+
+/* Mobile nav overlay */
+@media (max-width: 768px) {
+    .main-nav {
+        justify-content: flex-start;
+        padding: 0.75rem 1rem;
+    }
+    
+    .nav-brand {
+        order: 1;
+        margin-left: 15px;
+    }
+    
+    .persona-selector {
+        order: 2;
+        margin-left: auto;
+    }
+    
+    .hamburger-menu {
+        display: block;
+        order: 0;
+        margin-right: 0;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(var(--bg-secondary-rgb, 30, 41, 59), 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.4s ease;
+        z-index: 101;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .nav-links.open {
+        left: 0;
+    }
+      .nav-link {
+        margin: 15px 0;
+        font-size: 1.5rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        transition-delay: calc(0.1s * var(--item-count, 0));
+        position: relative;
+        padding: 0.5rem 1rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .nav-links.open .nav-link {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .nav-links.open .nav-link:nth-child(1) { --item-count: 1; }
+    .nav-links.open .nav-link:nth-child(2) { --item-count: 2; }
+    .nav-links.open .nav-link:nth-child(3) { --item-count: 3; }
+    .nav-links.open .nav-link:nth-child(4) { --item-count: 4; }
+    .nav-links.open .nav-link:nth-child(5) { --item-count: 5; }
+    
+    /* Add hover effect for mobile menu links */
+    .nav-links .nav-link:hover {
+        color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+    
+    /* Add a subtle glow effect to active link */
+    .nav-links .nav-link.active {
+        text-shadow: 0 0 8px rgba(var(--primary-color-rgb), 0.6);
+    }
+}
+
+/* Body styles when mobile menu is open */
+.menu-open {
+    overflow: hidden !important;
+}

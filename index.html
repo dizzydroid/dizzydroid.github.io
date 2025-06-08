@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dizzydroid</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Track internal navigation -->
+    <script>
+        // Check if coming from an internal page
+        if (document.referrer && document.referrer.includes(window.location.host)) {
+            sessionStorage.setItem('hasVisitedBefore', 'true');
+        }
+    </script>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/personas.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/matrix-mode.css">
     <!-- Font Awesome -->
@@ -34,13 +42,21 @@
             <!-- Navigation -->
             <nav class="main-nav">
                 <div class="nav-brand">
-                    <a href="#" class="brand-link">dizzydroid</a>
+                    <a href="index.html" class="brand-link">dizzydroid</a>
                 </div>
-                <div class="nav-links" id="dynamic-nav">
+                <div class="nav-links" id="mobile-menu">
+                    <a href="index.html" class="nav-link active">Home</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="projects.html" class="nav-link">Projects</a>
                     <a href="blog.html" class="nav-link">Blog</a>
                     <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <!-- Hamburger Menu -->
+                <div class="hamburger-menu" id="hamburger-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
                 
                 <!-- Persona Selector -->
@@ -215,6 +231,7 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="assets/js/hamburger-menu.js"></script>
     <script src="assets/js/persona-engine.js"></script>
     <script src="assets/js/easter-eggs.js"></script>
     <script src="assets/js/animations.js"></script>
