@@ -61,8 +61,8 @@ class PersonaEngine {
                 description: 'Passionate developer who believes in the power of open source, continuous learning, and building meaningful software that makes a difference in people\'s lives.',
                 stats: [
                     { label: 'GitHub Repos', value: 30, suffix: '+' },
-                    { label: 'Commits This Year', value: 500, suffix: '+' },
-                    { label: 'Open Source Contributions', value: 25, suffix: '+' }
+                    { label: 'Commits This Year', value: 200, suffix: '+' },
+                    { label: 'Stars Earned', value: 60, suffix: '+' }
                 ],                actions: [
                     { text: 'Explore Code', icon: '🔍', href: 'projects.html' },
                     { text: 'GitHub Profile', icon: 'fab fa-github', href: 'https://github.com/dizzydroid' }
@@ -88,7 +88,7 @@ class PersonaEngine {
                 stats: [
                     { label: 'Fun Projects', value: 19, suffix: '+' },
                     { label: 'Experiments Tried', value: 35, suffix: '+' },
-                    { label: 'Creative Ideas', value: 50, suffix: '+' }
+                    { label: 'Creative Ideas', value: 42, suffix: '+' }
                 ],
                 actions: [
                     { text: 'Fun Projects', icon: '🎨', href: 'projects.html' },

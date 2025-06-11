@@ -2,385 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Open Your Eyes - dizzydroid</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/personas.css">
     <link rel="stylesheet" href="../assets/css/navbar.css">
     <link rel="stylesheet" href="../assets/css/blog.css">
+    <link rel="stylesheet" href="../assets/css/blog-post.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="description" content="Open Your Eyes - A thoughtful reflection on the humanitarian crisis in Palestine and our collective responsibility.">
-    <style>
-        /* Blog post specific styles */
-        .blog-post-container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Open Your Eyes",
+      "image": "../images/palestinebanner.png",
+      "author": {
+        "@type": "Person",
+        "name": "dizzydroid"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "dizzydroid",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "../images/favicon.ico"
         }
-        
-        .blog-post-header {
-            margin-bottom: 2rem;
-        }
-        
-        .blog-post-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-        
-        .blog-post-meta {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--text-secondary);
-        }
-        
-        .blog-post-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-right: 0.5rem;
-        }
-        
-        .blog-post-meta i {
-            color: var(--primary-color);
-        }
-        
-        .blog-post-cover {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: cover;
-            margin-bottom: 2rem;
-            border-radius: 10px;
-        }
-        
-        .blog-post-content {
-            line-height: 1.8;
-            color: var(--text-primary);
-            font-size: 1.05rem;
-        }
-        
-        .blog-post-content h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            font-size: 1.8rem;
-            color: var(--primary-color);
-        }
-        
-        .blog-post-content h3 {
-            margin-top: 1.8rem;
-            margin-bottom: 0.8rem;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-        }
-        
-        .blog-post-content p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .blog-post-content .quote-block {
-            position: relative;
-            font-size: 1.5rem;
-            padding: 2rem 1rem;
-            font-style: italic;
-            text-align: center;
-            margin: 2.5rem 0;
-            color: var(--primary-color);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        
-        .blog-post-content .quote-block::before {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            top: -1rem;
-            left: 0;
-            color: var(--primary-color);
-            opacity: 0.3;
-        }
-        
-        .blog-post-content .quote-block::after {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            bottom: -3rem;
-            right: 0;
-            color: var(--primary-color);
-            opacity: 0.3;
-        }
-        
-        .blog-post-content ul, .blog-post-content ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-        
-        .blog-post-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .blog-post-content img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        
-        .blog-post-content blockquote {
-            border-left: 4px solid var(--primary-color);
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            font-style: italic;
-            color: var(--text-secondary);
-        }
-        
-        .blog-post-content a {
-            color: var(--primary-color);
-            text-decoration: underline;
-        }
-        
-        .blog-post-footer {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .blog-post-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .blog-post-tags span {
-            background: rgba(var(--primary-color-rgb), 0.1);
-            color: var(--primary-color);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .blog-post-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 3rem;
-        }
-        
-        .blog-post-nav-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .blog-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 2.5rem 0;
-            padding: 1.5rem;
-            border-radius: 10px;
-            background: var(--bg-secondary);
-        }
-        
-        .blog-author-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .blog-author-info h4 {
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .blog-author-info p {
-            color: var(--text-secondary);
-            margin-bottom: 0;
-        }
-        
-        .social-share {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .social-share span {
-            font-weight: 600;
-        }
-        
-        .social-share-links {
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }        .social-share-button {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            color: var(--text-primary);
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            position: relative;
-            padding: 0;
-            overflow: hidden;
-        }
-          .icon-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .social-share-button i {
-            font-size: 1.1rem;
-            /* Fix vertical alignment for Font Awesome icons */
-            line-height: 0;
-            position: relative;
-            top: 1px; /* Adjust if needed for perfect centering */
-        }
-          .social-share-button:hover {
-            transform: translateY(-3px);
-            background: var(--primary-color);
-            color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .social-share-button:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.5);
-        }
-        
-        .behance-embed {
-            width: 100%;
-            margin: 2rem 0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            color: white;
-        }
-        
-        .emphasis {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-        
-        @media (max-width: 768px) {
-            .blog-post-container {
-                padding: 1.5rem;
-            }
-            
-            .blog-post-title {
-                font-size: 2rem;
-            }
-            
-            .blog-post-cover {
-                height: auto;
-            }
-            
-            .blog-post-navigation {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .blog-author {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .blog-post-content .quote-block {
-                font-size: 1.2rem;
-                padding: 1.5rem 0.5rem;
-            }
-            
-            .blog-post-content .quote-block::before,
-            .blog-post-content .quote-block::after {
-                font-size: 3rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .blog-post-container {
-                padding: 1rem;
-            }
-            
-            .blog-post-title {
-                font-size: 1.8rem;
-            }
-            
-            .blog-post-meta {
-                gap: 0.8rem;
-            }
-            
-            .blog-post-content {
-                font-size: 1rem;
-            }
-            
-            .blog-post-content h2 {
-                font-size: 1.5rem;
-            }
-            
-            .blog-post-content h3 {
-                font-size: 1.3rem;
-            }
-            
-            .blog-post-content .quote-block {
-                font-size: 1.1rem;
-                padding: 1.2rem 0.5rem;
-            }
-            
-            .blog-post-content .quote-block::before,
-            .blog-post-content .quote-block::after {
-                font-size: 2.5rem;
-            }
-              .social-share {
-                flex-direction: column;
-                align-items: flex-start;
-                margin-bottom: 1.5rem;
-            }
-            
-            .social-share-links {
-                margin-top: 0.5rem;
-            }
-            
-            .social-share-link {
-                width: 36px;
-                height: 36px;
-                margin-bottom: 0.5rem;
-            }
-        }
-    </style>
+      },
+      "datePublished": "2024-05-15",
+      "dateModified": "2024-05-15",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://dizzydroid.github.io/blog/open-your-eyes.html"
+      },
+      "description": "A thoughtful reflection on the humanitarian crisis in Palestine and our collective responsibility."
+    }
+    </script>
 </head>
 <body>
     <div id="app">
@@ -432,6 +95,10 @@
         <!-- Blog Post Content -->
         <main class="page-content">
             <div class="blog-post-container">
+                <a href="../blog.html" class="back-to-blog">
+                    <i class="fas fa-arrow-left"></i> Back to all posts
+                </a>
+                
                 <div class="blog-post-header">
                     <h1 class="blog-post-title">Open Your Eyes</h1>
                     <div class="blog-post-meta">
@@ -441,7 +108,7 @@
                     </div>
                 </div>
                 
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/1400_webp/03adef182542339.652fa217cc0bb.jpg" alt="Open Your Eyes" class="blog-post-cover">
+                <img src="../images/palestinebanner.png" alt="Open Your Eyes" class="blog-post-cover">
                 
                 <div class="blog-post-content">
                     <div class="quote-block">
@@ -467,8 +134,9 @@
                     
                     <p>To believe that these stories are too distant, too separate from our reality, we silence the voices that need to be heard the most. Let their stories resonate, let their cries for help find an echo in our hearts. Because <span class="emphasis">every life</span>, no matter where it's lived, holds immeasurable value.</p>
                     
-                    <div class="behance-embed">
-                        <iframe src="https://www.behance.net/embed/project/182542339?ilo0=1" height="316" width="100%" allowfullscreen="" loading="lazy" frameborder="0" allow="clipboard-write" refererpolicy="strict-origin-when-cross-origin"></iframe>
+                    <div class="image-with-caption">
+                        <img src="../images/blogs/palcrisis.png" alt="Palestine humanitarian crisis" loading="lazy">
+                        <div class="image-caption">Image: Humanitarian crisis in Palestine</div>
                     </div>
                     
                     <h2>The Power of Awareness</h2>
@@ -523,20 +191,23 @@
                         <span>Awareness</span>
                         <span>Empathy</span>
                         <span>Action</span>
-                    </div>                    <!-- Social share -->
+                    </div>
+                    
+                    <!-- Social share -->
                     <div class="social-share">
                         <span>Share this post:</span>
-                        <div class="social-share-links">                            <button onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent('Open Your Eyes - A call for awareness and action'), '_blank')" class="social-share-button" aria-label="Share on Twitter" title="Share on Twitter">
-                                <span class="icon-wrapper"><i class="fab fa-twitter" style="position:relative; line-height:0;"></i></span>
+                        <div class="social-share-links">
+                            <button onclick="window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(window.location.href) + '&text=' + encodeURIComponent('Open Your Eyes - A call for awareness and action'), '_blank')" class="social-share-button" aria-label="Share on Twitter" title="Share on Twitter">
+                                <span class="icon-wrapper"><i class="fab fa-twitter"></i></span>
                             </button>
                             <button onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(window.location.href), '_blank')" class="social-share-button" aria-label="Share on Facebook" title="Share on Facebook">
-                                <span class="icon-wrapper"><i class="fab fa-facebook-f" style="position:relative; line-height:0;"></i></span>
+                                <span class="icon-wrapper"><i class="fab fa-facebook-f"></i></span>
                             </button>
                             <button onclick="window.open('https://www.linkedin.com/shareArticle?mini=true&url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent('Open Your Eyes'), '_blank')" class="social-share-button" aria-label="Share on LinkedIn" title="Share on LinkedIn">
-                                <span class="icon-wrapper"><i class="fab fa-linkedin-in" style="position:relative; line-height:0;"></i></span>
+                                <span class="icon-wrapper"><i class="fab fa-linkedin-in"></i></span>
                             </button>
                             <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link copied to clipboard!');" class="social-share-button" aria-label="Copy link" title="Copy link">
-                                <span class="icon-wrapper"><i class="fas fa-link" style="position:relative; line-height:0;"></i></span>
+                                <span class="icon-wrapper"><i class="fas fa-link"></i></span>
                             </button>
                         </div>
                     </div>
@@ -545,6 +216,9 @@
                     <div class="blog-post-navigation">
                         <a href="../blog.html" class="blog-post-nav-link">
                             <i class="fas fa-arrow-left"></i> Back to all posts
+                        </a>
+                        <a href="agi-illusion-of-thinking.html" class="blog-post-nav-link">
+                            The Illusion of Thinking <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
@@ -593,38 +267,7 @@
     <script src="../assets/js/hamburger-menu.js"></script>
     <script src="../assets/js/persona-loader.js"></script>
     <script src="../assets/js/animations.js"></script>
-    <script src="../assets/js/main.js"></script>      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Responsive image loading
-            const images = document.querySelectorAll('img');
-            images.forEach(img => {
-                if (!img.complete) {
-                    img.style.opacity = '0';
-                    img.onload = function() {
-                        img.style.transition = 'opacity 0.5s ease';
-                        img.style.opacity = '1';
-                    };
-                }
-            });
-            
-            // Fix social icons vertical alignment
-            document.querySelectorAll('.social-share-button i').forEach(icon => {
-                icon.style.lineHeight = '0';
-                icon.style.position = 'relative';
-                icon.style.display = 'inline-flex';
-                
-                // Different adjustments for different icons
-                if (icon.classList.contains('fa-facebook-f')) {
-                    icon.style.top = '0px';
-                } else if (icon.classList.contains('fa-linkedin-in')) {
-                    icon.style.top = '0px';
-                } else if (icon.classList.contains('fa-twitter')) {
-                    icon.style.top = '0px';
-                } else {
-                    icon.style.top = '0px';
-                }
-            });
-        });
-    </script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/blog-post.js"></script>
 </body>
 </html>

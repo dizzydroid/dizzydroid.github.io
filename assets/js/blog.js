@@ -13,7 +13,7 @@ class BlogManager {
                 readTime: "7 min read",
                 featured: true,
                 url: "blog/open-your-eyes.html",
-                popularity: 10
+                popularity: 24
             },
             {
                 id: 2,
@@ -30,7 +30,7 @@ class BlogManager {
                     play: "https://dizzydroid.github.io/skimble",
                     repo: "https://github.com/dizzydroid/skimble"
                 },
-                popularity: 8
+                popularity: 3
             },
             {
                 id: 3,
@@ -47,7 +47,7 @@ class BlogManager {
                     site: "https://dizzydroid.github.io/portfoliod",
                     repo: "https://github.com/dizzydroid/portfoliod"
                 },
-                popularity: 7
+                popularity: 2
             },
             {
                 id: 4,
@@ -61,9 +61,10 @@ class BlogManager {
                 featured: false,
                 url: "https://dizzydroid.github.io/quotes",
                 externalLinks: {
-                    site: "https://dizzydroid.github.io/quotes"
+                    site: "https://dizzydroid.github.io/quotes",
+                    repo: "https://www.github.com/dizzydroid/quotes"
                 },
-                popularity: 6
+                popularity: 3
             },
             {
                 id: 5,
@@ -80,7 +81,7 @@ class BlogManager {
                     quiz: "https://dizzydroid.github.io/earth-day-quiz",
                     repo: "https://github.com/dizzydroid/earth-day-quiz"
                 },
-                popularity: 9
+                popularity: 3
             },
             {
                 id: 6,
@@ -93,8 +94,25 @@ class BlogManager {
                 readTime: "5 min read",
                 featured: false,
                 url: "blog/agi-illusion-of-thinking.html",
-                popularity: 5
+                popularity: 2
             },
+            {
+                id: 7,
+                title: "Design Patterns in a Nutshell",
+                excerpt: "A beginner-friendly handbook that serves as a guide/quick reference for most design patterns covered by the Gang of Four, with a companion repository containing code examples in Java.",
+                content: "",
+                image: "images/dpn.png",
+                category: "tutorials",
+                date: "January 10, 2025",
+                readTime: "1.3 hr read",
+                featured: false,
+                url: "https://drive.google.com/file/d/19qE0GULc0QBZ7pHO0XIFj_GkTRuBpd5v/view",
+                externalLinks: {
+                    book: "https://drive.google.com/file/d/19qE0GULc0QBZ7pHO0XIFj_GkTRuBpd5v/view",
+                    repo: "https://github.com/dizzydroid/DesignPatternsNutshell"
+                },
+                popularity: 27
+            }
         ];
         
         this.currentPage = 1;
@@ -214,7 +232,8 @@ class BlogManager {
             if (post.externalLinks.site) links.push(`<a href="${post.externalLinks.site}" target="_blank" class="external-link">Visit Site</a>`);
             if (post.externalLinks.repo) links.push(`<a href="${post.externalLinks.repo}" target="_blank" class="external-link">View Repo</a>`);
             if (post.externalLinks.quiz) links.push(`<a href="${post.externalLinks.quiz}" target="_blank" class="external-link">Take Quiz</a>`);
-            
+            if (post.externalLinks.book) links.push(`<a href="${post.externalLinks.book}" target="_blank" class="external-link">Read Book</a>`);
+
             externalLinksHTML = links.join('');
         }
         

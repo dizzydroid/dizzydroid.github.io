@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The DizzyBlog</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/main.css">
@@ -12,6 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="description" content="DizzyBlog - Thoughts on tech, learning experiences, and random discoveries from dizzydroid">
+    <meta name="theme-color" content="#1a1a1a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
     <div id="app">
@@ -70,39 +73,41 @@
                     </div>
                 </section>
 
-                <!-- Blog header with search and filters -->
-                <section class="blog-header-section">
-                    <div class="blog-header">
-                        <div class="blog-search">
-                            <input type="text" placeholder="Search articles..." id="blog-search-input" aria-label="Search blog posts">
-                            <button type="button" aria-label="Search"><i class="fas fa-search"></i></button>
+        <!-- Blog header with search and filters -->
+        <section class="blog-header-section">
+            <div class="blog-header">
+                <div class="blog-search">
+                    <input type="text" placeholder="Search articles..." id="blog-search-input" aria-label="Search blog posts">
+                    <button type="button" aria-label="Search"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="blog-filters">
+                    <div class="blog-filter-dropdown">
+                        <div class="filter-btn" id="sort-filter-btn">
+                            <span>Newest First</span>
+                            <i class="fas fa-chevron-down"></i>
                         </div>
-                        <div class="blog-filters">
-                            <div class="blog-filter-dropdown">
-                                <div class="filter-btn" id="sort-filter-btn">
-                                    <span>Newest First</span>
-                                    <i class="fas fa-chevron-down"></i>
-                                </div>
-                                <div class="filter-dropdown" id="sort-dropdown">
-                                    <div class="filter-dropdown-item" data-value="newest">Newest First</div>
-                                    <div class="filter-dropdown-item" data-value="oldest">Oldest First</div>
-                                    <div class="filter-dropdown-item" data-value="popular">Most Popular</div>
-                                </div>
-                            </div>
+                        <div class="filter-dropdown" id="sort-dropdown">
+                            <div class="filter-dropdown-item" data-value="newest">Newest First</div>
+                            <div class="filter-dropdown-item" data-value="oldest">Oldest First</div>
+                            <div class="filter-dropdown-item" data-value="popular">Most Popular</div>
                         </div>
                     </div>
-                    
-                    <div class="blog-categories">
-                        <div class="category-tag active" data-category="all">All Posts</div>
-                        <div class="category-tag" data-category="coding">Coding</div>
-                        <div class="category-tag" data-category="design">Design</div>
-                        <div class="category-tag" data-category="tutorials">Tutorials</div>
-                        <div class="category-tag" data-category="tools">Dev Tools</div>
-                        <div class="category-tag" data-category="artificial-intelligence">Artificial Intelligence</div>
-                        <div class="category-tag" data-category="cybersecurity">Cybersecurity</div>
-                        <div class="category-tag" data-category="thoughts">Thoughts</div>
-                    </div>
-                </section>
+                </div>
+            </div>
+            
+            <div class="blog-categories" id="blog-categories-container">
+                <div class="category-tag active" data-category="all">All Posts</div>
+                <div class="category-tag" data-category="coding">Coding</div>
+                <div class="category-tag" data-category="design">Design</div>
+                <div class="category-tag" data-category="tutorials">Tutorials</div>
+                <div class="category-tag" data-category="tools">Dev Tools</div>
+                <div class="category-tag" data-category="artificial-intelligence">Artificial Intelligence</div>
+                <div class="category-tag" data-category="cybersecurity">Cybersecurity</div>
+                <div class="category-tag" data-category="thoughts">Thoughts</div>
+                <button class="category-nav-btn" id="category-nav-prev" aria-label="Scroll categories left"><i class="fas fa-chevron-left"></i></button>
+                <button class="category-nav-btn" id="category-nav-next" aria-label="Scroll categories right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
 
                 <!-- Featured Post -->
                 <section class="featured-post-section">
@@ -170,6 +175,7 @@
     <script src="assets/js/persona-loader.js"></script>
     <script src="assets/js/animations.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/category-nav.js"></script>
     <script src="assets/js/blog.js"></script>
 </body>
 </html>
