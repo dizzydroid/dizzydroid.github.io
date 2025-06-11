@@ -1,6 +1,6 @@
 class PersonaEngine {
     constructor() {
-        this.currentPersona = 'student'; // Default to dev theme
+        this.currentPersona = 'student';
         this.personas = {
             student: {
                 badge: 'Welcome, Fellow Learner! 🎓',
@@ -114,34 +114,34 @@ class PersonaEngine {
     }
     
     init() {
-        this.bindEvents();
-        this.showLoading();
+        // Load saved preference FIRST, before checking if sketch should show
         this.loadSavedPreference();
+        this.bindEvents();
+        this.showLoadingOrSketch();
         this.applyPersona(this.currentPersona);
     }
     
-    showLoading() {
-        // Check if this is the first visit or a direct page load
-        const hasVisitedBefore = sessionStorage.getItem('hasVisitedBefore');
-        
-        if (hasVisitedBefore) {
-            // Skip loading animation for returning visitors
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('main-content').classList.remove('hidden');
-            this.startCountUpAnimations();
-        } else {
-            // First visit, show loading animation
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
+    showLoadingOrSketch() {
+        // Check for sketch selector first
+        if (window.SketchPersonaSelector && SketchPersonaSelector.shouldShow()) {
+            // First-time visitors: Show sketch selector
+            const sketchSelector = new SketchPersonaSelector();
+            sketchSelector.show((selectedPersona) => {
+                // Persona selected, apply it and show main content
+                this.currentPersona = selectedPersona;
+                this.applyPersona(selectedPersona);
                 document.getElementById('main-content').classList.remove('hidden');
                 this.startCountUpAnimations();
-                
-                // Set the flag that user has visited before
-                sessionStorage.setItem('hasVisitedBefore', 'true');
-            }, 1500);
+            });
+        } else {
+            // For returning visitors, show main content immediately
+            document.getElementById('main-content').classList.remove('hidden');
+            this.startCountUpAnimations();
         }
     }
     
+    // Remove the traditional loading method since we're eliminating it completely
+    // showTraditionalLoading() method is no longer needed    
     bindEvents() {
         // Persona icon clicks
         document.querySelectorAll('.persona-icon').forEach(icon => {
@@ -443,7 +443,10 @@ const style = document.createElement('style');
 style.textContent = additionalCSS;
 document.head.appendChild(style);
 
-// Initialize when DOM is loaded
+// Initialize when DOM is loaded and all scripts are available
 document.addEventListener('DOMContentLoaded', () => {
-    new PersonaEngine();
+    // Wait a bit for all scripts to load
+    setTimeout(() => {
+        new PersonaEngine();
+    }, 100);
 });

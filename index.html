@@ -11,32 +11,194 @@
         if (document.referrer && document.referrer.includes(window.location.host)) {
             sessionStorage.setItem('hasVisitedBefore', 'true');
         }
+        
+        // Manage loading screens based on user visit status
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use the same logic as SketchPersonaSelector to be consistent
+            const urlParams = new URLSearchParams(window.location.search);
+            const forceSketch = urlParams.get('force-sketch') === 'true';
+            const hasStoredPersona = localStorage.getItem('preferredPersona');
+            const personaSelectedThisSession = sessionStorage.getItem('personaSelectedThisSession');
+            
+            // Show sketch selector ONLY if no stored persona AND no persona selected this session
+            // OR if explicitly forced via URL parameter
+            const shouldShowSketch = forceSketch || (!hasStoredPersona && !personaSelectedThisSession);
+            
+            if (shouldShowSketch) {
+                // First-time visitors: Show sketchy preloader briefly, then sketch selector
+                setTimeout(() => {
+                    const sketchyPreloader = document.getElementById('sketchy-preloader');
+                    if (sketchyPreloader) {
+                        sketchyPreloader.classList.add('hidden');
+                        setTimeout(() => {
+                            sketchyPreloader.style.display = 'none';
+                        }, 500);
+                    }
+                }, 800); // Show for 800ms
+            } else {
+                // Returning visitors: Hide sketchy preloader immediately, show main content
+                const sketchyPreloader = document.getElementById('sketchy-preloader');
+                if (sketchyPreloader) {
+                    sketchyPreloader.style.display = 'none';
+                }
+                
+                // Show main content immediately
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.classList.remove('hidden');
+                }
+            }
+        });
     </script>
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/personas.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/sketch-persona-selector.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/matrix-mode.css">
     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+     
+    <!-- Sketchy Pre-loader Styles -->
+    <style>
+        #sketchy-preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #f8f6f0 0%, #f0ede3 100%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Gloria Hallelujah', cursive;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        
+        #sketchy-preloader.hidden {
+            opacity: 0;
+            transform: scale(0.95);
+            pointer-events: none;
+        }
+        
+        .sketchy-loading-text {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            text-align: center;
+            animation: sketchy-bounce 2s ease-in-out infinite;
+        }
+        
+        .sketchy-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem;
+        }
+        
+        .sketchy-dot {
+            width: 12px;
+            height: 12px;
+            background: #3498db;
+            border-radius: 50%;
+            position: relative;
+            animation: sketchy-dot-bounce 1.5s ease-in-out infinite;
+        }
+        
+        .sketchy-dot:nth-child(1) {
+            animation-delay: 0s;
+            background: #3498db;
+        }
+        
+        .sketchy-dot:nth-child(2) {
+            animation-delay: 0.3s;
+            background: #e74c3c;
+        }
+        
+        .sketchy-dot:nth-child(3) {
+            animation-delay: 0.6s;
+            background: #2ecc71;
+        }
+        
+        /* Add sketch-like imperfection to dots */
+        .sketchy-dot::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            border: 1px solid currentColor;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: sketchy-wiggle 2s ease-in-out infinite;
+        }
+        
+        .sketchy-subtitle {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-top: 1rem;
+            animation: sketchy-fade 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes sketchy-bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes sketchy-dot-bounce {
+            0%, 100% { 
+                transform: translateY(0px) scale(1);
+                opacity: 0.7;
+            }
+            50% { 
+                transform: translateY(-8px) scale(1.1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes sketchy-wiggle {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(1deg) scale(1.05); }
+            75% { transform: rotate(-1deg) scale(0.95); }
+        }
+        
+        @keyframes sketchy-fade {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        
+        @media (max-width: 768px) {
+            .sketchy-loading-text {
+                font-size: 1.5rem;
+            }
+            .sketchy-dots {
+                gap: 6px;
+            }
+            .sketchy-dot {
+                width: 10px;
+                height: 10px;
+            }
+        }
+    </style>
 </head>
 <body class="persona-dev">
-    <div id="app">
-        <!-- Loading Screen -->
-        <div id="loading" class="loading-screen">
-            <div class="loading-content">
-                <div class="logo-animation">
-                    <h1 class="animated-logo">dizzydroid</h1>
-                    <p class="loading-subtitle">Initializing system...</p>
-                    <div class="floating-shapes">
-                        <div class="shape shape-1"></div>
-                        <div class="shape shape-2"></div>
-                        <div class="shape shape-3"></div>
-                    </div>
-                </div>
-            </div>
+    <!-- Sketchy Pre-loader (appears first to prevent content flash) -->
+    <div id="sketchy-preloader">
+        <div class="sketchy-loading-text">Getting things ready...</div>
+        <div class="sketchy-dots">
+            <div class="sketchy-dot"></div>
+            <div class="sketchy-dot"></div>
+            <div class="sketchy-dot"></div>
         </div>
-
+        <div class="sketchy-subtitle">~ Loading... ~</div>
+    </div>
+    
+    <div id="app">
         <!-- Main Content -->
         <div id="main-content" class="hidden">
             <!-- Navigation -->
@@ -232,6 +394,7 @@
 
     <!-- Scripts -->
     <script src="assets/js/hamburger-menu.js"></script>
+    <script src="assets/js/sketch-persona-selector.js"></script>
     <script src="assets/js/persona-engine.js"></script>
     <script src="assets/js/easter-eggs.js"></script>
     <script src="assets/js/animations.js"></script>
