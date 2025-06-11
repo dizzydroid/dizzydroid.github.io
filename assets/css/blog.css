@@ -1,5 +1,10 @@
 /* blog.css - Blog specific styles */
 
+/* Blog specific page header spacing */
+.page-header {
+    margin-bottom: 40px;
+}
+
 /* Blog container */
 .blog-container {
     max-width: 1200px;
@@ -202,33 +207,6 @@
     color: white;
 }
 
-.category-nav-btn {
-    display: none;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    cursor: pointer;
-    align-items: center;
-    justify-content: center;
-    z-index: 5;
-}
-
-#category-nav-prev {
-    left: 0;
-    box-shadow: 5px 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#category-nav-next {
-    right: 0;
-    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .category-tag:hover:not(.active) {
     background-color: rgba(var(--primary-color-rgb), 0.1);
 }
@@ -391,11 +369,73 @@
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+}
+
+.external-link i {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    display: inline-block !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: 1 !important;
 }
 
 .external-link:hover {
     background: var(--primary-color);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.3);
+}
+
+/* Specific GitHub icon fixes for external links */
+.external-link .fab.fa-github {
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+    display: inline-block !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+}
+
+.external-link .fab.fa-github::before {
+    content: "\f09b" !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: static !important;
+    font-family: "Font Awesome 6 Brands" !important;
+}
+
+/* Ensure all FontAwesome brand icons in external links are clean */
+.external-link .fab {
+    background: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline !important;
+    font-family: "Font Awesome 6 Brands" !important;
+    font-weight: 400 !important;
+}
+
+.external-link .fab::before,
+.external-link .fab::after {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    position: static !important;
+    font-family: "Font Awesome 6 Brands" !important;
 }
 
 .blog-post-actions {
@@ -486,6 +526,10 @@
 }
 
 @media (max-width: 768px) {
+    .page-header {
+        margin-bottom: 25px;
+    }
+    
     .blog-header {
         flex-direction: column;
         align-items: flex-start;
@@ -523,9 +567,9 @@
         width: 100%;
         justify-content: space-between;
     }
-    
-    .page-title {
-        font-size: 2rem;
+      .page-title,
+    .blog-page-title {
+        font-size: 2.8rem;
     }
     
     .page-subtitle {
@@ -546,6 +590,10 @@
 }
 
 @media (max-width: 576px) {
+    .page-header {
+        margin-bottom: 20px;
+    }
+    
     .blog-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -553,8 +601,7 @@
     
     .container {
         padding: 1rem;
-    }
-      .blog-categories {
+    }      .blog-categories {
         overflow-x: auto;
         padding-bottom: 0.5rem;
         margin-bottom: 1.5rem;
@@ -567,9 +614,13 @@
         flex-wrap: nowrap;
         position: relative;
     }
+      .blog-categories::-webkit-scrollbar {
+        height: 6px;
+    }
     
-    .blog-categories::-webkit-scrollbar {
-        height: 4px;
+    .blog-categories::-webkit-scrollbar-track {
+        background: var(--bg-secondary);
+        border-radius: 10px;
     }
     
     .blog-categories::-webkit-scrollbar-thumb {
@@ -577,14 +628,14 @@
         border-radius: 10px;
     }
     
+    .blog-categories::-webkit-scrollbar-thumb:hover {
+        background: var(--accent-color);
+    }
+    
     .category-tag {
         flex-shrink: 0;
         padding: 0.4rem 0.8rem;
         font-size: 0.9rem;
-    }
-    
-    .category-nav-btn {
-        display: flex;
     }
     
     .featured-post {
@@ -609,9 +660,9 @@
         align-items: flex-start;
         gap: 0.5rem;
     }
-    
-    .page-title {
-        font-size: 1.8rem;
+      .page-title,
+    .blog-page-title {
+        font-size: 2.5rem;
     }
     
     .page-subtitle {
@@ -629,6 +680,10 @@
 }
 
 @media (max-width: 400px) {
+    .page-header {
+        margin-bottom: 15px;
+    }
+    
     .featured-meta {
         flex-direction: column;
         align-items: flex-start;
@@ -669,9 +724,36 @@
     .blog-post-content {
         padding: 1rem;
     }
-    
-    .featured-tag {
+      .featured-tag {
         font-size: 0.7rem;
         padding: 0.2rem 0.6rem;
+    }
+    
+    .external-link {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+        margin-right: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .external-link i {
+        font-size: 0.8rem;
+    }
+    
+    /* Extra small screens - blog title */
+    .blog-page-title {
+        font-size: 2rem !important;
+        line-height: 1.1;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
+    .page-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .page-subtitle {
+        font-size: 0.85rem;
+        padding: 0 0.5rem;
     }
 }

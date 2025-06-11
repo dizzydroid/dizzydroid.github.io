@@ -6,7 +6,7 @@ class SimplePersonaLoader {
     
     init() {
         // Load saved persona preference
-        const savedPersona = localStorage.getItem('preferredPersona') || 'dev';
+        const savedPersona = localStorage.getItem('preferredPersona') || 'student';
         
         // Apply persona class to body
         document.body.className = `persona-${savedPersona}`;

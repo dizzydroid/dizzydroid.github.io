@@ -1,6 +1,6 @@
 class PersonaEngine {
     constructor() {
-        this.currentPersona = 'dev'; // Default to dev theme
+        this.currentPersona = 'student'; // Default to dev theme
         this.personas = {
             student: {
                 badge: 'Welcome, Fellow Learner! 🎓',

@@ -540,6 +540,55 @@
     animation-delay: 1.7s; 
 }
 
+/* Persona-specific content visibility for About page */
+.persona-student-content,
+.persona-recruiter-content, 
+.persona-dev-content,
+.persona-other-content {
+    display: none;
+}
+
+/* Show content based on active persona */
+.persona-student .persona-student-content {
+    display: block;
+}
+
+.persona-recruiter .persona-recruiter-content {
+    display: block;
+}
+
+.persona-dev .persona-dev-content {
+    display: block;
+}
+
+.persona-other .persona-other-content {
+    display: block;
+}
+
+/* Special handling for grid layouts */
+.persona-student .persona-student-content.favorites-grid,
+.persona-recruiter .persona-recruiter-content.favorites-grid,
+.persona-dev .persona-dev-content.favorites-grid,
+.persona-other .persona-other-content.favorites-grid {
+    display: grid;
+}
+
+/* Ensure smooth transitions for persona content */
+.persona-student-content,
+.persona-recruiter-content,
+.persona-dev-content,
+.persona-other-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.persona-student .persona-student-content,
+.persona-recruiter .persona-recruiter-content,
+.persona-dev .persona-dev-content,
+.persona-other .persona-other-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Matrix Animations */
 @keyframes matrixBootup {
     0% { 

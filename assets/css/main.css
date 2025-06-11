@@ -664,6 +664,25 @@ body {
     margin-bottom: 80px;
 }
 
+/* Reduce spacing for blog page specifically */
+.blog-page-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.3);
+    letter-spacing: -0.02em;
+    animation: gradientShift 3s ease-in-out infinite;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
 .page-title {
     font-size: 3.5rem;
     font-weight: 700;
@@ -673,6 +692,24 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.blog-page-title {
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.3);
+    letter-spacing: -0.02em;
+    animation: gradientShift 3s ease-in-out infinite;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .page-subtitle {
@@ -1417,7 +1454,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 840px) {
     .hero {
         flex-direction: column;
         text-align: center;

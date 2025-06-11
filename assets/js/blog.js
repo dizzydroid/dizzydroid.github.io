@@ -225,14 +225,13 @@ class BlogManager {
     
     createPostHTML(post) {
         let externalLinksHTML = '';
-        
-        if (post.externalLinks) {
+          if (post.externalLinks) {
             const links = [];
-            if (post.externalLinks.play) links.push(`<a href="${post.externalLinks.play}" target="_blank" class="external-link">Play Now</a>`);
-            if (post.externalLinks.site) links.push(`<a href="${post.externalLinks.site}" target="_blank" class="external-link">Visit Site</a>`);
-            if (post.externalLinks.repo) links.push(`<a href="${post.externalLinks.repo}" target="_blank" class="external-link">View Repo</a>`);
-            if (post.externalLinks.quiz) links.push(`<a href="${post.externalLinks.quiz}" target="_blank" class="external-link">Take Quiz</a>`);
-            if (post.externalLinks.book) links.push(`<a href="${post.externalLinks.book}" target="_blank" class="external-link">Read Book</a>`);
+            if (post.externalLinks.play) links.push(`<a href="${post.externalLinks.play}" target="_blank" class="external-link"><i class="fas fa-play"></i> Play Now</a>`);
+            if (post.externalLinks.site) links.push(`<a href="${post.externalLinks.site}" target="_blank" class="external-link"><i class="fas fa-external-link-alt"></i> Visit Site</a>`);
+            if (post.externalLinks.repo) links.push(`<a href="${post.externalLinks.repo}" target="_blank" class="external-link"><i class="fab fa-github"></i> View Repo</a>`);
+            if (post.externalLinks.quiz) links.push(`<a href="${post.externalLinks.quiz}" target="_blank" class="external-link"><i class="fas fa-question-circle"></i> Take Quiz</a>`);
+            if (post.externalLinks.book) links.push(`<a href="${post.externalLinks.book}" target="_blank" class="external-link"><i class="fas fa-book"></i> Read Book</a>`);
 
             externalLinksHTML = links.join('');
         }
