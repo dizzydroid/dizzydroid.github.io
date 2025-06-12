@@ -1,10 +1,14 @@
-# 🎨 dizzydroid Portfolio
+# The dizzydroid Website
 
-> A dynamic, persona-driven portfolio website that adapts to your audience
+A dynamic, persona-driven portfolio website that adapts to ***you***!
+<div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://dizzydroid.github.io)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
-[![Mobile Responsive](https://img.shields.io/badge/Mobile-Responsive-orange?style=for-the-badge)]()
+![Project Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)
+[![Vanilla JS](https://img.shields.io/badge/JavaScript-ES6+-yellow.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Made with ❤️](https://img.shields.io/badge/Made_with-❤️-ff69b4.svg)
+
+</div>
 
 ## ✨ Features
 
@@ -16,9 +20,9 @@ The portfolio features a unique **4-persona system** that dynamically adapts con
 - **💻 Fellow Developer**: Technical projects, code repositories, development insights
 - **🌟 Curious Explorer**: Creative projects, fun experiments, personal side
 
-### 🎨 **Sketch Persona Selector**
-A revolutionary **notebook-style interface** that completely replaces traditional loading screens:
-- Hand-drawn aesthetic using Gloria Hallelujah font
+### 🎨 **Friendly Welcome Page**
+A **notebook-style interface** that warmly welcomes first-time visitors:
+- Hand-drawn aesthetic
 - Interactive floating doodles and animations
 - Touch-friendly mobile optimization
 - Accessibility-first design with ARIA support
@@ -27,9 +31,9 @@ A revolutionary **notebook-style interface** that completely replaces traditiona
 ### 🚀 **Modern Portfolio Features**
 - **Responsive Design**: Seamless experience across all devices
 - **Dynamic Blog System**: Categories, search, pagination, featured posts
-- **Neofetch Terminal**: Interactive developer-themed display
+- **Neofetch Terminal**: I use arch btw.
 - **Smooth Animations**: CSS3 powered transitions and effects
-- **Easter Eggs**: Hidden Konami code surprises
+- **Easter Eggs**: Try the Konami code for a surprise ;)
 - **Performance Optimized**: Fast loading with progressive enhancement
 
 ### ♿ **Accessibility First**
@@ -37,7 +41,6 @@ A revolutionary **notebook-style interface** that completely replaces traditiona
 - Screen reader compatibility
 - ARIA labels and semantic HTML
 - Focus management and indicators
-- Reduced motion support
 
 ## 🛠️ Technologies
 
@@ -46,7 +49,7 @@ A revolutionary **notebook-style interface** that completely replaces traditiona
 - **CSS3** - Modern styling with custom properties
 - **Vanilla JavaScript** - No framework dependencies
 - **Font Awesome** - Icon library
-- **Google Fonts** - Inter & Gloria Hallelujah typography
+- **Google Fonts** - Font library
 
 ### Key Libraries & APIs
 - **Web Storage API** - Persona preferences persistence
@@ -58,12 +61,11 @@ A revolutionary **notebook-style interface** that completely replaces traditiona
 
 ```
 dizzydroid.github.io/
-├── 📄 index.html              # Homepage with persona selector
-├── 📄 about.html              # About page with persona-specific content
-├── 📄 blog.html               # Dynamic blog system
+├── 📄 index.html              # Homepage
+├── 📄 about.html              # About page (taylors to different personas)
+├── 📄 blog.html               # The DizzyBlog
 ├── 📄 projects.html           # Projects showcase
 ├── 📄 contact.html            # Contact information
-├── 📄 demo.html               # Sketch selector demo
 ├── 📁 assets/
 │   ├── 📁 css/
 │   │   ├── main.css           # Core styles
@@ -79,12 +81,15 @@ dizzydroid.github.io/
 │       ├── blog.js            # Blog functionality
 │       ├── animations.js      # Animation engine
 │       └── easter-eggs.js     # Hidden features
-├── 📁 blog/                   # Blog post pages
+├── 📁 blog/                   # Blog post pages and content
 ├── 📁 images/                 # Asset images
 └── 📁 test/                   # Testing pages
 ```
 
 ## 🚀 Quick Start
+
+The website is live at [dizzydroid.github.io](https://dizzydroid.github.io). You can also run it locally for development or testing purposes.
+To get started with the project, follow these steps:
 
 ### 1. Clone the Repository
 ```bash
@@ -99,9 +104,6 @@ Since this is a static site, you can use any local server:
 ```bash
 # Python 3
 python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
 ```
 
 **Option B: Node.js**
@@ -136,7 +138,7 @@ const personas = {
 };
 ```
 
-### Sketch Selector Innovation
+### Persona Selector Welcome Screen
 Replaces boring loading screens with an engaging selection interface:
 - **First-time visitors**: See the sketch selector automatically
 - **Returning visitors**: Skip directly to content
@@ -144,7 +146,7 @@ Replaces boring loading screens with an engaging selection interface:
 
 ### Blog System
 Dynamic blog with advanced features:
-- **Categories**: Coding, Design, Tutorials, Cybersecurity, Thoughts
+- **Categories**: Coding, Design, Tutorials, AI, Cybersecurity, Thoughts
 - **Search**: Real-time filtering
 - **Sorting**: Date, popularity, read time
 - **Pagination**: Performance-optimized page loading
@@ -200,7 +202,7 @@ The site is fully responsive with specific mobile enhancements:
 
 ### Testing Your Changes
 
-The repository includes comprehensive testing pages:
+The repository includes comprehensive testing pages in the [`test`](test/) directory:
 - `demo.html` - Interactive feature demo
 - `test-accessibility.html` - Accessibility testing
 - `test-integration.html` - Full integration tests
@@ -234,7 +236,7 @@ While this is a personal portfolio, contributions are welcome:
 ## 📊 Performance
 
 The site is optimized for performance:
-- **Lighthouse Score**: 95+ across all metrics
+- **Lighthouse Score**: 90+ across all metrics
 - **Mobile-First**: Optimized for mobile devices
 - **Lazy Loading**: Images and content load as needed
 - **Efficient CSS**: Minimal render-blocking resources
@@ -263,6 +265,8 @@ This portfolio was built by **Shehab Mahmoud** (dizzydroid):
 - **Font Awesome** - For comprehensive icon library
 - **Google Fonts** - For typography excellence
 - **The Dev Community** - For inspiration and feedback
+- **Stack Overflow** - For always having the answers
+- **Reddit** - For having the answers when Stack Overflow didn't
 
 ---
 
