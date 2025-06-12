@@ -129,11 +129,19 @@ class SketchPersonaSelector {
         // Keyboard navigation for accessibility
         selector.addEventListener('keydown', (e) => {
             this.handleKeyboardNavigation(e, personaOptions);
-        });
-        
-        personaOptions.forEach((option, index) => {
+        });        personaOptions.forEach((option, index) => {
             // Click/touch selection
             option.addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('Click event triggered for:', option.dataset.persona);
+                this.selectPersona(option.dataset.persona);
+            });
+            
+            // Touch event handling for mobile
+            option.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Touch event triggered for:', option.dataset.persona);
                 this.selectPersona(option.dataset.persona);
             });
             
@@ -158,41 +166,53 @@ class SketchPersonaSelector {
             });
             
             // Add touch feedback for mobile
-            option.addEventListener('touchstart', () => {
+            option.addEventListener('touchstart', (e) => {
                 if (this.isMobile()) {
+                    console.log('Touch start for:', option.dataset.persona);
                     this.addTouchFeedback(option);
                 }
             });
-        });
-
-        // Add keyboard navigation
+        });// Add keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 this.hide();
             }
         });
         
-        // Prevent zoom on double-tap for mobile
+        // Prevent zoom on double-tap for mobile (only on the selector container, not globally)
         if (this.isMobile()) {
-            document.addEventListener('touchend', (e) => {
-                e.preventDefault();
+            const selectorElement = document.getElementById('sketch-persona-selector');
+            let lastTouchEnd = 0;
+            
+            selectorElement.addEventListener('touchend', (e) => {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    // Double tap detected, prevent zoom
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
             }, { passive: false });
         }
-    }
-
-    isMobile() {
-        return window.innerWidth <= 768 || 'ontouchstart' in window;
-    }
-
-    addTouchFeedback(option) {
+    }    isMobile() {
+        return (
+            window.innerWidth <= 768 || 
+            'ontouchstart' in window || 
+            navigator.maxTouchPoints > 0 ||
+            navigator.msMaxTouchPoints > 0
+        );
+    }addTouchFeedback(option) {
+        // Add visual feedback class for better touch response
+        option.classList.add('touch-active');
+        
         // Add subtle scale effect for touch feedback
-        option.style.transform = 'scale(0.98)';
+        option.style.transform = 'scale(0.95)';
         option.style.transition = 'transform 0.1s ease';
         
         setTimeout(() => {
+            option.classList.remove('touch-active');
             option.style.transform = '';
             option.style.transition = '';
-        }, 150);
+        }, 200);
     }
 
     addHoverEffect(option) {

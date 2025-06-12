@@ -137,8 +137,7 @@
     border: 2px dashed #bdc3c7;
     border-radius: 12px;
     padding: 1.5rem;
-    text-align: center;
-    cursor: pointer;
+    text-align: center;    cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
     transform: rotate(var(--rotation, 0deg));
@@ -152,6 +151,8 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    touch-action: manipulation; /* Prevents double-tap zoom and improves touch response */
+    -webkit-touch-callout: none; /* Prevents long-press menu on iOS */
 }
 
 .sketch-persona-option:nth-child(1) {
@@ -642,4 +643,25 @@
         transform: rotate(0deg) scale(1.1);
         box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
     }
+}
+
+/* Active/pressed states for touch feedback */
+.sketch-persona-option:active,
+.sketch-persona-option.touch-active {
+    transform: rotate(0deg) scale(0.95);
+    background: rgba(var(--color-rgb), 0.1);
+    border-color: var(--color);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.15),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced hover effects */
+.sketch-persona-option:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--color);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.15),
+        0 0 0 2px rgba(var(--color-rgb), 0.2);
+    transform: rotate(0deg) scale(1.02);
 }
