@@ -392,9 +392,10 @@ class BlogManager {
                 });
                 break;
         }
-    }      
+    }      // We'll let main.js handle the hamburger menu for all pages
       setupHamburgerMenu() {
-        // console.log('Blog page: delegating hamburger menu setup to main.js');
+        // This is now handled in main.js to ensure consistency across all pages
+        console.log('Blog page: delegating hamburger menu setup to main.js');
     }
     
     setupPagination() {

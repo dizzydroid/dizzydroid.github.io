@@ -76,9 +76,9 @@ const animationCSS = `
 `;
 
 // Inject animation CSS
-const animationStyle = document.createElement('style');
-animationStyle.textContent = animationCSS;
-document.head.appendChild(animationStyle);
+const style = document.createElement('style');
+style.textContent = animationCSS;
+document.head.appendChild(style);
 
 // Initialize animations
 document.addEventListener('DOMContentLoaded', () => {

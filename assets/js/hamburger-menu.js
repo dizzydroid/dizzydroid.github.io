@@ -1,16 +1,20 @@
+/**
+ * hamburger-menu.js - Provides consistent hamburger menu functionality across all pages
+ */
+
 function setupHamburgerMenu() {
-    // console.log('Setting up hamburger menu...');
+    console.log('Setting up hamburger menu...');
     
-    // Get mobile menu elements using both ID and class selector
+    // Get mobile menu elements using both ID and class selector for better compatibility
     const hamburgerToggle = document.getElementById('hamburger-toggle');
     const mobileMenu = document.getElementById('mobile-menu') || document.querySelector('.nav-links');
     
-    // console.log('Elements found:', { hamburgerToggle, mobileMenu });
+    console.log('Elements found:', { hamburgerToggle, mobileMenu });
     
     if (hamburgerToggle && mobileMenu) {
         // Define the toggle function
         const toggleMenu = function() {
-            // console.log('Toggle menu clicked');
+            console.log('Toggle menu clicked');
             hamburgerToggle.classList.toggle('open');
             mobileMenu.classList.toggle('open');
             document.body.classList.toggle('menu-open');
@@ -18,7 +22,7 @@ function setupHamburgerMenu() {
         
         // Close menu function
         const closeMenu = function() {
-            // console.log('Closing menu');
+            console.log('Closing menu');
             hamburgerToggle.classList.remove('open');
             mobileMenu.classList.remove('open');
             document.body.classList.remove('menu-open');
@@ -29,12 +33,12 @@ function setupHamburgerMenu() {
         
         // Close mobile menu when clicking a link (but allow navigation to happen)
         const navLinks = document.querySelectorAll('.nav-links a');
-        // console.log('Found nav links:', navLinks.length);
+        console.log('Found nav links:', navLinks.length);
         
         navLinks.forEach((link, index) => {
-            // console.log(`Adding click listener to link ${index}:`, link.href);
+            console.log(`Adding click listener to link ${index}:`, link.href);
             link.addEventListener('click', function(event) {
-                // console.log('Nav link clicked:', this.href);
+                console.log('Nav link clicked:', this.href);
                 // Allow the navigation to happen normally
                 closeMenu();
             });
@@ -48,7 +52,7 @@ function setupHamburgerMenu() {
             
             // Only close if clicking outside the menu and not on hamburger or nav links
             if (!isClickInsideMenu && !isClickOnHamburger && !isClickOnNavLink && mobileMenu.classList.contains('open')) {
-                // console.log('Closing menu due to outside click');
+                console.log('Closing menu due to outside click');
                 closeMenu();
             }
         });
@@ -56,12 +60,12 @@ function setupHamburgerMenu() {
         // Close menu with Escape key
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
-                // console.log('Closing menu due to Escape key');
+                console.log('Closing menu due to Escape key');
                 closeMenu();
             }
         });
         
-        // console.log('Hamburger menu setup complete');
+        console.log('Hamburger menu setup complete');
     } else {
         console.error('Hamburger menu elements not found!');
     }

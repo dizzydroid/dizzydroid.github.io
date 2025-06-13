@@ -46,12 +46,12 @@ class PortfolioApp {
         const hamburgerToggle = document.getElementById('hamburger-toggle');
         const mobileMenu = document.getElementById('mobile-menu') || document.querySelector('.nav-links');
         
-        // console.log('Hamburger menu setup: ', {hamburgerToggle, mobileMenu});
+        console.log('Hamburger menu setup: ', {hamburgerToggle, mobileMenu});
         
         if (hamburgerToggle && mobileMenu) {
             // Define the toggle function
             const toggleMenu = function() {
-                // console.log('Hamburger clicked');
+                console.log('Hamburger clicked');
                 hamburgerToggle.classList.toggle('open');
                 mobileMenu.classList.toggle('open');
                 
@@ -100,7 +100,7 @@ class PortfolioApp {
     
     setupContactForm() {
         // Contact form handling will be added later
-        // console.log('Contact form setup ready');
+        console.log('Contact form setup ready');
     }
     
     addEasterEggs() {
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Explicitly set up the hamburger menu to ensure it works on all pages
     appInstance.setupHamburgerMenu();
     
-    // console.log('PortfolioApp initialized');
+    console.log('PortfolioApp initialized');
 });
 
 // Add some CSS for rainbow effect
@@ -185,6 +185,6 @@ const rainbowCSS = `
 }
 `;
 
-const rainbowStyle = document.createElement('style');
-rainbowStyle.textContent = rainbowCSS;
-document.head.appendChild(rainbowStyle);
+const style = document.createElement('style');
+style.textContent = rainbowCSS;
+document.head.appendChild(style);

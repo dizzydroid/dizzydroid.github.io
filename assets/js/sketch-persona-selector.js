@@ -133,7 +133,7 @@ class SketchPersonaSelector {
             // Click/touch selection
             option.addEventListener('click', (e) => {
                 e.preventDefault();
-                // console.log('Click event triggered for:', option.dataset.persona);
+                console.log('Click event triggered for:', option.dataset.persona);
                 this.selectPersona(option.dataset.persona);
             });
             
@@ -141,7 +141,7 @@ class SketchPersonaSelector {
             option.addEventListener('touchend', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                // console.log('Touch event triggered for:', option.dataset.persona);
+                console.log('Touch event triggered for:', option.dataset.persona);
                 this.selectPersona(option.dataset.persona);
             });
             
@@ -168,7 +168,7 @@ class SketchPersonaSelector {
             // Add touch feedback for mobile
             option.addEventListener('touchstart', (e) => {
                 if (this.isMobile()) {
-                    // console.log('Touch start for:', option.dataset.persona);
+                    console.log('Touch start for:', option.dataset.persona);
                     this.addTouchFeedback(option);
                 }
             });
