@@ -5,6 +5,49 @@
     box-sizing: border-box;
 }
 
+/* Performance optimization for animations */
+@media (prefers-reduced-motion: no-preference) {
+    :root {
+        /* Only enable animations if user allows them */
+        --enable-animations: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --enable-animations: 0;
+    }
+    
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* GPU optimization: Use transform3d to force hardware acceleration only when beneficial */
+@supports (transform: translate3d(0, 0, 0)) {
+    .gpu-accelerated {
+        transform: translate3d(0, 0, 0);
+        will-change: transform;
+    }
+}
+
+/* Fallback for devices without GPU acceleration */
+@media (max-device-pixel-ratio: 1) {
+    .main-nav {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(15, 23, 42, 0.95) !important;
+    }
+    
+    /* Disable expensive animations on low-end devices */
+    .animated-logo,
+    .floating-shapes .shape {
+        animation: none !important;
+    }
+}
+
 :root {
     /* Default colors - will be overridden by persona themes */
     --primary-color: #10b981;
@@ -1736,8 +1779,8 @@ body {
 .btn-secondary .fas,
 .contact-icon .fas,
 .quick-link-icon .fas,
-.btn-primary .fab,
-.btn-secondary .fab,
+.btn_primary .fab,
+.btn_secondary .fab,
 .contact-icon .fab,
 .quick-link-icon .fab {
     background: none !important;
@@ -1745,6 +1788,4 @@ body {
     border-radius: 0 !important;
     box-shadow: none !important;
 }
-
-/* ======================== */
 

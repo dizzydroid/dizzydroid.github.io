@@ -7,6 +7,9 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Track internal navigation -->
     <script>
+        // Progressive enhancement: Hide main content initially only if JS is available
+        document.documentElement.style.setProperty('--js-enabled', '1');
+        
         // Check if coming from an internal page
         if (document.referrer && document.referrer.includes(window.location.host)) {
             sessionStorage.setItem('hasVisitedBefore', 'true');
@@ -25,7 +28,12 @@
             const shouldShowSketch = forceSketch || (!hasStoredPersona && !personaSelectedThisSession);
             
             if (shouldShowSketch) {
-                // First-time visitors: Show sketchy preloader briefly, then sketch selector
+                // First-time visitors: Hide main content initially, show sketchy preloader briefly, then sketch selector
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.classList.add('hidden');
+                }
+                
                 setTimeout(() => {
                     const sketchyPreloader = document.getElementById('sketchy-preloader');
                     if (sketchyPreloader) {
@@ -54,6 +62,7 @@
     <link rel="stylesheet" href="assets/css/personas.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/sketch-persona-selector.css">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/matrix-mode.css">
@@ -185,6 +194,79 @@
             }
         }
     </style>
+    
+    <!-- Noscript fallbacks -->
+    <noscript>
+        <style>
+            /* Hide JavaScript-dependent elements when JS is disabled */
+            #sketchy-preloader {
+                display: none !important;
+            }
+            
+            /* Ensure main content is visible */
+            #main-content {
+                display: block !important;
+                opacity: 1 !important;
+            }
+            
+            /* Disable all animations for no-JS users */
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+            }
+            
+            /* CSS-only hamburger menu */
+            .hamburger-menu {
+                display: none !important;
+            }
+            
+            .css-hamburger {
+                display: block !important;
+            }
+            
+            @media (max-width: 768px) {
+                .css-hamburger {
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    z-index: 1001;
+                }
+            }
+            
+            .nav-links {
+                display: flex !important;
+                position: static !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                flex-direction: row !important;
+                gap: 2rem;
+            }
+            
+            /* Hide persona selector for no-JS users */
+            .persona-selector {
+                display: none;
+            }
+            
+            /* Disable backdrop filters for better compatibility */
+            .main-nav {
+                backdrop-filter: none !important;
+                background: rgba(15, 23, 42, 0.95) !important;
+            }
+            
+            /* Show fallback content for JavaScript-dependent elements */
+            .no-js-fallback {
+                display: block !important;
+            }
+            
+            .js-only {
+                display: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 <body class="persona-dev">
     <!-- Sketchy Pre-loader (appears first to prevent content flash) -->
@@ -200,12 +282,17 @@
     
     <div id="app">
         <!-- Main Content -->
-        <div id="main-content" class="hidden">
+        <div id="main-content">
             <!-- Navigation -->
             <nav class="main-nav">
+                <!-- Skip link for accessibility -->
+                <a href="#main-content" class="skip-link">Skip to main content</a>
+                
                 <div class="nav-brand">
                     <a href="index.html" class="brand-link">dizzydroid</a>
                 </div>
+                
+                <!-- Regular navigation links -->
                 <div class="nav-links" id="mobile-menu">
                     <a href="index.html" class="nav-link active">Home</a>
                     <a href="about.html" class="nav-link">About</a>
@@ -213,12 +300,29 @@
                     <a href="blog.html" class="nav-link">Blog</a>
                     <a href="contact.html" class="nav-link">Contact</a>
                 </div>
-                <!-- Hamburger Menu -->
+                
+                <!-- JavaScript hamburger menu -->
                 <div class="hamburger-menu" id="hamburger-toggle">
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
+                </div>
+                
+                <!-- CSS-only hamburger menu fallback (hidden by default) -->
+                <div class="css-hamburger">
+                    <input type="checkbox" id="css-menu-toggle">
+                    <label for="css-menu-toggle">
+                        <span></span>
+                    </label>
+                    <!-- Mobile overlay for CSS-only menu -->
+                    <div class="css-mobile-overlay">
+                        <a href="index.html" class="nav-link active">Home</a>
+                        <a href="about.html" class="nav-link">About</a>
+                        <a href="projects.html" class="nav-link">Projects</a>
+                        <a href="blog.html" class="nav-link">Blog</a>
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </div>
                 </div>
                 
                 <!-- Persona Selector -->
@@ -266,15 +370,15 @@
                     <!-- Live Stats -->
                     <div class="hero-stats" id="dynamic-stats">
                         <div class="stat">
-                            <div class="stat-number" data-target="25" data-suffix="+">0+</div>
+                            <div class="stat-number" data-target="25" data-suffix="+">25+</div>
                             <div class="stat-label">Open Source Contributions</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number" data-target="30" data-suffix="+">0+</div>
+                            <div class="stat-number" data-target="30" data-suffix="+">30+</div>
                             <div class="stat-label">GitHub Repositories</div>
                         </div>
                         <div class="stat">
-                            <div class="stat-number" data-target="15" data-suffix="+">0+</div>
+                            <div class="stat-number" data-target="15" data-suffix="+">15+</div>
                             <div class="stat-label">Projects Built</div>
                         </div>
                     </div>
@@ -307,6 +411,19 @@
                             <div class="neofetch-header">
                                 <div class="neofetch-logo" id="neofetch-logo">💻</div>
                                 <div class="neofetch-info" id="neofetch-info">
+                                    <!-- Fallback content for no-JS users -->
+                                    <div class="no-js-fallback" style="display: none;">
+                                        <div class="info-line"><span class="info-label">OS:</span> Web Portfolio</div>
+                                        <div class="info-line"><span class="info-label">Host:</span> dizzydroid.github.io</div>
+                                        <div class="info-line"><span class="info-label">Kernel:</span> Student Mode</div>
+                                        <div class="info-line"><span class="info-label">Uptime:</span> Always Learning</div>
+                                        <div class="info-line"><span class="info-label">Packages:</span> JavaScript, Python, C++</div>
+                                        <div class="info-line"><span class="info-label">Shell:</span> VS Code</div>
+                                        <div class="info-line"><span class="info-label">Theme:</span> Developer [Dark]</div>
+                                        <div class="info-line"><span class="info-label">Icons:</span> Font Awesome</div>
+                                        <div class="info-line"><span class="info-label">CPU:</span> Coffee Powered</div>
+                                        <div class="info-line"><span class="info-label">Memory:</span> ∞ Dreams</div>
+                                    </div>
                                     <!-- Content will be populated by JavaScript -->
                                 </div>
                             </div>

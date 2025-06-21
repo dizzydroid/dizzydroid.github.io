@@ -8,8 +8,72 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/personas.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Noscript fallbacks -->
+    <noscript>
+        <style>
+            /* Ensure main content is visible */
+            #app {
+                display: block !important;
+                opacity: 1 !important;
+            }
+            
+            /* Disable all animations for no-JS users */
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                transform: none !important;
+            }
+            
+            /* CSS-only hamburger menu */
+            .hamburger-menu {
+                display: none;
+            }
+            
+            .nav-links {
+                display: flex !important;
+                position: static !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                flex-direction: row !important;
+                gap: 2rem;
+            }
+            
+            /* Hide persona selector for no-JS users */
+            .persona-selector {
+                display: none;
+            }
+            
+            /* Disable backdrop filters for better compatibility */
+            .main-nav {
+                backdrop-filter: none !important;
+                background: rgba(15, 23, 42, 0.95) !important;
+            }
+            
+            /* Show default persona content for no-JS users */
+            .persona-dev-content {
+                display: block !important;
+            }
+            
+            .persona-student-content,
+            .persona-recruiter-content,
+            .persona-other-content {
+                display: none !important;
+            }
+            
+            .hamburger-menu { display: none !important; }
+            .css-hamburger { display: block !important; }
+            @media (max-width: 768px) {
+                .css-hamburger { position: absolute; top: 1rem; right: 1rem; z-index: 1001; }
+            }
+        </style>
+    </noscript>
 </head>
 <body>
     <div id="app">

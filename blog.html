@@ -9,12 +9,32 @@
     <link rel="stylesheet" href="assets/css/personas.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <link rel="stylesheet" href="assets/css/blog.css">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="description" content="DizzyBlog - Thoughts on tech, learning experiences, and random discoveries from dizzydroid">
     <meta name="theme-color" content="#1a1a1a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Noscript fallbacks -->
+    <noscript>
+        <style>
+            #app { display: block !important; opacity: 1 !important; }
+            *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; }
+            .hamburger-menu { display: none; }
+            .nav-links { display: flex !important; position: static !important; background: transparent !important; box-shadow: none !important; transform: none !important; opacity: 1 !important; visibility: visible !important; flex-direction: row !important; gap: 2rem; }
+            .persona-selector { display: none; }
+            .main-nav { backdrop-filter: none !important; background: rgba(15, 23, 42, 0.95) !important; }
+            .no-js-fallback { display: block !important; }
+            .js-only, .blog-loading { display: none !important; }
+            .hamburger-menu { display: none !important; }
+            .css-hamburger { display: block !important; }
+            @media (max-width: 768px) {
+                .css-hamburger { position: absolute; top: 1rem; right: 1rem; z-index: 1001; }
+            }
+        </style>
+    </noscript>
 </head>
 <body>
     <div id="app">
@@ -116,9 +136,124 @@
                 <section class="blog-posts">
                     <!-- This div will be populated by JavaScript -->
                     <div class="blog-grid" id="blog-posts-container">
-                        <div class="blog-loading">
+                        <div class="blog-loading js-only">
                             <div class="loading-spinner"></div>
                             <p>Loading blog posts...</p>
+                        </div>
+                        
+                        <!-- Fallback content for no-JS users -->
+                        <div class="no-js-fallback" style="display: none;">
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="blog/agi-illusion-of-thinking.html">The Illusion of Thinking: How close are we to AGI?</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">June 8, 2025</span>
+                                        <span class="blog-category">Artificial Intelligence</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    Artificial General Intelligence (AGI) is a topic of great interest and debate in the tech community. This article largely discusses the recent paper by Apple: 'The Illusion of Thinking: Understanding the Strengths and Limitations of Reasoning Models via the Lens of Problem Complexity'
+                                </p>
+                                <a href="blog/agi-illusion-of-thinking.html" class="blog-read-more">Read More →</a>
+                            </div>
+                            
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="https://drive.google.com/file/d/19qE0GULc0QBZ7pHO0XIFj_GkTRuBpd5v/view" target="_blank">Design Patterns in a Nutshell</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">January 10, 2025</span>
+                                        <span class="blog-category">Tutorials</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    A beginner-friendly handbook that serves as a guide/quick reference for most design patterns covered by the Gang of Four, with a companion repository containing code examples in Java.
+                                </p>
+                                <a href="https://drive.google.com/file/d/19qE0GULc0QBZ7pHO0XIFj_GkTRuBpd5v/view" target="_blank" class="blog-read-more">Read Book →</a>
+                            </div>
+                            
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="blog/open-your-eyes.html">Open Your Eyes</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">May 15, 2024</span>
+                                        <span class="blog-category">Thoughts</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    How many more thousands of children have to die? How many more families need to be torn apart? How long will the world stay silent? How long will you keep your eyes closed?
+                                </p>
+                                <a href="blog/open-your-eyes.html" class="blog-read-more">Read More →</a>
+                            </div>
+                            
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="https://dizzydroid.github.io/skimble" target="_blank">𝚜𝚔𝚖𝚋𝚕</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">September 29, 2023</span>
+                                        <span class="blog-category">Coding</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    A really simple arcade-style game with great personality ^_^ , you play as that green fella dodging the red fellas falling from the sky, but it gets trickier! How long can you skimble?
+                                </p>
+                                <a href="https://dizzydroid.github.io/skimble" target="_blank" class="blog-read-more">Play Game →</a>
+                            </div>
+                            
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="https://dizzydroid.github.io/portfoliod" target="_blank">Tell your story, your way.</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">August 16, 2023</span>
+                                        <span class="blog-category">Design</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    Have you ever wanted to showcase yourself in a few simple steps? Look no further! With basic HTML knowledge, you can edit this website to act as your own simple portfolio, fully customizable to your needs!
+                                </p>
+                                <a href="https://dizzydroid.github.io/portfoliod" target="_blank" class="blog-read-more">View Project →</a>
+                            </div>
+                            
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="https://dizzydroid.github.io/quotes" target="_blank">In quoting others, we cite ourselves..</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">May 26, 2023</span>
+                                        <span class="blog-category">Coding</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    This simple website generates random quotes everytime you visit it, so there's always something new to digest! If you're lucky enough, you'll even find my personal favorite quotes in there, labeled!
+                                </p>
+                                <a href="https://dizzydroid.github.io/quotes" target="_blank" class="blog-read-more">Visit Site →</a>
+                            </div>
+                            
+                            <div class="blog-post-card">
+                                <div class="blog-post-header">
+                                    <h3 class="blog-post-title">
+                                        <a href="https://dizzydroid.github.io/earth-day-quiz" target="_blank">Earth is what we all have in common..</a>
+                                    </h3>
+                                    <div class="blog-post-meta">
+                                        <span class="blog-date">April 22, 2023</span>
+                                        <span class="blog-category">Thoughts</span>
+                                    </div>
+                                </div>
+                                <p class="blog-post-excerpt">
+                                    Celebrating Earth Day 2023! Get to know more about our planet and how to protect it, check out EarthDay's website and take this quiz to test your knowledge about our planet!
+                                </p>
+                                <a href="https://dizzydroid.github.io/earth-day-quiz" target="_blank" class="blog-read-more">Take Quiz →</a>
+                            </div>
                         </div>
                     </div>
                 </section>
