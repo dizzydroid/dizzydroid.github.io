@@ -13,12 +13,20 @@
     
     <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <!-- Styles -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/personas.css">
+    <style>
+        /* Override Font Awesome icon color to match Lucide icons */
+        .contact-item .fab,
+        .contact-item .fas {
+            color: inherit !important;
+        }
+    </style>
 </head>
 <body data-persona="developer">
     <!-- Persona Selection Modal -->
@@ -190,21 +198,15 @@
                         </div>
 
                         <div class="contact-item">
-                            <i data-lucide="twitter"></i>
-                            <h3>Twitter</h3>
+                            <i class="fab fa-x-twitter"></i>
+                            <h3>X (Twitter)</h3>
                             <p>
                                 <a href="https://x.com/shehabtweets" target="_blank" rel="noopener">
                                     @shehabtweets
                                 </a>
                             </p>
                         </div>
-
-                        <div class="contact-item">
-                            <i data-lucide="map-pin"></i>
-                            <h3>Location</h3>
-                            <p>Egypt</p>
-                        </div>
-
+                        
                         <div class="contact-item">
                             <i data-lucide="clock"></i>
                             <h3>Response Time</h3>
@@ -240,14 +242,14 @@
         </section>
     </main>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <i data-lucide="terminal"></i>
-                    <span class="brand-text">dizzydroid</span>
-                    <p>Building the future, one line at a time.</p>
+                    <span class="footer-brand-text">dizzydroid</span>
+                    <p>Redefining lives, one line of code at a time.</p>
                 </div>
                 
                 <div class="footer-links">
@@ -267,254 +269,11 @@
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 dizzydroid. Crafted with care.</p>
+                <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/personas.js"></script>
-    <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
-    </script>
-</body>
-</html>
-            <div class="persona-selector">
-                <div class="persona-tooltip">Choose your view</div>
-                <div class="persona-icons">
-                    <div class="persona-icon student" data-persona="student" title="Student/Learner">
-                        <div class="icon-inner">🎓</div>
-                        <div class="icon-label">Student</div>
-                    </div>
-                    <div class="persona-icon recruiter" data-persona="recruiter" title="Recruiter/HR">
-                        <div class="icon-inner">💼</div>
-                        <div class="icon-label">Recruiter</div>
-                    </div>
-                    <div class="persona-icon dev active" data-persona="dev" title="Fellow Developer">
-                        <div class="icon-inner">💻</div>
-                        <div class="icon-label">Developer</div>
-                    </div>
-                    <div class="persona-icon other" data-persona="other" title="Just Curious">
-                        <div class="icon-inner">🌟</div>
-                        <div class="icon-label">Explorer</div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Contact Content -->
-        <main class="page-content">
-            <div class="container">
-                <!-- Page Header -->
-                <section class="page-header">
-                    <div class="header-content">
-                        <h1 class="page-title">Let's Connect</h1>
-                        <p class="page-subtitle">Got a project idea? Want to collaborate? Just want to say hi?</p>
-                    </div>
-                </section>
-
-                <!-- Contact Content -->
-                <section class="contact-content">
-                    <div class="contact-grid">
-                        <!-- Contact Info -->
-                        <div class="contact-section">
-                            <div class="contact-card">
-                                <h3>Get In Touch</h3>
-                                <p>I'm always excited to connect with fellow developers, potential collaborators, or anyone interested in technology. Whether you have a project idea, want to discuss tech, or just want to say hello, I'd love to hear from you!</p>
-                                
-                                <div class="contact-methods">
-                                    <div class="contact-method">
-                                        <div class="contact-icon">
-                                            <a href="mailto:shehabmahmoud2003@gmail.com" style="color: inherit; text-decoration: none;">
-                                                <i class="fas fa-envelope"></i>
-                                            </a>
-                                        </div>
-                                        <div class="contact-info">
-                                            <h4>Email</h4>
-                                            <p>Drop me a line anytime</p>
-                                            <a href="mailto:shehabmahmoud2003@gmail.com" class="contact-link">shehabmahmoud2003@gmail.com</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="contact-method">
-                                        <div class="contact-icon">
-                                            <a href="https://github.com/dizzydroid" target="_blank" style="color: inherit; text-decoration: none;">
-                                                <i class="fab fa-github"></i>
-                                            </a>
-                                        </div>
-                                        <div class="contact-info">
-                                            <h4>GitHub</h4>
-                                            <p>Check out my code and projects</p>
-                                            <a href="https://github.com/dizzydroid" target="_blank" class="contact-link">@dizzydroid</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="contact-method">
-                                        <div class="contact-icon">
-                                            <a href="https://www.x.com/shehabtweets" target="_blank" style="color: inherit; text-decoration: none;">
-                                                <i class="fab fa-x-twitter"></i>
-                                            </a>
-                                        </div>
-                                        <div class="contact-info">
-                                            <h4>Twitter</h4>
-                                            <p>Let's chat about tech and life</p>
-                                            <a href="https://www.x.com/shehabtweets" target="_blank" class="contact-link">@shehabtweets</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="contact-method">
-                                        <div class="contact-icon">
-                                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" style="color: inherit; text-decoration: none;">
-                                                <i class="fab fa-linkedin"></i>
-                                        </div>
-                                        <div class="contact-info">
-                                            <h4>LinkedIn</h4>
-                                            <p>Professional networking</p>
-                                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" class="contact-link">Shehab Mahmoud</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contact Form -->
-                        <div class="contact-section">
-                            <div class="contact-card">
-                                <h3>Send a Message</h3>                                
-                                <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-                                    <input type="hidden" name="access_key" value="0c92db70-79b4-4ced-8ce3-1c1d96e0335a1">
-                                    <input type="hidden" name="subject" value="New Contact Form Message from Portfolio">
-                                    <input type="hidden" name="from_name" value="Portfolio Contact Form">
-                                    
-                                    <div class="form-group">
-                                        <label for="name">Name</label>
-                                        <input type="text" id="name" name="name" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" id="email" name="email" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="subject">Subject</label>
-                                        <select id="subject" name="subject" required>
-                                            <option value="">Select a topic</option>
-                                            <option value="collaboration">Collaboration</option>
-                                            <option value="project">Project Inquiry</option>
-                                            <option value="feedback">Feedback</option>
-                                            <option value="general">General Question</option>
-                                            <option value="other">Other</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="message">Message</label>
-                                        <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project, idea, or just say hello!"></textarea>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn-primary">
-                                        <span>Send Message</span>
-                                        <i class="fas fa-paper-plane"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quick Links -->
-                    <section class="quick-contact">
-                        <h3>Quick Links</h3>
-                        <div class="quick-links-grid">
-                            <a href="https://github.com/dizzydroid" target="_blank" class="quick-link">
-                                <div class="quick-link-icon">
-                                    <i class="fab fa-github"></i>
-                                </div>
-                                <div class="quick-link-content">
-                                    <h4>View My Code</h4>
-                                    <p>Explore my repositories and contributions</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" class="quick-link">
-                                <div class="quick-link-icon">
-                                    <i class="fab fa-linkedin"></i>
-                                </div>
-                                <div class="quick-link-content">
-                                    <h4>Professional Profile</h4>
-                                    <p>Connect with me professionally</p>
-                                </div>
-                            </a>
-                            
-                            <a href="https://www.behance.net/dizzydroid" target="_blank" class="quick-link">
-                                <div class="quick-link-icon">
-                                    <i class="fab fa-behance"></i>
-                                </div>
-                                <div class="quick-link-content">
-                                    <h4>Design Portfolio</h4>
-                                    <p>Check out my design work</p>
-                                </div>
-                            </a>
-                            
-                            <a href="projects.html" class="quick-link">
-                                <div class="quick-link-icon">
-                                    <i class="fas fa-rocket"></i>
-                                </div>
-                                <div class="quick-link-content">
-                                    <h4>My Projects</h4>
-                                    <p>See what I've been building</p>
-                                </div>
-                            </a>
-                        </div>
-                    </section>
-
-                    <!-- Availability Status -->
-                    <section class="availability-status">
-                        <div class="status-card">
-                            <div class="status-indicator">
-                                <div class="status-dot available"></div>
-                                <span class="status-text">Available for new opportunities</span>
-                            </div>
-                            <p>I'm currently open to freelance projects, collaborations, and interesting full-time opportunities. Feel free to reach out!</p>
-                        </div>
-                    </section>
-                </section>
-            </div>
-        </main>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-brand">
-                        <i data-lucide="terminal"></i>
-                        <span class="brand-text">dizzydroid</span>
-                        <p>Building the future, one line at a time.</p>
-                    </div>
-                    
-                    <div class="footer-links">
-                        <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
-                            <i data-lucide="github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
-                            <i data-lucide="linkedin"></i>
-                        </a>
-                        <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
-                            <i data-lucide="twitter"></i>
-                        </a>
-                        <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
-                            <i data-lucide="at-sign"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; 2025 dizzydroid. Crafted with care.</p>
-                </div>
-            </div>
-        </footer>
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/personas.js"></script>

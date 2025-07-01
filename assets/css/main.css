@@ -144,6 +144,17 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--accent-secondary);
 }
 
+.footer-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: white;
+    transition: var(--transition-fast);
+}
+
 .nav-links {
     display: flex;
     gap: var(--space-xl);
@@ -539,7 +550,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-mono);
     font-weight: 600;
     font-size: 1.25rem;
-    color: var(--accent-primary);
+    color: var(--text-primary);
+    display: block;
+}
+
+.footer-brand-text {
+    font-family: var(--font-mono);
+    color: white;
+    font-weight: 600;
+    font-size: 1.25rem;
     display: block;
 }
 
