@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Your Eyes - dizzydroid</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/personas.css">
-    <link rel="stylesheet" href="../assets/css/navbar.css">
-    <link rel="stylesheet" href="../assets/css/blog.css">
-    <link rel="stylesheet" href="../assets/css/blog-post.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <meta name="description" content="Open Your Eyes - A thoughtful reflection on the humanitarian crisis in Palestine and our collective responsibility.">
-    <meta name="theme-color" content="#1a1a1a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
@@ -45,64 +51,120 @@
     }
     </script>
 </head>
-<body>
-    <div id="app">
-        <!-- Navigation -->
-        <nav class="main-nav">
-            <div class="nav-brand">
-                <a href="../index.html" class="brand-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">dizzydroid</a>
+<body data-persona="developer">
+    <!-- Persona Selection Modal -->
+    <div id="persona-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content" role="dialog" aria-labelledby="persona-title">
+            <h2 id="persona-title">Choose Your Experience</h2>
+            <p class="modal-subtitle">Customize the content to match your interests</p>
+            
+            <div class="persona-grid">
+                <button class="persona-card" data-persona="student" aria-describedby="student-desc">
+                    <i data-lucide="graduation-cap"></i>
+                    <h3>Student</h3>
+                    <p id="student-desc">Learning journey and educational content</p>
+                </button>
+                
+                <button class="persona-card" data-persona="recruiter" aria-describedby="recruiter-desc">
+                    <i data-lucide="briefcase"></i>
+                    <h3>Recruiter</h3>
+                    <p id="recruiter-desc">Professional experience and achievements</p>
+                </button>
+                
+                <button class="persona-card" data-persona="developer" aria-describedby="developer-desc">
+                    <i data-lucide="code"></i>
+                    <h3>Developer</h3>
+                    <p id="developer-desc">Technical projects and development insights</p>
+                </button>
+                
+                <button class="persona-card" data-persona="explorer" aria-describedby="explorer-desc">
+                    <i data-lucide="compass"></i>
+                    <h3>Explorer</h3>
+                    <p id="explorer-desc">Creative projects and general overview</p>
+                </button>
             </div>
-            <div class="nav-links" id="mobile-menu">
-                <a href="../index.html" class="nav-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">Home</a>
+            
+            <button class="modal-close" aria-label="Close modal">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">
+                <i data-lucide="terminal"></i>
+                <span class="brand-text">dizzydroid</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
                 <a href="../about.html" class="nav-link">About</a>
                 <a href="../projects.html" class="nav-link">Projects</a>
                 <a href="../blog.html" class="nav-link active">Blog</a>
                 <a href="../contact.html" class="nav-link">Contact</a>
             </div>
             
-            <!-- Hamburger Menu -->
-            <div class="hamburger-menu" id="hamburger-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <!-- Persona Selector -->
-            <div class="persona-selector">
-                <div class="persona-tooltip">Choose your view</div>
-                <div class="persona-icons">
-                    <div class="persona-icon student" data-persona="student" title="Student/Learner">
-                        <div class="icon-inner">🎓</div>
-                        <div class="icon-label">Student</div>
-                    </div>
-                    <div class="persona-icon recruiter" data-persona="recruiter" title="Recruiter/HR">
-                        <div class="icon-inner">💼</div>
-                        <div class="icon-label">Recruiter</div>
-                    </div>
-                    <div class="persona-icon dev active" data-persona="dev" title="Fellow Developer">
-                        <div class="icon-inner">💻</div>
-                        <div class="icon-label">Developer</div>
-                    </div>
-                    <div class="persona-icon other" data-persona="other" title="Just Curious">
-                        <div class="icon-inner">🌟</div>
-                        <div class="icon-label">Explorer</div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Blog Post Content -->
-        <main class="page-content">
-            <div class="blog-post-container">
-                <a href="../blog.html" class="back-to-blog">
-                    <i class="fas fa-arrow-left"></i> Back to all posts
-                </a>
+            <div class="nav-actions">
+                <button class="persona-toggle" aria-label="Change persona" title="Customize experience">
+                    <i data-lucide="user"></i>
+                </button>
                 
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="../index.html" class="mobile-nav-link">Home</a>
+            <a href="../about.html" class="mobile-nav-link">About</a>
+            <a href="../projects.html" class="mobile-nav-link">Projects</a>
+            <a href="../blog.html" class="mobile-nav-link active">Blog</a>
+            <a href="../contact.html" class="mobile-nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Article Header -->
+        <article class="blog-post">
+            <div class="container">
                 <div class="blog-post-header">
+                    <div class="blog-breadcrumb">
+                        <a href="../blog.html">
+                            <i data-lucide="arrow-left"></i>
+                            <span>Back to Blog</span>
+                        </a>
+                    </div>
+                    
                     <h1 class="blog-post-title">Open Your Eyes</h1>
                     <div class="blog-post-meta">
-                        <span><i class="far fa-calendar"></i> May 15, 2024</span>
+                        <i data-lucide="calendar"></i>
+                        <span>May 15, 2024</span>
+                        <i data-lucide="clock"></i>
+                        <span>4 min read</span>
+                        <i data-lucide="folder"></i>
+                        <span>Thoughts</span>
+                    </div>
+                    <div class="blog-post-tags">
+                        <span class="blog-post-tag">Humanitarian</span>
+                        <span class="blog-post-tag">Palestine</span>
+                        <span class="blog-post-tag">Awareness</span>
+                        <span class="blog-post-tag">Empathy</span>
+                    </div>
+                </div>
+                
+                <img src="../images/palestinebanner.png" alt="Open Your Eyes" class="blog-post-cover">
+                
+                <div class="blog-post-content">
                         <span><i class="far fa-clock"></i> 7 min read</span>
                         <span><i class="far fa-folder"></i> Thoughts</span>
                     </div>
@@ -222,52 +284,50 @@
                         </a>
                     </div>
                 </div>
+                </div>
             </div>
-        </main>
+        </article>
+    </main>
 
-        <!-- Footer -->
-        <footer class="site-footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>dizzydroid</h3>
-                        <p>Redefining lives, one line of code at a time.</p>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h4>Connect</h4>
-                        <div class="social-links">
-                            <a href="https://www.x.com/shehabtweets" target="_blank" class="social-link" title="Twitter">
-                                <i class="fab fa-x-twitter"></i>
-                            </a>
-                            <a href="https://github.com/dizzydroid" target="_blank" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-link" title="YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://www.behance.net/dizzydroid" target="_blank" class="social-link" title="Behance">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                        </div>
-                    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i data-lucide="terminal"></i>
+                    <span class="footer-brand-text">dizzydroid</span>
+                    <p>Redefining lives, one line of code at a time.</p>
                 </div>
                 
-                <div class="footer-bottom">
-                    <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
+                <div class="footer-links">
+                    <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                        <i data-lucide="twitter"></i>
+                    </a>
+                    <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                        <i data-lucide="at-sign"></i>
+                    </a>
                 </div>
             </div>
-        </footer>
-    </div>
-    
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
+            </div>
+        </div>
+    </footer>
+
     <!-- Scripts -->
-    <script src="../assets/js/hamburger-menu.js"></script>
-    <script src="../assets/js/persona-loader.js"></script>
-    <script src="../assets/js/animations.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/personas.js"></script>
     <script src="../assets/js/blog-post.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>

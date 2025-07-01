@@ -15,10 +15,10 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/components.css">
-    <link rel="stylesheet" href="assets/css/personas.css">
+    <link rel="stylesheet" href="assets/css/reset.css?v=2">
+    <link rel="stylesheet" href="assets/css/main.css?v=2">
+    <link rel="stylesheet" href="assets/css/components.css?v=2">
+    <link rel="stylesheet" href="assets/css/personas.css?v=2">
 </head>
 <body data-persona="developer">
     <!-- Persona Selection Modal -->
@@ -112,7 +112,7 @@
                         <i data-lucide="chevron-right"></i>
                         <span>Blog</span>
                     </div>
-                    <h1 class="page-title">The DizzyBlog</h1>
+                    <h1 class="page-title code-title">The DizzyBlog</h1>
                     <p class="page-description" id="blog-description">
                         Thoughts on tech, learning experiences, and discoveries
                     </p>
@@ -123,162 +123,50 @@
         <!-- Blog Content -->
         <section class="blog-content">
             <div class="container">
+                <!-- Blog header with search and filters -->
+                <div class="blog-controls">
+                    <div class="blog-search">
+                        <input type="text" placeholder="Search articles..." id="blog-search-input" aria-label="Search blog posts">
+                        <button type="button" aria-label="Search">
+                            <i data-lucide="search"></i>
+                        </button>
+                    </div>
+                    <div class="blog-filters">
+                        <div class="filter-dropdown">
+                            <button class="filter-btn" id="sort-filter-btn">
+                                <span>Newest First</span>
+                                <i data-lucide="chevron-down"></i>
+                            </button>
+                            <div class="filter-options" id="sort-dropdown">
+                                <div class="filter-option" data-value="newest">Newest First</div>
+                                <div class="filter-option" data-value="oldest">Oldest First</div>
+                                <div class="filter-option" data-value="popular">Most Popular</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="blog-categories" id="blog-categories-container">
+                    <button class="category-tag active" data-category="all">All Posts</button>
+                    <button class="category-tag" data-category="artificial-intelligence">AI</button>
+                    <button class="category-tag" data-category="tutorials">Tutorials</button>
+                    <button class="category-tag" data-category="coding">Coding</button>
+                    <button class="category-tag" data-category="design">Design</button>
+                    <button class="category-tag" data-category="thoughts">Thoughts</button>
+                </div>
+
                 <div class="blog-grid" id="dynamic-blog">
-                    <!-- Blog Post 1 -->
-                    <article class="blog-card">
-                        <div class="blog-meta">
-                            <i data-lucide="calendar"></i>
-                            <span>January 15, 2025</span>
-                            <i data-lucide="clock"></i>
-                            <span>5 min read</span>
-                        </div>
-                        <h3>The AGI Illusion of Thinking</h3>
-                        <p class="blog-excerpt">
-                            Exploring the misconceptions around Artificial General Intelligence and what it means 
-                            for true machine consciousness. A deep dive into the current state of AI and the path forward.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="blog-tag">AI</span>
-                            <span class="blog-tag">Machine Learning</span>
-                            <span class="blog-tag">Philosophy</span>
-                        </div>
-                        <div class="blog-footer">
-                            <a href="/blog/agi-illusion-of-thinking" class="blog-link">
-                                <span>Read More</span>
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 2 -->
-                    <article class="blog-card">
-                        <div class="blog-meta">
-                            <i data-lucide="calendar"></i>
-                            <span>December 28, 2024</span>
-                            <i data-lucide="clock"></i>
-                            <span>3 min read</span>
-                        </div>
-                        <h3>Open Your Eyes: A Wake-Up Call</h3>
-                        <p class="blog-excerpt">
-                            Sometimes we need to step back and really see what's happening around us. A reflection 
-                            on awareness, technology, and the importance of staying conscious in our digital age.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="blog-tag">Reflection</span>
-                            <span class="blog-tag">Technology</span>
-                            <span class="blog-tag">Society</span>
-                        </div>
-                        <div class="blog-footer">
-                            <a href="/blog/open-your-eyes" class="blog-link">
-                                <span>Read More</span>
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 3 -->
-                    <article class="blog-card">
-                        <div class="blog-meta">
-                            <i data-lucide="calendar"></i>
-                            <span>December 20, 2024</span>
-                            <i data-lucide="clock"></i>
-                            <span>4 min read</span>
-                        </div>
-                        <h3>Building Modern Web Applications</h3>
-                        <p class="blog-excerpt">
-                            A comprehensive guide to building scalable, maintainable web applications using modern 
-                            frameworks and best practices. From architecture to deployment.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="blog-tag">Web Development</span>
-                            <span class="blog-tag">React</span>
-                            <span class="blog-tag">Node.js</span>
-                        </div>
-                        <div class="blog-footer">
-                            <a href="#" class="blog-link">
-                                <span>Read More</span>
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 4 -->
-                    <article class="blog-card">
-                        <div class="blog-meta">
-                            <i data-lucide="calendar"></i>
-                            <span>December 10, 2024</span>
-                            <i data-lucide="clock"></i>
-                            <span>6 min read</span>
-                        </div>
-                        <h3>The Art of Clean Code</h3>
-                        <p class="blog-excerpt">
-                            Writing code that not only works but is also readable, maintainable, and elegant. 
-                            Exploring principles and practices that make the difference between good and great code.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="blog-tag">Clean Code</span>
-                            <span class="blog-tag">Best Practices</span>
-                            <span class="blog-tag">Software Engineering</span>
-                        </div>
-                        <div class="blog-footer">
-                            <a href="#" class="blog-link">
-                                <span>Read More</span>
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 5 -->
-                    <article class="blog-card">
-                        <div class="blog-meta">
-                            <i data-lucide="calendar"></i>
-                            <span>November 25, 2024</span>
-                            <i data-lucide="clock"></i>
-                            <span>8 min read</span>
-                        </div>
-                        <h3>Learning in Public: My Journey</h3>
-                        <p class="blog-excerpt">
-                            The benefits and challenges of learning programming in public. How sharing your journey 
-                            can accelerate growth and build meaningful connections in the tech community.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="blog-tag">Learning</span>
-                            <span class="blog-tag">Community</span>
-                            <span class="blog-tag">Personal Growth</span>
-                        </div>
-                        <div class="blog-footer">
-                            <a href="#" class="blog-link">
-                                <span>Read More</span>
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Blog Post 6 -->
-                    <article class="blog-card">
-                        <div class="blog-meta">
-                            <i data-lucide="calendar"></i>
-                            <span>November 15, 2024</span>
-                            <i data-lucide="clock"></i>
-                            <span>5 min read</span>
-                        </div>
-                        <h3>Open Source Contributions</h3>
-                        <p class="blog-excerpt">
-                            Getting started with open source contributions. A beginner's guide to finding projects, 
-                            making your first pull request, and becoming part of the global developer community.
-                        </p>
-                        <div class="blog-tags">
-                            <span class="blog-tag">Open Source</span>
-                            <span class="blog-tag">Git</span>
-                            <span class="blog-tag">Community</span>
-                        </div>
-                        <div class="blog-footer">
-                            <a href="#" class="blog-link">
-                                <span>Read More</span>
-                                <i data-lucide="arrow-right"></i>
-                            </a>
-                        </div>
-                    </article>
+                    <!-- Blog posts will be dynamically loaded here by BlogManager -->
+                    <div class="blog-loading">
+                        <i data-lucide="loader"></i>
+                        <p>Loading blog posts...</p>
+                    </div>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination" style="display: none;">
+                    <!-- Pagination buttons will be dynamically generated -->
+                </div>
                 </div>
 
                 <!-- Newsletter Signup -->
@@ -337,6 +225,7 @@
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>
     <script src="assets/js/personas.js"></script>
+    <script src="assets/js/blog.js"></script>
     <script>
         // Initialize Lucide icons
         lucide.createIcons();

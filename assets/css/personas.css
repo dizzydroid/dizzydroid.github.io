@@ -155,7 +155,8 @@ body[data-persona] {
 }
 
 /* Highlight text theming */
-[data-persona] .highlight {
+[data-persona] .highlight,
+[data-persona] .page-title:not(.code-title) {
     background: linear-gradient(135deg, var(--persona-primary), var(--persona-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -195,6 +196,60 @@ body[data-persona] {
 /* Mobile menu toggle theming */
 [data-persona] .mobile-menu-toggle span {
     background: var(--persona-primary);
+}
+
+/* Blog specific persona theming */
+[data-persona] .blog-meta i,
+[data-persona] .featured-meta i {
+    color: var(--persona-primary);
+}
+
+[data-persona] .blog-card:hover,
+[data-persona] .featured-post:hover {
+    border-color: var(--persona-primary);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--persona-primary) 30%, transparent);
+}
+
+[data-persona] .featured-post {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--persona-primary) 10%, transparent), color-mix(in srgb, var(--persona-primary) 5%, transparent));
+    border: 1px solid color-mix(in srgb, var(--persona-primary) 20%, transparent);
+}
+
+[data-persona] .blog-link.primary:hover,
+[data-persona] .featured-link:hover {
+    border-color: var(--persona-primary);
+    color: var(--persona-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--persona-primary) 10%, transparent);
+}
+
+[data-persona] .featured-badge,
+[data-persona] .featured-tag {
+    background: var(--persona-primary);
+    color: white;
+}
+
+[data-persona] .category-tag.active {
+    background: var(--persona-primary);
+    border-color: var(--persona-primary);
+    color: white;
+}
+
+[data-persona] .category-tag:hover {
+    border-color: var(--persona-primary);
+    color: var(--persona-primary);
+}
+
+[data-persona] .filter-btn:hover {
+    border-color: var(--persona-primary);
+}
+
+[data-persona] .blog-search input:focus {
+    border-color: var(--persona-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--persona-primary) 20%, transparent);
+}
+
+[data-persona] .blog-search button {
+    color: var(--persona-primary);
 }
 
 /* Persona card active state theming */

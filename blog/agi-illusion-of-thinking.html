@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Illusion of Thinking - dizzydroid</title>
     <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="../assets/css/reset.css">
     <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
     <link rel="stylesheet" href="../assets/css/personas.css">
-    <link rel="stylesheet" href="../assets/css/navbar.css">
-    <link rel="stylesheet" href="../assets/css/blog.css">
-    <link rel="stylesheet" href="../assets/css/blog-post.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
     <meta name="description" content="A deep dive into Apple's 'The Illusion of Thinking' paper and what it reveals about the true nature of AI's reasoning abilities.">
-    <meta name="theme-color" content="#1a1a1a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
@@ -45,65 +51,114 @@
     }
     </script>
 </head>
-<body>
-    <div id="app">
-        <!-- Navigation -->
-        <nav class="main-nav">
-            <div class="nav-brand">
-                <a href="../index.html" class="brand-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">dizzydroid</a>
+<body data-persona="developer">
+    <!-- Persona Selection Modal -->
+    <div id="persona-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content" role="dialog" aria-labelledby="persona-title">
+            <h2 id="persona-title">Choose Your Experience</h2>
+            <p class="modal-subtitle">Customize the content to match your interests</p>
+            
+            <div class="persona-grid">
+                <button class="persona-card" data-persona="student" aria-describedby="student-desc">
+                    <i data-lucide="graduation-cap"></i>
+                    <h3>Student</h3>
+                    <p id="student-desc">Learning journey and educational content</p>
+                </button>
+                
+                <button class="persona-card" data-persona="recruiter" aria-describedby="recruiter-desc">
+                    <i data-lucide="briefcase"></i>
+                    <h3>Recruiter</h3>
+                    <p id="recruiter-desc">Professional experience and achievements</p>
+                </button>
+                
+                <button class="persona-card" data-persona="developer" aria-describedby="developer-desc">
+                    <i data-lucide="code"></i>
+                    <h3>Developer</h3>
+                    <p id="developer-desc">Technical projects and development insights</p>
+                </button>
+                
+                <button class="persona-card" data-persona="explorer" aria-describedby="explorer-desc">
+                    <i data-lucide="compass"></i>
+                    <h3>Explorer</h3>
+                    <p id="explorer-desc">Creative projects and general overview</p>
+                </button>
             </div>
-            <div class="nav-links" id="mobile-menu">
-                <a href="../index.html" class="nav-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">Home</a>
+            
+            <button class="modal-close" aria-label="Close modal">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">
+                <i data-lucide="terminal"></i>
+                <span class="brand-text">dizzydroid</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="../index.html" class="nav-link">Home</a>
                 <a href="../about.html" class="nav-link">About</a>
                 <a href="../projects.html" class="nav-link">Projects</a>
                 <a href="../blog.html" class="nav-link active">Blog</a>
                 <a href="../contact.html" class="nav-link">Contact</a>
             </div>
             
-            <!-- Hamburger Menu -->
-            <div class="hamburger-menu" id="hamburger-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="nav-actions">
+                <button class="persona-toggle" aria-label="Change persona" title="Customize experience">
+                    <i data-lucide="user"></i>
+                </button>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            
-            <!-- Persona Selector -->
-            <div class="persona-selector">
-                <div class="persona-tooltip">Choose your view</div>
-                <div class="persona-icons">
-                    <div class="persona-icon student" data-persona="student" title="Student/Learner">
-                        <div class="icon-inner">🎓</div>
-                        <div class="icon-label">Student</div>
-                    </div>
-                    <div class="persona-icon recruiter" data-persona="recruiter" title="Recruiter/HR">
-                        <div class="icon-inner">💼</div>
-                        <div class="icon-label">Recruiter</div>
-                    </div>
-                    <div class="persona-icon dev active" data-persona="dev" title="Fellow Developer">
-                        <div class="icon-inner">💻</div>
-                        <div class="icon-label">Developer</div>
-                    </div>
-                    <div class="persona-icon other" data-persona="other" title="Just Curious">
-                        <div class="icon-inner">🌟</div>
-                        <div class="icon-label">Explorer</div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- Blog Post Content -->
-        <main class="page-content">
-            <div class="blog-post-container">
-                <a href="../blog.html" class="back-to-blog">
-                    <i class="fas fa-arrow-left"></i> Back to all posts
-                </a>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="../index.html" class="mobile-nav-link">Home</a>
+            <a href="../about.html" class="mobile-nav-link">About</a>
+            <a href="../projects.html" class="mobile-nav-link">Projects</a>
+            <a href="../blog.html" class="mobile-nav-link active">Blog</a>
+            <a href="../contact.html" class="mobile-nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Article Header -->
+        <article class="blog-post">
+            <div class="container">
                 <div class="blog-post-header">
+                    <div class="blog-breadcrumb">
+                        <a href="../blog.html">
+                            <i data-lucide="arrow-left"></i>
+                            <span>Back to Blog</span>
+                        </a>
+                    </div>
+                    
                     <h1 class="blog-post-title">The Illusion of Thinking: How close are we to AGI?</h1>
                     <div class="blog-post-meta">
-                        <span><i class="far fa-calendar"></i> June 8, 2025</span>
-                        <span><i class="far fa-clock"></i> 5 min read</span>
-                        <span><i class="far fa-folder"></i> Artificial Intelligence</span>
+                        <i data-lucide="calendar"></i>
+                        <span>June 8, 2025</span>
+                        <i data-lucide="clock"></i>
+                        <span>8 min read</span>
+                        <i data-lucide="folder"></i>
+                        <span>Artificial Intelligence</span>
+                    </div>
+                    <div class="blog-post-tags">
+                        <span class="blog-post-tag">AI</span>
+                        <span class="blog-post-tag">Machine Learning</span>
+                        <span class="blog-post-tag">Philosophy</span>
+                        <span class="blog-post-tag">Research</span>
                     </div>
                 </div>
                 
@@ -322,61 +377,53 @@ function attemptReasoning(problem) {
                     <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
                 </div>
             </div>
-        </footer>
-    </div>    <!-- Scripts -->
-    <script src="../assets/js/hamburger-menu.js"></script>
-    <script src="../assets/js/persona-loader.js"></script>
-    <script src="../assets/js/animations.js"></script>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i data-lucide="terminal"></i>
+                    <span class="footer-brand-text">dizzydroid</span>
+                    <p>Redefining lives, one line of code at a time.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                        <i data-lucide="twitter"></i>
+                    </a>
+                    <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                        <i data-lucide="at-sign"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/personas.js"></script>
     <script src="../assets/js/blog-post.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Setup TOC highlighting
-            const tocLinks = document.querySelectorAll('.toc-list a');
-            const headings = document.querySelectorAll('h2[id]');
-            
-            function highlightTocItem() {
-                const scrollPosition = window.scrollY;
-                
-                // Find current section
-                let currentSection = headings[0]?.id;
-                headings.forEach(heading => {
-                    if (heading.offsetTop - 100 <= scrollPosition) {
-                        currentSection = heading.id;
-                    }
-                });
-                
-                // Remove highlight from all TOC items
-                tocLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Add highlight to current TOC item
-                document.querySelector(`.toc-list a[href="#${currentSection}"]`)?.classList.add('active');
-            }
-            
-            // Call on scroll
-            window.addEventListener('scroll', highlightTocItem);
-            
-            // Add copy functionality to code blocks
-            document.querySelectorAll('.code-block').forEach(block => {
-                const copyBtn = document.createElement('button');
-                copyBtn.className = 'copy-btn';
-                copyBtn.textContent = 'Copy';
-                copyBtn.setAttribute('aria-label', 'Copy code');
-                
-                copyBtn.addEventListener('click', () => {
-                    const code = block.querySelector('pre').textContent;
-                    navigator.clipboard.writeText(code.trim())
-                        .then(() => {
-                            copyBtn.textContent = 'Copied!';
-                            setTimeout(() => {
-                                copyBtn.textContent = 'Copy';
-                            }, 2000);
-                        })
-                        .catch(err => {
-                            console.error('Failed to copy: ', err);
-                            copyBtn.textContent = 'Failed';
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
                         });
                 });
                 
