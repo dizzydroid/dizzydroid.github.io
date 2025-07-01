@@ -181,7 +181,10 @@ class BlogManager {
         
         // Initialize Lucide icons for the featured post
         if (typeof lucide !== 'undefined') {
-            lucide.createIcons(featuredSection);
+            lucide.createIcons(featuredSection, {
+                strokeWidth: 2,
+                fill: 'none'
+            });
         }
     }
     
@@ -231,7 +234,10 @@ class BlogManager {
             this.updatePagination();
             // Initialize Lucide icons
             if (typeof lucide !== 'undefined') {
-                lucide.createIcons(postsContainer);
+                lucide.createIcons(postsContainer, {
+                    strokeWidth: 2,
+                    fill: 'none'
+                });
             }
             return;
         }
@@ -244,7 +250,10 @@ class BlogManager {
         
         // Initialize Lucide icons for new posts
         if (typeof lucide !== 'undefined') {
-            lucide.createIcons(postsContainer);
+            lucide.createIcons(postsContainer, {
+                strokeWidth: 2,
+                fill: 'none'
+            });
         }
         
         this.updatePagination();
@@ -501,7 +510,10 @@ class BlogManager {
         
         // Initialize Lucide icons for pagination
         if (typeof lucide !== 'undefined') {
-            lucide.createIcons(paginationContainer);
+            lucide.createIcons(paginationContainer, {
+                strokeWidth: 2,
+                fill: 'none'
+            });
         }
     }
 }

@@ -106,7 +106,10 @@ function setupTableOfContents() {
                 
                 // Refresh Lucide icons
                 if (typeof lucide !== 'undefined') {
-                    lucide.createIcons(tocTitle);
+                    lucide.createIcons(tocTitle, {
+                        strokeWidth: 2,
+                        fill: 'none'
+                    });
                 }
             });
         }
@@ -196,7 +199,10 @@ function setupCodeBlocks() {
                         setTimeout(() => {
                             copyBtn.innerHTML = '<i data-lucide="copy"></i><span>Copy</span>';
                             if (typeof lucide !== 'undefined') {
-                                lucide.createIcons(copyBtn);
+                                lucide.createIcons(copyBtn, {
+                                    strokeWidth: 2,
+                                    fill: 'none'
+                                });
                             }
                         }, 2000);
                     })
@@ -207,7 +213,10 @@ function setupCodeBlocks() {
                 
                 // Refresh Lucide icons
                 if (typeof lucide !== 'undefined') {
-                    lucide.createIcons(copyBtn);
+                    lucide.createIcons(copyBtn, {
+                        strokeWidth: 2,
+                        fill: 'none'
+                    });
                 }
             });
             
@@ -215,7 +224,10 @@ function setupCodeBlocks() {
             
             // Initialize Lucide icons for the button
             if (typeof lucide !== 'undefined') {
-                lucide.createIcons(copyBtn);
+                lucide.createIcons(copyBtn, {
+                    strokeWidth: 2,
+                    fill: 'none'
+                });
             }
         }
     });

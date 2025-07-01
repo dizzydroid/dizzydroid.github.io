@@ -276,7 +276,10 @@ function animateCounter(element) {
 // Initialize Lucide icons
 function initializeLucideIcons() {
     if (typeof lucide !== 'undefined' && lucide.createIcons) {
-        lucide.createIcons();
+        lucide.createIcons({
+            strokeWidth: 2,
+            fill: 'none'
+        });
     }
 }
 

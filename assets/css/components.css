@@ -2112,3 +2112,10 @@
         font-size: 0.8rem;
     }
 }
+
+/* Lucide Icons Configuration */
+[data-lucide] {
+    stroke-width: 2;
+    fill: none !important;
+    stroke: currentColor;
+}

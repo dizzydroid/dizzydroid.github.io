@@ -446,7 +446,10 @@ function updateAboutPageContent(persona) {
     
     // Re-initialize Lucide icons for new content
     if (typeof lucide !== 'undefined' && lucide.createIcons) {
-        lucide.createIcons();
+        lucide.createIcons({
+            strokeWidth: 2,
+            fill: 'none'
+        });
     }
 }
 
