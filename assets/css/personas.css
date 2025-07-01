@@ -1,189 +1,247 @@
-/* Personas CSS - Dynamic persona-based styling */
+/* Personas CSS - Complete theming system */
 
 /* Base persona styles */
 [data-persona] {
     transition: var(--transition-slow);
 }
 
-/* Student Persona */
+/* Ensure body background transitions smoothly */
+body[data-persona] {
+    background: var(--bg-primary);
+    transition: background var(--transition-slow);
+}
+
+/* Navbar persona theming */
+[data-persona="student"] .main-nav {
+    background: rgba(10, 15, 26, 0.85);
+    border-bottom-color: color-mix(in srgb, var(--persona-primary) 20%, var(--border-primary));
+    box-shadow: 0 1px 20px color-mix(in srgb, var(--persona-primary) 5%, rgba(0, 0, 0, 0.1));
+}
+
+[data-persona="recruiter"] .main-nav {
+    background: rgba(26, 10, 10, 0.85);
+    border-bottom-color: color-mix(in srgb, var(--persona-primary) 20%, var(--border-primary));
+    box-shadow: 0 1px 20px color-mix(in srgb, var(--persona-primary) 5%, rgba(0, 0, 0, 0.1));
+}
+
+[data-persona="developer"] .main-nav {
+    background: rgba(10, 26, 15, 0.85);
+    border-bottom-color: color-mix(in srgb, var(--persona-primary) 20%, var(--border-primary));
+    box-shadow: 0 1px 20px color-mix(in srgb, var(--persona-primary) 5%, rgba(0, 0, 0, 0.1));
+}
+
+[data-persona="explorer"] .main-nav {
+    background: rgba(26, 10, 26, 0.85);
+    border-bottom-color: color-mix(in srgb, var(--persona-primary) 20%, var(--border-primary));
+    box-shadow: 0 1px 20px color-mix(in srgb, var(--persona-primary) 5%, rgba(0, 0, 0, 0.1));
+}
+
+/* Enhanced scrolled states for each persona */
+[data-persona="student"] .main-nav.scrolled {
+    background: rgba(10, 15, 26, 0.95);
+    box-shadow: 0 2px 30px color-mix(in srgb, var(--persona-primary) 8%, rgba(0, 0, 0, 0.15));
+}
+
+[data-persona="recruiter"] .main-nav.scrolled {
+    background: rgba(26, 10, 10, 0.95);
+    box-shadow: 0 2px 30px color-mix(in srgb, var(--persona-primary) 8%, rgba(0, 0, 0, 0.15));
+}
+
+[data-persona="developer"] .main-nav.scrolled {
+    background: rgba(10, 26, 15, 0.95);
+    box-shadow: 0 2px 30px color-mix(in srgb, var(--persona-primary) 8%, rgba(0, 0, 0, 0.15));
+}
+
+[data-persona="explorer"] .main-nav.scrolled {
+    background: rgba(26, 10, 26, 0.95);
+    box-shadow: 0 2px 30px color-mix(in srgb, var(--persona-primary) 8%, rgba(0, 0, 0, 0.15));
+}
+
+/* Student Persona - Blue Theme */
 [data-persona="student"] {
     --persona-primary: #3b82f6;
     --persona-secondary: #1d4ed8;
     --persona-accent: #dbeafe;
+    
+    /* Override background colors - darker blue tint */
+    --bg-primary: #0a0f1a;
+    --bg-secondary: #141a29;
+    --bg-tertiary: #1e2438;
+    --bg-card: #252e42;
+    --border-primary: #2d405c;
+    --border-secondary: #3d506c;
 }
 
-[data-persona="student"] .greeting-text {
-    background: rgba(59, 130, 246, 0.1);
-    border-color: rgba(59, 130, 246, 0.2);
-    color: var(--persona-primary);
-}
-
-[data-persona="student"] .highlight {
-    background: linear-gradient(135deg, var(--persona-primary), var(--persona-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-[data-persona="student"] .btn-primary {
-    background: var(--persona-primary);
-}
-
-[data-persona="student"] .btn-primary:hover {
-    background: var(--persona-secondary);
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-}
-
-[data-persona="student"] .persona-card[data-persona="student"] {
-    border-color: var(--persona-primary);
-    background: rgba(59, 130, 246, 0.05);
-}
-
-/* Recruiter Persona */
+/* Recruiter Persona - Red Theme */
 [data-persona="recruiter"] {
-    --persona-primary: #059669;
-    --persona-secondary: #047857;
-    --persona-accent: #d1fae5;
+    --persona-primary: #ef4444;
+    --persona-secondary: #dc2626;
+    --persona-accent: #fecaca;
+    
+    /* Override background colors - darker red tint */
+    --bg-primary: #1a0a0a;
+    --bg-secondary: #291414;
+    --bg-tertiary: #381e1e;
+    --bg-card: #422525;
+    --border-primary: #5c2d2d;
+    --border-secondary: #6c3d3d;
 }
 
-[data-persona="recruiter"] .greeting-text {
-    background: rgba(5, 150, 105, 0.1);
-    border-color: rgba(5, 150, 105, 0.2);
-    color: var(--persona-primary);
+/* Developer Persona - Green Theme */
+[data-persona="developer"] {
+    --persona-primary: #10b981;
+    --persona-secondary: #059669;
+    --persona-accent: #a7f3d0;
+    
+    /* Override background colors - darker green tint */
+    --bg-primary: #0a1a0f;
+    --bg-secondary: #142918;
+    --bg-tertiary: #1e3821;
+    --bg-card: #254228;
+    --border-primary: #2d5c35;
+    --border-secondary: #3d6c45;
 }
 
-[data-persona="recruiter"] .highlight {
-    background: linear-gradient(135deg, var(--persona-primary), var(--persona-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-[data-persona="recruiter"] .btn-primary {
-    background: var(--persona-primary);
-}
-
-[data-persona="recruiter"] .btn-primary:hover {
-    background: var(--persona-secondary);
-    box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
-}
-
-[data-persona="recruiter"] .persona-card[data-persona="recruiter"] {
-    border-color: var(--persona-primary);
-    background: rgba(5, 150, 105, 0.05);
-}
-
-/* Developer Persona (Default) */
-[data-persona="developer"],
-[data-persona="dev"] {
-    --persona-primary: #61dafb;
-    --persona-secondary: #ff6b9d;
-    --persona-accent: #f0fdff;
-}
-
-[data-persona="developer"] .greeting-text,
-[data-persona="dev"] .greeting-text {
-    background: rgba(97, 218, 251, 0.1);
-    border-color: rgba(97, 218, 251, 0.2);
-    color: var(--persona-primary);
-}
-
-[data-persona="developer"] .highlight,
-[data-persona="dev"] .highlight {
-    background: linear-gradient(135deg, var(--persona-primary), var(--persona-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-[data-persona="developer"] .btn-primary,
-[data-persona="dev"] .btn-primary {
-    background: var(--persona-primary);
-}
-
-[data-persona="developer"] .btn-primary:hover,
-[data-persona="dev"] .btn-primary:hover {
-    background: var(--persona-secondary);
-    box-shadow: 0 0 20px rgba(97, 218, 251, 0.3);
-}
-
-[data-persona="developer"] .persona-card[data-persona="developer"],
-[data-persona="dev"] .persona-card[data-persona="developer"] {
-    border-color: var(--persona-primary);
-    background: rgba(97, 218, 251, 0.05);
-}
-
-/* Explorer Persona */
+/* Explorer Persona - Purple Theme */
 [data-persona="explorer"] {
     --persona-primary: #8b5cf6;
     --persona-secondary: #7c3aed;
-    --persona-accent: #f3e8ff;
+    --persona-accent: #e9d5ff;
+    
+    /* Override background colors - darker purple tint */
+    --bg-primary: #1a0a1a;
+    --bg-secondary: #291429;
+    --bg-tertiary: #381e38;
+    --bg-card: #422542;
+    --border-primary: #5c2d5c;
+    --border-secondary: #6c3d6c;
 }
 
-[data-persona="explorer"] .greeting-text {
-    background: rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.2);
+/* Universal persona theming for all UI elements */
+
+/* Brand text and brand icon theming */
+[data-persona] .nav-brand,
+[data-persona] .footer-brand .brand-text,
+[data-persona] .nav-brand i {
     color: var(--persona-primary);
 }
 
-[data-persona="explorer"] .highlight {
+/* Terminal prompt theming - including the $ symbol */
+[data-persona] .prompt,
+[data-persona] .prompt-symbol {
+    color: var(--persona-primary);
+}
+
+/* Navigation icons theming */
+[data-persona] .nav-link i,
+[data-persona] .mobile-nav-link i,
+[data-persona] .card-icon,
+[data-persona] .persona-toggle,
+[data-persona] .card-arrow,
+[data-persona] .social-link i {
+    color: var(--persona-primary);
+}
+
+/* Footer icons theming */
+[data-persona] .footer-content i {
+    color: var(--persona-primary);
+}
+
+/* Greeting theming */
+[data-persona] .greeting-text {
+    background: color-mix(in srgb, var(--persona-primary) 10%, transparent);
+    border-color: color-mix(in srgb, var(--persona-primary) 20%, transparent);
+    color: var(--persona-primary);
+}
+
+/* Highlight text theming */
+[data-persona] .highlight {
     background: linear-gradient(135deg, var(--persona-primary), var(--persona-secondary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-[data-persona="explorer"] .btn-primary {
+/* Button theming */
+[data-persona] .btn-primary {
+    background: var(--persona-primary);
+    color: var(--bg-primary);
+}
+
+[data-persona] .btn-primary:hover {
+    background: var(--persona-secondary);
+    box-shadow: 0 0 20px color-mix(in srgb, var(--persona-primary) 30%, transparent);
+}
+
+[data-persona] .btn-secondary:hover {
+    border-color: var(--persona-primary);
+    color: var(--persona-primary);
+}
+
+/* Stats theming */
+[data-persona] .stat-number {
+    color: var(--persona-primary);
+}
+
+/* Navigation active state theming */
+[data-persona] .nav-link.active::after {
     background: var(--persona-primary);
 }
 
-[data-persona="explorer"] .btn-primary:hover {
-    background: var(--persona-secondary);
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+[data-persona] .mobile-nav-link.active {
+    color: var(--persona-primary);
 }
 
+/* Mobile menu toggle theming */
+[data-persona] .mobile-menu-toggle span {
+    background: var(--persona-primary);
+}
+
+/* Persona card active state theming */
+[data-persona="student"] .persona-card[data-persona="student"],
+[data-persona="recruiter"] .persona-card[data-persona="recruiter"],
+[data-persona="developer"] .persona-card[data-persona="developer"],
 [data-persona="explorer"] .persona-card[data-persona="explorer"] {
     border-color: var(--persona-primary);
-    background: rgba(139, 92, 246, 0.05);
+    background: color-mix(in srgb, var(--persona-primary) 5%, transparent);
 }
 
-/* Persona-specific stats colors */
-[data-persona="student"] .stat-number {
+/* Card hover effects */
+[data-persona] .quick-nav-card:hover,
+[data-persona] .persona-card:hover {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--persona-primary) 30%, transparent);
+    border-color: var(--persona-primary);
+}
+
+/* Social links hover theming */
+[data-persona] .social-link:hover,
+[data-persona] .social-link:hover i {
     color: var(--persona-primary);
 }
 
-[data-persona="recruiter"] .stat-number {
+/* Terminal elements theming */
+[data-persona] .terminal-output {
+    color: color-mix(in srgb, var(--persona-primary) 80%, var(--text-secondary));
+}
+
+/* Terminal header theming */
+[data-persona] .terminal-title,
+[data-persona] .terminal-path {
     color: var(--persona-primary);
 }
 
-[data-persona="developer"] .stat-number,
-[data-persona="dev"] .stat-number {
-    color: var(--persona-primary);
-}
-
-[data-persona="explorer"] .stat-number {
-    color: var(--persona-primary);
-}
-
-/* Persona-specific nav active states */
-[data-persona="student"] .nav-link.active::after {
+/* Terminal controls accent */
+[data-persona] .terminal-controls .control.close {
     background: var(--persona-primary);
 }
 
-[data-persona="recruiter"] .nav-link.active::after {
-    background: var(--persona-primary);
+/* Button icons theming */
+[data-persona] .btn i,
+[data-persona] .hero-actions i {
+    color: inherit;
 }
 
-[data-persona="developer"] .nav-link.active::after,
-[data-persona="dev"] .nav-link.active::after {
-    background: var(--persona-primary);
-}
-
-[data-persona="explorer"] .nav-link.active::after {
-    background: var(--persona-primary);
-}
-
-/* Persona-specific glow animations */
+/* Glow animations */
 [data-persona="student"] .greeting-text {
     animation: student-glow 2s ease-in-out infinite alternate;
 }
@@ -192,8 +250,7 @@
     animation: recruiter-glow 2s ease-in-out infinite alternate;
 }
 
-[data-persona="developer"] .greeting-text,
-[data-persona="dev"] .greeting-text {
+[data-persona="developer"] .greeting-text {
     animation: developer-glow 2s ease-in-out infinite alternate;
 }
 
@@ -207,13 +264,13 @@
 }
 
 @keyframes recruiter-glow {
-    from { box-shadow: 0 0 5px rgba(5, 150, 105, 0.2); }
-    to { box-shadow: 0 0 10px rgba(5, 150, 105, 0.4); }
+    from { box-shadow: 0 0 5px rgba(239, 68, 68, 0.2); }
+    to { box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
 }
 
 @keyframes developer-glow {
-    from { box-shadow: 0 0 5px rgba(97, 218, 251, 0.2); }
-    to { box-shadow: 0 0 10px rgba(97, 218, 251, 0.4); }
+    from { box-shadow: 0 0 5px rgba(16, 185, 129, 0.2); }
+    to { box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); }
 }
 
 @keyframes explorer-glow {
@@ -221,60 +278,7 @@
     to { box-shadow: 0 0 10px rgba(139, 92, 246, 0.4); }
 }
 
-/* Persona-specific card hover effects */
-[data-persona="student"] .quick-nav-card:hover {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-    border-color: var(--persona-primary);
-}
-
-[data-persona="recruiter"] .quick-nav-card:hover {
-    box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
-    border-color: var(--persona-primary);
-}
-
-[data-persona="developer"] .quick-nav-card:hover,
-[data-persona="dev"] .quick-nav-card:hover {
-    box-shadow: 0 0 20px rgba(97, 218, 251, 0.3);
-    border-color: var(--persona-primary);
-}
-
-[data-persona="explorer"] .quick-nav-card:hover {
-    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-    border-color: var(--persona-primary);
-}
-
-/* Persona toggle styling */
-.persona-toggle:hover {
-    color: var(--persona-primary, var(--accent-primary));
-}
-
-/* Terminal output colors based on persona */
-[data-persona="student"] .terminal-output {
-    color: rgba(59, 130, 246, 0.8);
-}
-
-[data-persona="recruiter"] .terminal-output {
-    color: rgba(5, 150, 105, 0.8);
-}
-
-[data-persona="developer"] .terminal-output,
-[data-persona="dev"] .terminal-output {
-    color: rgba(97, 218, 251, 0.8);
-}
-
-[data-persona="explorer"] .terminal-output {
-    color: rgba(139, 92, 246, 0.8);
-}
-
-/* Persona transition effect */
-[data-persona] * {
-    transition: color var(--transition-normal), 
-                background-color var(--transition-normal), 
-                border-color var(--transition-normal), 
-                box-shadow var(--transition-normal);
-}
-
-/* Disable persona transitions during preference reduced motion */
+/* Accessibility: Respect user preferences */
 @media (prefers-reduced-motion: reduce) {
     [data-persona] .greeting-text {
         animation: none !important;
@@ -283,4 +287,93 @@
     [data-persona] * {
         transition: none !important;
     }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    [data-persona] {
+        --persona-primary: currentColor;
+        --bg-primary: black;
+        --text-primary: white;
+    }
+}
+
+/* Enhanced text theming for all content areas */
+[data-persona] .page-title,
+[data-persona] .hero-title,
+[data-persona] h1, [data-persona] h2, [data-persona] h3, [data-persona] h4, [data-persona] h5, [data-persona] h6 {
+    color: var(--text-primary);
+}
+
+[data-persona] .page-description,
+[data-persona] .hero-description,
+[data-persona] .about-text,
+[data-persona] p {
+    color: var(--text-secondary);
+}
+
+/* Accent text elements with persona colors */
+[data-persona] .profile-title,
+[data-persona] .text-accent,
+[data-persona] .favorite-value,
+[data-persona] .stat-number {
+    color: var(--persona-primary) !important;
+}
+
+/* Icon colors */
+[data-persona] .meta-item i,
+[data-persona] .fact-item i,
+[data-persona] .focus-icon {
+    color: var(--persona-primary);
+}
+
+/* Skill tags with persona theming */
+[data-persona] .skill-tag:hover {
+    border-color: var(--persona-primary);
+    color: var(--persona-primary);
+}
+
+/* Card elements theming */
+[data-persona] .favorite-item:hover,
+[data-persona] .focus-item:hover {
+    border-color: var(--persona-primary);
+}
+
+/* Terminal command text */
+[data-persona] .command {
+    color: var(--text-primary);
+}
+
+/* Ensure all navigation text uses proper colors */
+[data-persona] .nav-link,
+[data-persona] .mobile-nav-link {
+    color: var(--text-primary);
+}
+
+[data-persona] .nav-link:hover,
+[data-persona] .mobile-nav-link:hover {
+    color: var(--persona-primary);
+}
+
+/* Breadcrumb theming */
+[data-persona] .page-breadcrumb a {
+    color: var(--persona-primary);
+}
+
+[data-persona] .page-breadcrumb span {
+    color: var(--text-secondary);
+}
+
+/* Footer text */
+[data-persona] .footer p {
+    color: var(--text-secondary);
+}
+
+/* Override gradient styling for code-style titles */
+.code-title {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #ffffff !important;
+    background-clip: unset !important;
+    color: #ffffff !important;
 }

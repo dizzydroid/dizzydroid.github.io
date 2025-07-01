@@ -5,49 +5,282 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - dizzydroid</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/personas.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/accessibility.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
-    <!-- Noscript fallbacks -->
-    <noscript>
-        <style>
-            #app { display: block !important; opacity: 1 !important; }
-            *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; }
-            .hamburger-menu { display: none; }
-            .nav-links { display: flex !important; position: static !important; background: transparent !important; box-shadow: none !important; transform: none !important; opacity: 1 !important; visibility: visible !important; flex-direction: row !important; gap: 2rem; }
-            .persona-selector { display: none; }
-            .main-nav { backdrop-filter: none !important; background: rgba(15, 23, 42, 0.95) !important; }
-            .no-js-fallback { display: block !important; }
-            .js-only { display: none !important; }
-        </style>
-    </noscript>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/personas.css">
 </head>
-<body>
-    <div id="app">
-        <!-- Navigation -->
-        <nav class="main-nav">                <div class="nav-brand">
-                    <a href="index.html" class="brand-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">dizzydroid</a>
-                </div>
-            <div class="nav-links" id="mobile-menu">
-                <a href="index.html" class="nav-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">Home</a>
+<body data-persona="developer">
+    <!-- Persona Selection Modal -->
+    <div id="persona-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content" role="dialog" aria-labelledby="persona-title">
+            <h2 id="persona-title">Choose Your Experience</h2>
+            <p class="modal-subtitle">Customize the content to match your interests</p>
+            
+            <div class="persona-grid">
+                <button class="persona-card" data-persona="student" aria-describedby="student-desc">
+                    <i data-lucide="graduation-cap"></i>
+                    <h3>Student</h3>
+                    <p id="student-desc">Learning journey and educational content</p>
+                </button>
+                
+                <button class="persona-card" data-persona="recruiter" aria-describedby="recruiter-desc">
+                    <i data-lucide="briefcase"></i>
+                    <h3>Recruiter</h3>
+                    <p id="recruiter-desc">Professional experience and achievements</p>
+                </button>
+                
+                <button class="persona-card" data-persona="developer" aria-describedby="developer-desc">
+                    <i data-lucide="code"></i>
+                    <h3>Developer</h3>
+                    <p id="developer-desc">Technical projects and development insights</p>
+                </button>
+                
+                <button class="persona-card" data-persona="explorer" aria-describedby="explorer-desc">
+                    <i data-lucide="compass"></i>
+                    <h3>Explorer</h3>
+                    <p id="explorer-desc">Creative projects and general overview</p>
+                </button>
+            </div>
+            
+            <button class="modal-close" aria-label="Close modal">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i data-lucide="terminal"></i>
+                <span class="brand-text">dizzydroid</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="projects.html" class="nav-link">Projects</a>
                 <a href="blog.html" class="nav-link">Blog</a>
                 <a href="contact.html" class="nav-link active">Contact</a>
             </div>
-            <!-- Hamburger Menu -->
-            <div class="hamburger-menu" id="hamburger-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+            
+            <div class="nav-actions">
+                <button class="persona-toggle" aria-label="Change persona" title="Customize experience">
+                    <i data-lucide="user"></i>
+                </button>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="projects.html" class="mobile-nav-link">Projects</a>
+            <a href="blog.html" class="mobile-nav-link">Blog</a>
+            <a href="contact.html" class="mobile-nav-link active">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="page-header-content">
+                    <div class="page-breadcrumb">
+                        <a href="index.html">Home</a>
+                        <i data-lucide="chevron-right"></i>
+                        <span>Contact</span>
+                    </div>
+                    <h1 class="page-title">Get in Touch</h1>
+                    <p class="page-description" id="contact-description">
+                        Let's connect and explore opportunities together
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Content -->
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <form class="contact-form" action="#" method="post">
+                            <div class="form-header">
+                                <h2>Send me a message</h2>
+                                <p>I'd love to hear from you. Send me a message and I'll respond as soon as possible.</p>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" class="form-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea id="message" name="message" class="form-textarea" rows="6" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">
+                                <span>Send Message</span>
+                                <i data-lucide="send"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <h3>Email</h3>
+                            <p>
+                                <a href="mailto:contact@dizzydroid.com">contact@dizzydroid.com</a>
+                            </p>
+                        </div>
+
+                        <div class="contact-item">
+                            <i data-lucide="linkedin"></i>
+                            <h3>LinkedIn</h3>
+                            <p>
+                                <a href="https://linkedin.com/in/ShehabMahmoud" target="_blank" rel="noopener">
+                                    linkedin.com/in/ShehabMahmoud
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="contact-item">
+                            <i data-lucide="github"></i>
+                            <h3>GitHub</h3>
+                            <p>
+                                <a href="https://github.com/dizzydroid" target="_blank" rel="noopener">
+                                    github.com/dizzydroid
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="contact-item">
+                            <i data-lucide="twitter"></i>
+                            <h3>Twitter</h3>
+                            <p>
+                                <a href="https://x.com/shehabtweets" target="_blank" rel="noopener">
+                                    @shehabtweets
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <h3>Location</h3>
+                            <p>Egypt</p>
+                        </div>
+
+                        <div class="contact-item">
+                            <i data-lucide="clock"></i>
+                            <h3>Response Time</h3>
+                            <p>Usually within 24 hours</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info -->
+                <div class="contact-additional">
+                    <div class="additional-content">
+                        <h2>Let's Build Something Great Together</h2>
+                        <div class="additional-grid">
+                            <div class="additional-item">
+                                <i data-lucide="briefcase"></i>
+                                <h3>Work Opportunities</h3>
+                                <p>Open to freelance projects, full-time positions, and consulting opportunities.</p>
+                            </div>
+                            <div class="additional-item">
+                                <i data-lucide="users"></i>
+                                <h3>Collaboration</h3>
+                                <p>Interested in collaborating on open source projects and innovative ideas.</p>
+                            </div>
+                            <div class="additional-item">
+                                <i data-lucide="message-circle"></i>
+                                <h3>Just Saying Hi</h3>
+                                <p>Feel free to reach out if you want to connect or discuss technology!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i data-lucide="terminal"></i>
+                    <span class="brand-text">dizzydroid</span>
+                    <p>Building the future, one line at a time.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                        <i data-lucide="twitter"></i>
+                    </a>
+                    <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                        <i data-lucide="at-sign"></i>
+                    </a>
+                </div>
             </div>
             
-            <!-- Persona Selector -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 dizzydroid. Crafted with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/personas.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
             <div class="persona-selector">
                 <div class="persona-tooltip">Choose your view</div>
                 <div class="persona-icons">
@@ -252,46 +485,42 @@
         </main>
 
         <!-- Footer -->
-        <footer class="site-footer">
+        <footer class="footer">
             <div class="container">
                 <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>dizzydroid</h3>
-                        <p>Redefining lives, one line of code at a time.</p>
+                    <div class="footer-brand">
+                        <i data-lucide="terminal"></i>
+                        <span class="brand-text">dizzydroid</span>
+                        <p>Building the future, one line at a time.</p>
                     </div>
                     
-                    <div class="footer-section">
-                        <h4>Connect</h4>
-                        <div class="social-links">
-                            <a href="https://www.x.com/shehabtweets" target="_blank" class="social-link" title="Twitter">
-                                <i class="fab fa-x-twitter"></i>
-                            </a>
-                            <a href="https://github.com/dizzydroid" target="_blank" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-link" title="YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://www.behance.net/dizzydroid" target="_blank" class="social-link" title="Behance">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                        </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                            <i data-lucide="at-sign"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="footer-bottom">
-                    <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
+                    <p>&copy; 2025 dizzydroid. Crafted with care.</p>
                 </div>
             </div>
         </footer>
-    </div>    <!-- Scripts -->
-    <script src="assets/js/hamburger-menu.js"></script>
-    <script src="assets/js/persona-loader.js"></script>
-    <script src="assets/js/animations.js"></script>
+    <!-- Scripts -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/contact.js"></script>
+    <script src="assets/js/personas.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>

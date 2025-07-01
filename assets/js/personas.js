@@ -28,6 +28,134 @@ const personaConfig = {
     }
 };
 
+// Persona-specific content data
+const personaContentData = {
+    student: {
+        profileTitle: 'Computer Science Student',
+        intro: "I'm currently pursuing my studies in computer science while building practical skills through hands-on projects. My learning journey is focused on understanding both theoretical foundations and real-world applications of software development.",
+        favorites: {
+            'Platform': 'Stack Overflow',
+            'Language': 'Java, Python',
+            'Book': 'Head First Java',
+            'Study Time': 'Late night coding',
+            'IDE': 'IntelliJ IDEA',
+            'Learning': 'Algorithms & Data Structures'
+        },
+        focus: [
+            {
+                icon: 'book-open',
+                title: 'Academic Excellence',
+                description: 'Balancing coursework with practical programming projects to build a strong foundation.'
+            },
+            {
+                icon: 'users',
+                title: 'Collaborative Learning',
+                description: 'Working with study groups and participating in coding challenges to enhance skills.'
+            }
+        ],
+        connectDescription: "Always eager to connect with fellow students and learn from experienced developers!",
+        facts: [
+            { icon: 'graduation-cap', text: 'CS Student' },
+            { icon: 'clock', text: 'Late night coder' },
+            { icon: 'brain', text: 'Algorithm enthusiast' },
+            { icon: 'users', text: 'Study group organizer' }
+        ]
+    },
+    recruiter: {
+        profileTitle: 'Software Engineer',
+        intro: "Experienced full-stack developer with a proven track record of delivering high-quality software solutions. I bring technical expertise combined with strong communication skills and a results-driven approach to every project.",
+        favorites: {
+            'Experience': '3+ Years',
+            'Specialization': 'Full-Stack Development',
+            'Team Size': '5-10 developers',
+            'Methodology': 'Agile/Scrum',
+            'Leadership': 'Technical Lead',
+            'Mentoring': 'Junior Developers'
+        },
+        focus: [
+            {
+                icon: 'briefcase',
+                title: 'Professional Excellence',
+                description: 'Delivering scalable solutions that meet business requirements and exceed expectations.'
+            },
+            {
+                icon: 'users',
+                title: 'Team Collaboration',
+                description: 'Leading technical discussions and mentoring junior developers in best practices.'
+            }
+        ],
+        connectDescription: "Open to discussing career opportunities and technical challenges in software development.",
+        facts: [
+            { icon: 'briefcase', text: 'Professional experience' },
+            { icon: 'award', text: 'Team leader' },
+            { icon: 'trending-up', text: 'Performance focused' },
+            { icon: 'handshake', text: 'Client relations' }
+        ]
+    },
+    developer: {
+        profileTitle: 'Full-Stack Developer',
+        intro: "Passionate about creating elegant solutions to complex problems. I love diving deep into new technologies, contributing to open source, and building applications that make a real impact.",
+        favorites: {
+            'Editor': 'VS Code',
+            'Languages': 'JavaScript, Python, C++',
+            'OS': 'Linux (Arch BTW)',
+            'Terminal': 'Alacritty',
+            'Shell': 'Zsh + Oh My Zsh',
+            'Container': 'Docker + Kubernetes'
+        },
+        focus: [
+            {
+                icon: 'code-2',
+                title: 'Clean Architecture',
+                description: 'Building maintainable, scalable applications with modern development practices.'
+            },
+            {
+                icon: 'git-branch',
+                title: 'Open Source',
+                description: 'Contributing to the developer community through open source projects and knowledge sharing.'
+            }
+        ],
+        connectDescription: "Love connecting with fellow developers to discuss tech, share knowledge, and collaborate on interesting projects!",
+        facts: [
+            { icon: 'terminal', text: 'Command line wizard' },
+            { icon: 'coffee', text: 'Coffee powered' },
+            { icon: 'github', text: 'Open source contributor' },
+            { icon: 'zap', text: 'Performance optimizer' }
+        ]
+    },
+    explorer: {
+        profileTitle: 'Creative Technologist',
+        intro: "I approach technology with curiosity and creativity, exploring the intersection of code, design, and human experience. Always excited about emerging technologies and their potential to solve real-world problems.",
+        favorites: {
+            'Inspiration': 'Dribbble, Behance',
+            'Tools': 'Figma, Adobe CC',
+            'Interest': 'UI/UX Design',
+            'Hobby': 'Digital Art',
+            'Philosophy': 'Less is More',
+            'Innovation': 'AI & Machine Learning'
+        },
+        focus: [
+            {
+                icon: 'palette',
+                title: 'Design & Code',
+                description: 'Blending technical skills with design thinking to create beautiful, functional experiences.'
+            },
+            {
+                icon: 'lightbulb',
+                title: 'Innovation',
+                description: 'Exploring emerging technologies and their creative applications in solving complex challenges.'
+            }
+        ],
+        connectDescription: "Always excited to connect with creative minds and explore the possibilities of technology!",
+        facts: [
+            { icon: 'sparkles', text: 'Creative problem solver' },
+            { icon: 'palette', text: 'Design enthusiast' },
+            { icon: 'globe', text: 'Tech explorer' },
+            { icon: 'rocket', text: 'Innovation driven' }
+        ]
+    }
+};
+
 // Initialize persona system
 function initializePersonaSystem() {
     loadPersonaPreference();
@@ -100,6 +228,9 @@ function updatePersonaContent(persona) {
     
     // Update terminal output
     updateTerminalContent(persona);
+    
+    // Update About page content
+    updateAboutPageContent(persona);
 }
 
 // Update greeting based on persona
@@ -160,8 +291,8 @@ function updateHeroContent(persona) {
         descriptionElement.textContent = content.description;
     }
     
-    // Update action buttons
-    const primaryButton = document.querySelector('.btn-primary span');
+    // Update action buttons (only on homepage)
+    const primaryButton = document.querySelector('.hero-actions .btn-primary span');
     if (primaryButton) {
         primaryButton.textContent = content.primaryAction;
     }
@@ -248,6 +379,74 @@ function updateNavigationHighlight(persona) {
     if (config) {
         document.documentElement.style.setProperty('--current-persona-color', 
             `var(--persona-primary, var(--accent-primary))`);
+    }
+}
+
+// Update About page content based on persona
+function updateAboutPageContent(persona) {
+    const data = personaContentData[persona];
+    if (!data) return;
+    
+    // Update profile title
+    const profileTitle = document.getElementById('profile-title');
+    if (profileTitle) {
+        profileTitle.textContent = data.profileTitle;
+    }
+    
+    // Update introduction text
+    const dynamicIntro = document.getElementById('dynamic-intro');
+    if (dynamicIntro) {
+        dynamicIntro.innerHTML = `<p>${data.intro}</p>`;
+    }
+    
+    // Update favorites section
+    const personaFavorites = document.getElementById('persona-favorites');
+    if (personaFavorites && data.favorites) {
+        personaFavorites.innerHTML = Object.entries(data.favorites)
+            .map(([key, value]) => `
+                <div class="favorite-item">
+                    <div class="favorite-label">${key}</div>
+                    <div class="favorite-value">${value}</div>
+                </div>
+            `).join('');
+    }
+    
+    // Update current focus
+    const dynamicFocus = document.getElementById('dynamic-focus');
+    if (dynamicFocus && data.focus) {
+        dynamicFocus.innerHTML = data.focus.map(item => `
+            <div class="focus-item">
+                <div class="focus-icon">
+                    <i data-lucide="${item.icon}"></i>
+                </div>
+                <div class="focus-content">
+                    <h4>${item.title}</h4>
+                    <p>${item.description}</p>
+                </div>
+            </div>
+        `).join('');
+    }
+    
+    // Update connect description
+    const connectDescription = document.getElementById('connect-description');
+    if (connectDescription) {
+        connectDescription.textContent = data.connectDescription;
+    }
+    
+    // Update fun facts
+    const dynamicFacts = document.getElementById('dynamic-facts');
+    if (dynamicFacts && data.facts) {
+        dynamicFacts.innerHTML = data.facts.map(fact => `
+            <div class="fact-item">
+                <i data-lucide="${fact.icon}"></i>
+                <span>${fact.text}</span>
+            </div>
+        `).join('');
+    }
+    
+    // Re-initialize Lucide icons for new content
+    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+        lucide.createIcons();
     }
 }
 

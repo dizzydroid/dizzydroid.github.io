@@ -2,52 +2,347 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The DizzyBlog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - dizzydroid</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="stylesheet" href="assets/css/personas.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
-    <link rel="stylesheet" href="assets/css/blog.css">
-    <link rel="stylesheet" href="assets/css/accessibility.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <meta name="description" content="DizzyBlog - Thoughts on tech, learning experiences, and random discoveries from dizzydroid">
-    <meta name="theme-color" content="#1a1a1a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     
-    <!-- Noscript fallbacks -->
-    <noscript>
-        <style>
-            #app { display: block !important; opacity: 1 !important; }
-            *, *::before, *::after { animation: none !important; transition: none !important; transform: none !important; }
-            .hamburger-menu { display: none; }
-            .nav-links { display: flex !important; position: static !important; background: transparent !important; box-shadow: none !important; transform: none !important; opacity: 1 !important; visibility: visible !important; flex-direction: row !important; gap: 2rem; }
-            .persona-selector { display: none; }
-            .main-nav { backdrop-filter: none !important; background: rgba(15, 23, 42, 0.95) !important; }
-            .no-js-fallback { display: block !important; }
-            .js-only, .blog-loading { display: none !important; }
-            .hamburger-menu { display: none !important; }
-            .css-hamburger { display: block !important; }
-            @media (max-width: 768px) {
-                .css-hamburger { position: absolute; top: 1rem; right: 1rem; z-index: 1001; }
-            }
-        </style>
-    </noscript>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/personas.css">
 </head>
-<body>
-    <div id="app">
-        <!-- Navigation -->
-        <nav class="main-nav">                
-            <div class="nav-brand">
-                <a href="index.html" class="brand-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">dizzydroid</a>
+<body data-persona="developer">
+    <!-- Persona Selection Modal -->
+    <div id="persona-modal" class="modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content" role="dialog" aria-labelledby="persona-title">
+            <h2 id="persona-title">Choose Your Experience</h2>
+            <p class="modal-subtitle">Customize the content to match your interests</p>
+            
+            <div class="persona-grid">
+                <button class="persona-card" data-persona="student" aria-describedby="student-desc">
+                    <i data-lucide="graduation-cap"></i>
+                    <h3>Student</h3>
+                    <p id="student-desc">Learning journey and educational content</p>
+                </button>
+                
+                <button class="persona-card" data-persona="recruiter" aria-describedby="recruiter-desc">
+                    <i data-lucide="briefcase"></i>
+                    <h3>Recruiter</h3>
+                    <p id="recruiter-desc">Professional experience and achievements</p>
+                </button>
+                
+                <button class="persona-card" data-persona="developer" aria-describedby="developer-desc">
+                    <i data-lucide="code"></i>
+                    <h3>Developer</h3>
+                    <p id="developer-desc">Technical projects and development insights</p>
+                </button>
+                
+                <button class="persona-card" data-persona="explorer" aria-describedby="explorer-desc">
+                    <i data-lucide="compass"></i>
+                    <h3>Explorer</h3>
+                    <p id="explorer-desc">Creative projects and general overview</p>
+                </button>
             </div>
-            <div class="nav-links" id="mobile-menu">
-                <a href="index.html" class="nav-link" onclick="sessionStorage.setItem('hasVisitedBefore', 'true');">Home</a>
+            
+            <button class="modal-close" aria-label="Close modal">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i data-lucide="terminal"></i>
+                <span class="brand-text">dizzydroid</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="about.html" class="nav-link">About</a>
                 <a href="projects.html" class="nav-link">Projects</a>
                 <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="persona-toggle" aria-label="Change persona" title="Customize experience">
+                    <i data-lucide="user"></i>
+                </button>
+                
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="projects.html" class="mobile-nav-link">Projects</a>
+            <a href="blog.html" class="mobile-nav-link active">Blog</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="page-header-content">
+                    <div class="page-breadcrumb">
+                        <a href="index.html">Home</a>
+                        <i data-lucide="chevron-right"></i>
+                        <span>Blog</span>
+                    </div>
+                    <h1 class="page-title">The DizzyBlog</h1>
+                    <p class="page-description" id="blog-description">
+                        Thoughts on tech, learning experiences, and discoveries
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Content -->
+        <section class="blog-content">
+            <div class="container">
+                <div class="blog-grid" id="dynamic-blog">
+                    <!-- Blog Post 1 -->
+                    <article class="blog-card">
+                        <div class="blog-meta">
+                            <i data-lucide="calendar"></i>
+                            <span>January 15, 2025</span>
+                            <i data-lucide="clock"></i>
+                            <span>5 min read</span>
+                        </div>
+                        <h3>The AGI Illusion of Thinking</h3>
+                        <p class="blog-excerpt">
+                            Exploring the misconceptions around Artificial General Intelligence and what it means 
+                            for true machine consciousness. A deep dive into the current state of AI and the path forward.
+                        </p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">AI</span>
+                            <span class="blog-tag">Machine Learning</span>
+                            <span class="blog-tag">Philosophy</span>
+                        </div>
+                        <div class="blog-footer">
+                            <a href="/blog/agi-illusion-of-thinking" class="blog-link">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="blog-card">
+                        <div class="blog-meta">
+                            <i data-lucide="calendar"></i>
+                            <span>December 28, 2024</span>
+                            <i data-lucide="clock"></i>
+                            <span>3 min read</span>
+                        </div>
+                        <h3>Open Your Eyes: A Wake-Up Call</h3>
+                        <p class="blog-excerpt">
+                            Sometimes we need to step back and really see what's happening around us. A reflection 
+                            on awareness, technology, and the importance of staying conscious in our digital age.
+                        </p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Reflection</span>
+                            <span class="blog-tag">Technology</span>
+                            <span class="blog-tag">Society</span>
+                        </div>
+                        <div class="blog-footer">
+                            <a href="/blog/open-your-eyes" class="blog-link">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="blog-card">
+                        <div class="blog-meta">
+                            <i data-lucide="calendar"></i>
+                            <span>December 20, 2024</span>
+                            <i data-lucide="clock"></i>
+                            <span>4 min read</span>
+                        </div>
+                        <h3>Building Modern Web Applications</h3>
+                        <p class="blog-excerpt">
+                            A comprehensive guide to building scalable, maintainable web applications using modern 
+                            frameworks and best practices. From architecture to deployment.
+                        </p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Web Development</span>
+                            <span class="blog-tag">React</span>
+                            <span class="blog-tag">Node.js</span>
+                        </div>
+                        <div class="blog-footer">
+                            <a href="#" class="blog-link">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 4 -->
+                    <article class="blog-card">
+                        <div class="blog-meta">
+                            <i data-lucide="calendar"></i>
+                            <span>December 10, 2024</span>
+                            <i data-lucide="clock"></i>
+                            <span>6 min read</span>
+                        </div>
+                        <h3>The Art of Clean Code</h3>
+                        <p class="blog-excerpt">
+                            Writing code that not only works but is also readable, maintainable, and elegant. 
+                            Exploring principles and practices that make the difference between good and great code.
+                        </p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Clean Code</span>
+                            <span class="blog-tag">Best Practices</span>
+                            <span class="blog-tag">Software Engineering</span>
+                        </div>
+                        <div class="blog-footer">
+                            <a href="#" class="blog-link">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 5 -->
+                    <article class="blog-card">
+                        <div class="blog-meta">
+                            <i data-lucide="calendar"></i>
+                            <span>November 25, 2024</span>
+                            <i data-lucide="clock"></i>
+                            <span>8 min read</span>
+                        </div>
+                        <h3>Learning in Public: My Journey</h3>
+                        <p class="blog-excerpt">
+                            The benefits and challenges of learning programming in public. How sharing your journey 
+                            can accelerate growth and build meaningful connections in the tech community.
+                        </p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Learning</span>
+                            <span class="blog-tag">Community</span>
+                            <span class="blog-tag">Personal Growth</span>
+                        </div>
+                        <div class="blog-footer">
+                            <a href="#" class="blog-link">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 6 -->
+                    <article class="blog-card">
+                        <div class="blog-meta">
+                            <i data-lucide="calendar"></i>
+                            <span>November 15, 2024</span>
+                            <i data-lucide="clock"></i>
+                            <span>5 min read</span>
+                        </div>
+                        <h3>Open Source Contributions</h3>
+                        <p class="blog-excerpt">
+                            Getting started with open source contributions. A beginner's guide to finding projects, 
+                            making your first pull request, and becoming part of the global developer community.
+                        </p>
+                        <div class="blog-tags">
+                            <span class="blog-tag">Open Source</span>
+                            <span class="blog-tag">Git</span>
+                            <span class="blog-tag">Community</span>
+                        </div>
+                        <div class="blog-footer">
+                            <a href="#" class="blog-link">
+                                <span>Read More</span>
+                                <i data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="blog-newsletter">
+                    <div class="newsletter-content">
+                        <h2><i data-lucide="mail"></i> Stay Updated</h2>
+                        <p>Get notified when I publish new posts about technology, development, and learning.</p>
+                        <form class="newsletter-form" action="#" method="post">
+                            <div class="form-group">
+                                <input type="email" class="form-input" placeholder="Enter your email" required>
+                                <button type="submit" class="btn btn-primary">
+                                    <span>Subscribe</span>
+                                    <i data-lucide="send"></i>
+                                </button>
+                            </div>
+                        </form>
+                        <p class="newsletter-note">No spam, unsubscribe at any time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <i data-lucide="terminal"></i>
+                    <span class="brand-text">dizzydroid</span>
+                    <p>Building the future, one line at a time.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                        <i data-lucide="twitter"></i>
+                    </a>
+                    <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                        <i data-lucide="at-sign"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 dizzydroid. Crafted with care.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/personas.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
                 <a href="contact.html" class="nav-link">Contact</a>
             </div>
             <!-- Hamburger Menu -->
@@ -266,48 +561,42 @@
         </main>
 
         <!-- Footer -->
-        <footer class="site-footer">
+        <footer class="footer">
             <div class="container">
                 <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>dizzydroid</h3>
-                        <p>Redefining lives, one line of code at a time.</p>
+                    <div class="footer-brand">
+                        <i data-lucide="terminal"></i>
+                        <span class="brand-text">dizzydroid</span>
+                        <p>Building the future, one line at a time.</p>
                     </div>
                     
-                    <div class="footer-section">
-                        <h4>Connect</h4>
-                        <div class="social-links">
-                            <a href="https://www.x.com/shehabtweets" target="_blank" class="social-link" title="Twitter">
-                                <i class="fab fa-x-twitter"></i>
-                            </a>
-                            <a href="https://github.com/dizzydroid" target="_blank" class="social-link" title="GitHub">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="social-link" title="YouTube">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/ShehabMahmoud" target="_blank" class="social-link" title="LinkedIn">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://www.behance.net/dizzydroid" target="_blank" class="social-link" title="Behance">
-                                <i class="fab fa-behance"></i>
-                            </a>
-                        </div>
+                    <div class="footer-links">
+                        <a href="https://github.com/dizzydroid" class="social-link" title="GitHub" target="_blank" rel="noopener">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/ShehabMahmoud" class="social-link" title="LinkedIn" target="_blank" rel="noopener">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                        <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                            <i data-lucide="at-sign"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="footer-bottom">
-                    <p>&copy; 2025 dizzydroid. Made with ❤️ and lots of coffee.</p>
+                    <p>&copy; 2025 dizzydroid. Crafted with care.</p>
                 </div>
             </div>
         </footer>
-    </div>    
-
     <!-- Scripts -->
-    <script src="assets/js/hamburger-menu.js"></script>
-    <script src="assets/js/persona-loader.js"></script>
-    <script src="assets/js/animations.js"></script>
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/blog.js"></script>
+    <script src="assets/js/personas.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>

@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     
     <!-- Styles -->
@@ -21,7 +20,7 @@
     <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/personas.css">
 </head>
-<body data-persona="dev">
+<body data-persona="developer">
     <!-- Persona Selection Modal -->
     <div id="persona-modal" class="modal" aria-hidden="true">
         <div class="modal-backdrop"></div>
@@ -63,16 +62,17 @@
     <!-- Main Navigation -->
     <nav class="main-nav">
         <div class="nav-container">
-            <a href="/" class="nav-brand">
+            <a href="index.html" class="nav-brand">
+                <i data-lucide="terminal"></i>
                 <span class="brand-text">dizzydroid</span>
             </a>
             
             <div class="nav-links">
-                <a href="/" class="nav-link active">Home</a>
-                <a href="/about" class="nav-link">About</a>
-                <a href="/projects" class="nav-link">Projects</a>
-                <a href="/blog" class="nav-link">Blog</a>
-                <a href="/contact" class="nav-link">Contact</a>
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
             
             <div class="nav-actions">
@@ -92,11 +92,11 @@
     <!-- Mobile Menu -->
     <div class="mobile-menu">
         <div class="mobile-menu-content">
-            <a href="/" class="mobile-nav-link active">Home</a>
-            <a href="/about" class="mobile-nav-link">About</a>
-            <a href="/projects" class="mobile-nav-link">Projects</a>
-            <a href="/blog" class="mobile-nav-link">Blog</a>
-            <a href="/contact" class="mobile-nav-link">Contact</a>
+            <a href="index.html" class="mobile-nav-link active">Home</a>
+            <a href="about.html" class="mobile-nav-link">About</a>
+            <a href="projects.html" class="mobile-nav-link">Projects</a>
+            <a href="blog.html" class="mobile-nav-link">Blog</a>
+            <a href="contact.html" class="mobile-nav-link">Contact</a>
         </div>
     </div>
 
@@ -128,7 +128,7 @@
                     
                     <!-- CTA Buttons -->
                     <div class="hero-actions" id="dynamic-actions">
-                        <a href="/projects" class="btn btn-primary">
+                        <a href="projects.html" class="btn btn-primary">
                             <span>View Projects</span>
                             <i data-lucide="arrow-right"></i>
                         </a>
@@ -186,7 +186,7 @@
         <section class="quick-nav">
             <div class="container">
                 <div class="quick-nav-grid">
-                    <a href="/about" class="quick-nav-card">
+                    <a href="about.html" class="quick-nav-card">
                         <div class="card-icon">
                             <i data-lucide="user"></i>
                         </div>
@@ -197,7 +197,7 @@
                         </div>
                     </a>
                     
-                    <a href="/projects" class="quick-nav-card">
+                    <a href="projects.html" class="quick-nav-card">
                         <div class="card-icon">
                             <i data-lucide="folder"></i>
                         </div>
@@ -208,7 +208,7 @@
                         </div>
                     </a>
                     
-                    <a href="/blog" class="quick-nav-card">
+                    <a href="blog.html" class="quick-nav-card">
                         <div class="card-icon">
                             <i data-lucide="edit-3"></i>
                         </div>
@@ -228,6 +228,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
+                    <i data-lucide="terminal"></i>
                     <span class="brand-text">dizzydroid</span>
                     <p>Building the future, one line at a time.</p>
                 </div>
@@ -243,7 +244,7 @@
                         <i data-lucide="twitter"></i>
                     </a>
                     <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
-                        <i data-lucide="mail"></i>
+                        <i data-lucide="at-sign"></i>
                     </a>
                 </div>
             </div>

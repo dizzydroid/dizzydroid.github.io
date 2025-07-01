@@ -10,6 +10,7 @@ function initializeApp() {
     initializePersonaModal();
     initializeTerminalAnimation();
     initializeStatAnimations();
+    initializeScrollEffects();
     initializeLucideIcons();
 }
 
@@ -83,7 +84,7 @@ function initializePersonaModal() {
     });
     
     // Load saved persona preference
-    const savedPersona = localStorage.getItem('preferred-persona') || 'dev';
+    const savedPersona = localStorage.getItem('preferred-persona') || 'developer';
     switchPersona(savedPersona);
 }
 
@@ -319,6 +320,37 @@ if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').m
     document.documentElement.style.setProperty('--transition-fast', '0s');
     document.documentElement.style.setProperty('--transition-normal', '0s');
     document.documentElement.style.setProperty('--transition-slow', '0s');
+}
+
+// Scroll effects for navbar
+function initializeScrollEffects() {
+    const navbar = document.querySelector('.main-nav');
+    let isScrolled = false;
+    
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const shouldBeScrolled = scrollTop > 50;
+        
+        if (shouldBeScrolled !== isScrolled) {
+            isScrolled = shouldBeScrolled;
+            navbar.classList.toggle('scrolled', isScrolled);
+        }
+    }
+    
+    // Throttle scroll events
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Initial check
+    handleScroll();
 }
 
 // Export functions for use in other modules
