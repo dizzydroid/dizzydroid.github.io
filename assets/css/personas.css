@@ -432,3 +432,98 @@ body[data-persona] {
     background-clip: unset !important;
     color: #ffffff !important;
 }
+
+/* Blog-specific persona theming */
+
+/* Blockquote theming */
+[data-persona] .blog-post-content blockquote {
+    border-left-color: var(--persona-primary);
+}
+
+/* Social share button theming */
+[data-persona] .social-share-button:hover {
+    background: var(--persona-primary);
+    border-color: var(--persona-primary);
+    color: white;
+}
+
+/* Blog navigation links theming */
+[data-persona] .blog-post-nav-link:hover {
+    color: var(--persona-primary);
+}
+
+[data-persona] .blog-breadcrumb a:hover {
+    color: var(--persona-primary);
+}
+
+/* Table of contents theming */
+[data-persona] .toc-list a:hover {
+    color: var(--persona-primary);
+}
+
+/* Code block theming */
+[data-persona] .code-block {
+    border-left: 4px solid var(--persona-primary);
+}
+
+/* Image caption theming */
+[data-persona] .image-caption {
+    color: var(--persona-primary);
+}
+
+/* Stats and metrics theming */
+[data-persona] .blog-post-meta i {
+    color: var(--persona-primary);
+}
+
+/* Tag theming */
+[data-persona] .blog-post-tag {
+    background: color-mix(in srgb, var(--persona-primary) 10%, var(--bg-secondary));
+    border: 1px solid color-mix(in srgb, var(--persona-primary) 20%, var(--border-secondary));
+    color: var(--persona-primary);
+}
+
+/* Link theming in blog content */
+[data-persona] .blog-post-content a {
+    color: var(--persona-primary);
+}
+
+[data-persona] .blog-post-content a:hover {
+    color: var(--persona-secondary);
+}
+
+/* Table theming */
+[data-persona] .blog-post-content th {
+    background: color-mix(in srgb, var(--persona-primary) 10%, var(--bg-tertiary));
+    color: var(--persona-primary);
+}
+
+/* CTA Button theming */
+[data-persona] .cta-button {
+    background: var(--persona-primary);
+    color: white;
+}
+
+[data-persona] .cta-button:hover {
+    background: var(--persona-secondary);
+}
+
+/* Code copy button theming */
+[data-persona] .code-copy-button:hover {
+    background: var(--persona-primary);
+    border-color: var(--persona-primary);
+    color: white;
+}
+
+[data-persona] .code-copy-button.copied {
+    background: var(--persona-primary);
+    border-color: var(--persona-primary);
+    color: white;
+}
+
+/* Copy button theming for JavaScript-generated buttons */
+[data-persona] .copy-btn:hover {
+    background: var(--persona-primary);
+    border-color: var(--persona-primary);
+    color: white;
+}

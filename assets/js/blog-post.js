@@ -174,25 +174,26 @@ function setupTableOfContents() {
 function setupCodeBlocks() {
     const codeBlocks = document.querySelectorAll('pre');
     
-    codeBlocks.forEach(block => {
+    codeBlocks.forEach(pre => {
+        let wrapper = pre.parentElement;
+        
         // Wrap in code-block container if not already
-        if (!block.parentElement.classList.contains('code-block')) {
-            const wrapper = document.createElement('div');
+        if (!wrapper.classList.contains('code-block')) {
+            wrapper = document.createElement('div');
             wrapper.className = 'code-block';
-            block.parentNode.insertBefore(wrapper, block);
-            wrapper.appendChild(block);
-            block = wrapper;
+            pre.parentNode.insertBefore(wrapper, pre);
+            wrapper.appendChild(pre);
         }
         
         // Add copy button if not already present
-        if (!block.querySelector('.copy-btn')) {
+        if (!wrapper.querySelector('.copy-btn')) {
             const copyBtn = document.createElement('button');
             copyBtn.className = 'copy-btn';
             copyBtn.innerHTML = '<i data-lucide="copy"></i><span>Copy</span>';
             copyBtn.setAttribute('aria-label', 'Copy code');
             
             copyBtn.addEventListener('click', () => {
-                const code = block.querySelector('pre').textContent;
+                const code = pre.textContent;
                 navigator.clipboard.writeText(code.trim())
                     .then(() => {
                         copyBtn.innerHTML = '<i data-lucide="check"></i><span>Copied!</span>';
@@ -220,7 +221,7 @@ function setupCodeBlocks() {
                 }
             });
             
-            block.appendChild(copyBtn);
+            wrapper.appendChild(copyBtn);
             
             // Initialize Lucide icons for the button
             if (typeof lucide !== 'undefined') {
