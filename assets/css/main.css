@@ -224,33 +224,45 @@ body {
     position: relative;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: var(--bg-primary);
-    border: 2px solid transparent;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.persona-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.persona-icon:active {
+    outline: none;
+    box-shadow: none;
 }
 
 .persona-icon:hover {
     transform: scale(1.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.persona-icon.active {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+.persona-svg {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: block;
+    opacity: 0.6;
 }
 
-.icon-inner {
-    font-size: 1.25rem;
-    transition: transform 0.3s ease;
+.persona-icon.active .persona-svg {
+    opacity: 1;
 }
 
-.persona-icon:hover .icon-inner {
+.persona-icon:hover .persona-svg {
     transform: scale(1.2);
+    opacity: 1;
 }
 
 .icon-label {
@@ -268,27 +280,6 @@ body {
 
 .persona-icon:hover .icon-label {
     opacity: 1;
-}
-
-/* Persona-specific icon colors */
-.persona-icon.student {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-    --icon-color: #3b82f6;
-}
-
-.persona-icon.recruiter {
-    background: linear-gradient(135deg, #dc2626, #991b1b);
-    --icon-color: #dc2626;
-}
-
-.persona-icon.dev {
-    background: linear-gradient(135deg, #10b981, #047857);
-    --icon-color: #10b981;
-}
-
-.persona-icon.other {
-    background: linear-gradient(135deg, #f59e0b, #d97706);
-    --icon-color: #f59e0b;
 }
 
 #main-content {
@@ -812,6 +803,14 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 2rem;
+    overflow: hidden;
+}
+
+.avatar-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .about-intro h2 {
@@ -1461,7 +1460,6 @@ body {
     color: #f1f1f1;
 }
 
-/* Alternative approach for better compatibility */
 .footer-section .social-links .social-link {
     text-align: center;
     vertical-align: middle;

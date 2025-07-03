@@ -1,6 +1,4 @@
-/* Enhanced Dark Persona Themes */
-
-/* Student Theme - Dark Blue */
+/* Student Theme*/
 .persona-student {
     --navbar-color: 15, 23, 42, 0.9; 
     --primary-color: #60a5fa;
@@ -17,7 +15,7 @@
     --terminal-border: #3b82f6;
 }
 
-/* Recruiter Theme - Dark Red */
+/* Recruiter Theme*/
 .persona-recruiter {
     --navbar-color: rgb(183, 28, 28, 0.9); 
     --primary-color: #ef4444;
@@ -34,7 +32,7 @@
     --terminal-border: #dc2626;
 }
 
-/* Developer Theme - Dark Green */
+/* Developer Theme*/
 .persona-dev {
     --navbar-color: 0, 77, 64, 0.9;
     --primary-color: #34d399;
@@ -51,7 +49,7 @@
     --terminal-border: #10b981;
 }
 
-/* Explorer Theme - Dark Orange/Yellow */
+/* Explorer Theme*/
 .persona-other {
     --navbar-color: 19, 20, 24, 0.9;
     --primary-color: #fbbf24;
@@ -540,7 +538,6 @@
     animation-delay: 1.7s; 
 }
 
-/* Persona-specific content visibility for About page */
 .persona-student-content,
 .persona-recruiter-content, 
 .persona-dev-content,
@@ -825,10 +822,3 @@ body.theme-changing {
     animation: themeTransition 0.6s ease-out;
 }
 
-.persona-student .persona-icon.student.active,
-.persona-recruiter .persona-icon.recruiter.active,
-.persona-dev .persona-icon.dev.active,
-.persona-other .persona-icon.other.active {
-    box-shadow: 0 0 0 3px var(--primary-color), 0 0 20px rgba(var(--primary-color-rgb), 0.4);
-    transform: scale(1.1);
-}
