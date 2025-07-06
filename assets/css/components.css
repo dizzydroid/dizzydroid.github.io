@@ -1198,6 +1198,48 @@
     flex-wrap: wrap;
 }
 
+/* Enhanced Project Cards */
+.featured-project {
+    border: 2px solid var(--persona-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-project::before {
+    content: "Featured";
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    background: var(--persona-primary);
+    color: white;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    z-index: 1;
+}
+
+.project-category-badge {
+    display: inline-block;
+    background: var(--persona-primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: var(--space-md);
+}
+
+.project-status.research {
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+    color: white;
+}
+
+.project-status.in-development {
+    background: var(--accent-warning);
+    color: var(--text-primary);
+}
+
 /* Contact Page Specific */
 .contact-content {
     padding: var(--space-3xl) 0;
