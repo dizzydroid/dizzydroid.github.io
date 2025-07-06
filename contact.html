@@ -26,6 +26,57 @@
         .contact-item .fas {
             color: inherit !important;
         }
+        
+        /* Make contact links use persona accent color */
+        .contact-item a {
+            color: var(--persona-primary) !important;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+        
+        .contact-item a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        
+        /* Ensure footer links also use persona color */
+        .footer .social-link {
+            color: var(--persona-primary) !important;
+        }
+        
+        /* Notification styles */
+        .notification-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .notification-close {
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+        
+        .notification-close:hover {
+            opacity: 1;
+        }
+        
+        .notification-message {
+            flex: 1;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body data-persona="developer">
@@ -120,9 +171,9 @@
                         <i data-lucide="chevron-right"></i>
                         <span>Contact</span>
                     </div>
-                    <h1 class="page-title">Get in Touch</h1>
+                    <h1 class="page-title code-title">Contact</h1>
                     <p class="page-description" id="contact-description">
-                        Let's connect and explore opportunities together
+                        Let's connect!
                     </p>
                 </div>
             </div>
@@ -134,7 +185,17 @@
                 <div class="contact-grid">
                     <!-- Contact Form -->
                     <div class="contact-form-container">
-                        <form class="contact-form" action="#" method="post">
+                        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                            <!-- Web3Forms Access Key -->
+                            <input type="hidden" name="access_key" value="0c92db70-79b4-4ced-8ce3-1c1d96e0335a">
+                            
+                            <!-- Honeypot Spam Protection -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
+                            <!-- Custom success message -->
+                            <input type="hidden" name="from_name" value="Portfolio Contact Form">
+                            <input type="hidden" name="subject" value="New Contact Form Message from Portfolio">
+                            
                             <div class="form-header">
                                 <h2>Send me a message</h2>
                                 <p>I'd love to hear from you. Send me a message and I'll respond as soon as possible.</p>
@@ -152,12 +213,19 @@
 
                             <div class="form-group">
                                 <label for="subject" class="form-label">Subject</label>
-                                <input type="text" id="subject" name="subject" class="form-input" required>
+                                <select id="subject" name="subject" class="form-input" required>
+                                    <option value="">Select a topic</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="project">Project Inquiry</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="general">General Question</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="message" class="form-label">Message</label>
-                                <textarea id="message" name="message" class="form-textarea" rows="6" required></textarea>
+                                <textarea id="message" name="message" class="form-textarea" rows="6" required placeholder="Tell me about your project, idea, or just say hello!"></textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-large">
@@ -173,7 +241,7 @@
                             <i data-lucide="mail"></i>
                             <h3>Email</h3>
                             <p>
-                                <a href="mailto:contact@dizzydroid.com">contact@dizzydroid.com</a>
+                                <a href="mailto:shehabmahmoud2003@gmail.com">shehabmahmoud2003@gmail.com</a>
                             </p>
                         </div>
 
@@ -262,7 +330,7 @@
                     <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
                         <i data-lucide="twitter"></i>
                     </a>
-                    <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                    <a href="mailto:shehabmahmoud2003@gmail.com" class="social-link" title="Email">
                         <i data-lucide="mail"></i>
                     </a>
                 </div>

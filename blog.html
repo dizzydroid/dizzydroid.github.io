@@ -114,7 +114,7 @@
                     </div>
                     <h1 class="page-title code-title">The DizzyBlog</h1>
                     <p class="page-description" id="blog-description">
-                        Thoughts on tech, learning experiences, and discoveries
+                        Thoughts are my own.
                     </p>
                 </div>
             </div>
@@ -174,9 +174,20 @@
                     <div class="newsletter-content">
                         <h2><i data-lucide="mail"></i> Stay Updated</h2>
                         <p>Get notified when I publish new posts about technology, development, and learning.</p>
-                        <form class="newsletter-form" action="#" method="post">
+                        <form class="newsletter-form" id="newsletter-form" action="https://api.web3forms.com/submit" method="POST">
+                            <!-- Web3Forms Access Key -->
+                            <input type="hidden" name="access_key" value="0c92db70-79b4-4ced-8ce3-1c1d96e0335a">
+                            
+                            <!-- Newsletter specific fields -->
+                            <input type="hidden" name="subject" value="New Newsletter Subscription">
+                            <input type="hidden" name="from_name" value="Newsletter Signup">
+                            <input type="hidden" name="subscription_type" value="newsletter">
+                            
+                            <!-- Honeypot Protection -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
                             <div class="form-group">
-                                <input type="email" class="form-input" placeholder="Enter your email" required>
+                                <input type="email" name="email" class="form-input" placeholder="Enter your email" required>
                                 <button type="submit" class="btn btn-primary">
                                     <span>Subscribe</span>
                                     <i data-lucide="send"></i>
@@ -210,7 +221,7 @@
                     <a href="https://x.com/shehabtweets" class="social-link" title="Twitter" target="_blank" rel="noopener">
                         <i data-lucide="twitter"></i>
                     </a>
-                    <a href="mailto:contact@dizzydroid.com" class="social-link" title="Email">
+                    <a href="mailto:shehabmahmoud2003@gmail.com" class="social-link" title="Email">
                         <i data-lucide="mail"></i>
                     </a>
                 </div>

@@ -1,5 +1,3 @@
-// Main JavaScript - Clean, minimal functionality
-
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
     initializeApp();
@@ -12,6 +10,8 @@ function initializeApp() {
     initializeStatAnimations();
     initializeScrollEffects();
     initializeLucideIcons();
+    initializeContactForm();
+    initializeNewsletterForm();
 }
 
 // Navigation functionality
@@ -54,7 +54,6 @@ function initializePersonaModal() {
     const modal = document.getElementById('persona-modal');
     const modalClose = document.querySelector('.modal-close');
     const modalBackdrop = document.querySelector('.modal-backdrop');
-    const personaCards = document.querySelectorAll('.persona-card');
     
     if (personaToggle && modal) {
         personaToggle.addEventListener('click', () => {
@@ -73,19 +72,6 @@ function initializePersonaModal() {
             closeModal(modal);
         });
     }
-    
-    // Handle persona selection
-    personaCards.forEach(card => {
-        card.addEventListener('click', () => {
-            const persona = card.dataset.persona;
-            switchPersona(persona);
-            closeModal(modal);
-        });
-    });
-    
-    // Load saved persona preference
-    const savedPersona = localStorage.getItem('preferred-persona') || 'developer';
-    switchPersona(savedPersona);
 }
 
 function openModal(modal) {
@@ -104,133 +90,102 @@ function closeModal(modal) {
     document.body.style.overflow = '';
 }
 
-function switchPersona(persona) {
-    // Update body data attribute
-    document.body.setAttribute('data-persona', persona);
-    
-    // Update persona cards active state
-    document.querySelectorAll('.persona-card').forEach(card => {
-        card.classList.toggle('active', card.dataset.persona === persona);
-    });
-    
-    // Update dynamic content
-    updatePersonaContent(persona);
-    
-    // Save preference
-    localStorage.setItem('preferred-persona', persona);
-}
-
-function updatePersonaContent(persona) {
-    const contentMap = {
-        student: {
-            greeting: 'Hello, Fellow Learner!',
-            subtitle: 'A dedicated student exploring the world of code',
-            description: 'Currently studying Computer Science and passionate about learning new technologies, building projects, and growing as a developer.',
-            primaryAction: 'View Learning Journey',
-            terminalOutput: `shehab@student-mode
-OS: Learning Environment
-Kernel: Curiosity 3.0
-Uptime: Always Growing
-Packages: JavaScript, Python, C++
-Shell: VS Code
-Theme: Student [Dark]
-Status: Currently Learning`
-        },
-        recruiter: {
-            greeting: 'Welcome, Recruiter!',
-            subtitle: 'A skilled developer ready for new opportunities',
-            description: 'Computer Science student with hands-on experience in full-stack development, strong problem-solving skills, and a passion for creating impactful solutions.',
-            primaryAction: 'View Resume',
-            terminalOutput: `shehab@professional-mode
-OS: Career Ready
-Kernel: Experience 2.0
-Uptime: 2+ years coding
-Packages: React, Node.js, Python
-Experience: Multiple projects
-Education: Computer Science
-Status: Open to Opportunities`
-        },
-        developer: {
-            greeting: 'Hello, World!',
-            subtitle: 'A passionate developer crafting digital experiences',
-            description: 'Building meaningful software with modern technologies, always learning something new, and sharing the journey with the community.',
-            primaryAction: 'View Projects',
-            terminalOutput: `shehab@dev-mode
-OS: Code Environment
-Kernel: Innovation 4.0
-Uptime: Always Coding
-Packages: React, Next.js, Node.js
-Tools: Git, Docker, VS Code
-Language: TypeScript
-Status: Building Something Cool`
-        },
-        explorer: {
-            greeting: 'Hey, Explorer!',
-            subtitle: 'A creative mind exploring the digital frontier',
-            description: 'Passionate about technology, design, and innovation. Always curious about new possibilities and excited to share discoveries.',
-            primaryAction: 'Explore Projects',
-            terminalOutput: `shehab@explorer-mode
-OS: Discovery OS
-Kernel: Creativity 5.0
-Uptime: Always Exploring
-Interests: Tech, Design, Innovation
-Tools: Code, Art, Ideas
-Mission: Building The Future
-Status: Discovering New Horizons`
-        }
-    };
-    
-    const content = contentMap[persona] || contentMap.developer;
-    
-    // Update greeting
-    const greetingElement = document.querySelector('.greeting-text');
-    if (greetingElement) {
-        greetingElement.textContent = content.greeting;
-    }
-    
-    // Update subtitle
-    const subtitleElement = document.getElementById('dynamic-subtitle');
-    if (subtitleElement) {
-        subtitleElement.textContent = content.subtitle;
-    }
-    
-    // Update description
-    const descriptionElement = document.getElementById('dynamic-description');
-    if (descriptionElement) {
-        descriptionElement.textContent = content.description;
-    }
-    
-    // Update primary action button
-    const primaryButton = document.querySelector('.btn-primary span');
-    if (primaryButton) {
-        primaryButton.textContent = content.primaryAction;
-    }
-    
-    // Update terminal output
-    const terminalOutput = document.getElementById('terminal-output');
-    if (terminalOutput) {
-        terminalOutput.innerHTML = content.terminalOutput.split('\n').map(line => 
-            `<div class="output-line">${line}</div>`
-        ).join('');
-    }
-}
-
 // Terminal typing animation
 function initializeTerminalAnimation() {
     const terminalOutput = document.getElementById('terminal-output');
     if (!terminalOutput) return;
     
-    // Add typing effect on load
-    setTimeout(() => {
-        terminalOutput.style.opacity = '0';
-        terminalOutput.style.transform = 'translateY(10px)';
+    // Initialize terminal buttons
+    initializeTerminalButtons();
+    
+    // No fade effect - terminal content loads normally via personas.js
+}
+
+// Initialize terminal buttons functionality
+function initializeTerminalButtons() {
+    const terminal = document.getElementById('hero-terminal');
+    if (!terminal) return;
+    
+    const closeButton = terminal.querySelector('.control.close');
+    const minimizeButton = terminal.querySelector('.control.minimize');
+    const maximizeButton = terminal.querySelector('.control.maximize');
+    
+    // Close button - minimizes the terminal
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            terminal.style.transform = 'scale(0.8)';
+            terminal.style.opacity = '0.3';
+            terminal.style.transition = 'all 0.3s ease';
+            
+            // Restore after 2 seconds
+            setTimeout(() => {
+                terminal.style.transform = 'scale(1)';
+                terminal.style.opacity = '1';
+            }, 2000);
+        });
         
-        setTimeout(() => {
-            terminalOutput.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            terminalOutput.style.opacity = '1';
-            terminalOutput.style.transform = 'translateY(0)';
-        }, 500);
-    }, 1000);
+        // Add hover effect
+        closeButton.style.cursor = 'pointer';
+        closeButton.addEventListener('mouseenter', () => {
+            closeButton.style.backgroundColor = '#ff5f57';
+        });
+        closeButton.addEventListener('mouseleave', () => {
+            closeButton.style.backgroundColor = '';
+        });
+    }
+    
+    // Minimize button - shrinks the terminal temporarily
+    if (minimizeButton) {
+        minimizeButton.addEventListener('click', () => {
+            terminal.style.transform = 'scaleY(0.1)';
+            terminal.style.transformOrigin = 'top';
+            terminal.style.transition = 'all 0.3s ease';
+            
+            // Restore after 1.5 seconds
+            setTimeout(() => {
+                terminal.style.transform = 'scaleY(1)';
+            }, 1500);
+        });
+        
+        // Add hover effect
+        minimizeButton.style.cursor = 'pointer';
+        minimizeButton.addEventListener('mouseenter', () => {
+            minimizeButton.style.backgroundColor = '#ffbd2e';
+        });
+        minimizeButton.addEventListener('mouseleave', () => {
+            minimizeButton.style.backgroundColor = '';
+        });
+    }
+    
+    // Maximize button - enlarges the terminal temporarily
+    if (maximizeButton) {
+        let isMaximized = false;
+        
+        maximizeButton.addEventListener('click', () => {
+            if (!isMaximized) {
+                terminal.style.transform = 'scale(1.2)';
+                terminal.style.zIndex = '1000';
+                terminal.style.transition = 'all 0.3s ease';
+                isMaximized = true;
+                
+                // Restore after 3 seconds
+                setTimeout(() => {
+                    terminal.style.transform = 'scale(1)';
+                    terminal.style.zIndex = '';
+                    isMaximized = false;
+                }, 3000);
+            }
+        });
+        
+        // Add hover effect
+        maximizeButton.style.cursor = 'pointer';
+        maximizeButton.addEventListener('mouseenter', () => {
+            maximizeButton.style.backgroundColor = '#28ca42';
+        });
+        maximizeButton.addEventListener('mouseleave', () => {
+            maximizeButton.style.backgroundColor = '';
+        });
+    }
 }
 
 // Animate statistics counters
@@ -279,6 +234,213 @@ function initializeLucideIcons() {
         lucide.createIcons({
             strokeWidth: 2,
             fill: 'none'
+        });
+    }
+}
+
+// Initialize contact form functionality
+function initializeContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.subject || !data.message) {
+                showNotification('Please fill in all fields.', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Submit form to Web3Forms
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            submitButton.innerHTML = '<span>Sending...</span><i data-lucide="loader-2"></i>';
+            submitButton.disabled = true;
+            
+            // Re-initialize icons for the loader
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+            
+            // Prepare form data for Web3Forms
+            const formDataToSend = new FormData();
+            formDataToSend.append('access_key', '0c92db70-79b4-4ced-8ce3-1c1d96e0335a');
+            formDataToSend.append('name', data.name);
+            formDataToSend.append('email', data.email);
+            formDataToSend.append('subject', data.subject);
+            formDataToSend.append('message', data.message);
+            formDataToSend.append('from_name', data.name);
+            formDataToSend.append('to', 'shehabmahmoud2003@gmail.com');
+            
+            // Send to Web3Forms
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formDataToSend
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showNotification('Thank you for your message! I\'ll get back to you soon.', 'success');
+                    contactForm.reset();
+                } else {
+                    throw new Error(result.message || 'Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Sorry, there was an error sending your message. Please try again or email me directly at shehabmahmoud2003@gmail.com', 'error');
+            })
+            .finally(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // Re-initialize icons
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            });
+        });
+    }
+}
+
+// Notification system
+function showNotification(message, type = 'info') {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-message">${message}</span>
+            <button class="notification-close">&times;</button>
+        </div>
+    `;
+    
+    // Add styles
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? 'var(--persona-primary)' : type === 'error' ? '#ef4444' : 'var(--bg-secondary)'};
+        color: ${type === 'success' || type === 'error' ? 'white' : 'var(--text-primary)'};
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        max-width: 400px;
+        border: 1px solid ${type === 'success' ? 'var(--persona-primary)' : type === 'error' ? '#ef4444' : 'var(--border-color)'};
+    `;
+    
+    // Add to page
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Close button functionality
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        removeNotification(notification);
+    });
+    
+    // Auto remove after 5 seconds
+    setTimeout(() => {
+        removeNotification(notification);
+    }, 5000);
+}
+
+function removeNotification(notification) {
+    notification.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 300);
+}
+
+// Initialize newsletter form functionality
+function initializeNewsletterForm() {
+    const newsletterForm = document.getElementById('newsletter-form');
+    
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(newsletterForm);
+            const email = formData.get('email');
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Submit button state
+            const submitButton = newsletterForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            
+            submitButton.innerHTML = '<span>Subscribing...</span><i data-lucide="loader-2"></i>';
+            submitButton.disabled = true;
+            
+            // Re-initialize icons for the loader
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
+            
+            // Prepare form data for Web3Forms
+            const formDataToSend = new FormData();
+            formDataToSend.append('access_key', '0c92db70-79b4-4ced-8ce3-1c1d96e0335a');
+            formDataToSend.append('email', email);
+            formDataToSend.append('subject', 'New Newsletter Subscription');
+            formDataToSend.append('from_name', 'Newsletter Signup');
+            formDataToSend.append('subscription_type', 'newsletter');
+            formDataToSend.append('message', `New newsletter subscription from: ${email}`);
+            
+            // Send to Web3Forms
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formDataToSend
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    showNotification('🎉 Thanks for subscribing! You\'ll be notified when I publish new posts.', 'success');
+                    newsletterForm.reset();
+                } else {
+                    throw new Error(result.message || 'Subscription failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Sorry, there was an error with your subscription. Please try again or contact me directly.', 'error');
+            })
+            .finally(() => {
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+                
+                // Re-initialize icons
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            });
         });
     }
 }
@@ -358,8 +520,12 @@ function initializeScrollEffects() {
 
 // Export functions for use in other modules
 window.PortfolioApp = {
-    switchPersona,
     openModal,
     closeModal,
-    initializeLucideIcons
+    initializeLucideIcons,
+    initializeTerminalButtons,
+    initializeContactForm,
+    initializeNewsletterForm,
+    showNotification,
+    removeNotification
 };

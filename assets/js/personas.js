@@ -38,27 +38,25 @@ const personaContentData = {
             'Language': 'Java, Python',
             'Book': 'Head First Java',
             'Study Time': 'Late night coding',
-            'IDE': 'IntelliJ IDEA',
-            'Learning': 'Algorithms & Data Structures'
+            'IDE': 'VS Code',
+            'Learning': 'Cybersecurity'
         },
         focus: [
             {
                 icon: 'book-open',
                 title: 'Academic Excellence',
-                description: 'Balancing coursework with practical programming projects to build a strong foundation.'
             },
             {
                 icon: 'users',
                 title: 'Collaborative Learning',
-                description: 'Working with study groups and participating in coding challenges to enhance skills.'
             }
         ],
         connectDescription: "Always eager to connect with fellow students and learn from experienced developers!",
         facts: [
             { icon: 'graduation-cap', text: 'CS Student' },
             { icon: 'clock', text: 'Late night coder' },
-            { icon: 'brain', text: 'Algorithm enthusiast' },
-            { icon: 'users', text: 'Study group organizer' }
+            { icon: 'brain', text: 'Brainstormer' },
+            { icon: 'users', text: 'Collaborative' }
         ]
     },
     recruiter: {
@@ -66,22 +64,20 @@ const personaContentData = {
         intro: "Experienced full-stack developer with a proven track record of delivering high-quality software solutions. I bring technical expertise combined with strong communication skills and a results-driven approach to every project.",
         favorites: {
             'Experience': '3+ Years',
-            'Specialization': 'Full-Stack Development',
+            'Specialization': 'Software Development',
             'Team Size': '5-10 developers',
             'Methodology': 'Agile/Scrum',
             'Leadership': 'Technical Lead',
-            'Mentoring': 'Junior Developers'
+            'Environment': 'Collaborative'
         },
         focus: [
             {
                 icon: 'briefcase',
                 title: 'Professional Excellence',
-                description: 'Delivering scalable solutions that meet business requirements and exceed expectations.'
             },
             {
                 icon: 'users',
                 title: 'Team Collaboration',
-                description: 'Leading technical discussions and mentoring junior developers in best practices.'
             }
         ],
         connectDescription: "Open to discussing career opportunities and technical challenges in software development.",
@@ -96,8 +92,8 @@ const personaContentData = {
         profileTitle: 'Full-Stack Developer',
         intro: "Passionate about creating elegant solutions to complex problems. I love diving deep into new technologies, contributing to open source, and building applications that make a real impact.",
         favorites: {
-            'Editor': 'VS Code',
-            'Languages': 'JavaScript, Python, C++',
+            'Editor': 'Vi',
+            'Languages': 'Java, Python, JavaScript',
             'OS': 'Linux (Arch BTW)',
             'Terminal': 'Alacritty',
             'Shell': 'Zsh + Oh My Zsh',
@@ -107,48 +103,44 @@ const personaContentData = {
             {
                 icon: 'code-2',
                 title: 'Clean Architecture',
-                description: 'Building maintainable, scalable applications with modern development practices.'
             },
             {
                 icon: 'git-branch',
                 title: 'Open Source',
-                description: 'Contributing to the developer community through open source projects and knowledge sharing.'
             }
         ],
         connectDescription: "Love connecting with fellow developers to discuss tech, share knowledge, and collaborate on interesting projects!",
         facts: [
-            { icon: 'terminal', text: 'Command line wizard' },
-            { icon: 'coffee', text: 'Coffee powered' },
-            { icon: 'github', text: 'Open source contributor' },
-            { icon: 'zap', text: 'Performance optimizer' }
+            { icon: 'terminal', text: 'Living in shells' },
+            { icon: 'coffee', text: 'Coffeeholic' },
+            { icon: 'github', text: 'Open source advocate' },
+            { icon: 'zap', text: 'Performance nerd' }
         ]
     },
     explorer: {
         profileTitle: 'Creative Technologist',
         intro: "I approach technology with curiosity and creativity, exploring the intersection of code, design, and human experience. Always excited about emerging technologies and their potential to solve real-world problems.",
         favorites: {
-            'Inspiration': 'Dribbble, Behance',
-            'Tools': 'Figma, Adobe CC',
-            'Interest': 'UI/UX Design',
-            'Hobby': 'Digital Art',
+            'Inspiration': 'Behance',
+            'Tools': 'Adobe CC',
+            'Interest': 'Typography',
+            'Hobby': 'Reading, Gaming',
             'Philosophy': 'Less is More',
-            'Innovation': 'AI & Machine Learning'
+            'Innovation': 'Humans'
         },
         focus: [
             {
                 icon: 'palette',
                 title: 'Design & Code',
-                description: 'Blending technical skills with design thinking to create beautiful, functional experiences.'
             },
             {
                 icon: 'lightbulb',
                 title: 'Innovation',
-                description: 'Exploring emerging technologies and their creative applications in solving complex challenges.'
             }
         ],
         connectDescription: "Always excited to connect with creative minds and explore the possibilities of technology!",
         facts: [
-            { icon: 'sparkles', text: 'Creative problem solver' },
+            { icon: 'gamepad', text: 'Occasional Gamer' },
             { icon: 'palette', text: 'Design enthusiast' },
             { icon: 'globe', text: 'Tech explorer' },
             { icon: 'rocket', text: 'Innovation driven' }
@@ -161,11 +153,20 @@ function initializePersonaSystem() {
     loadPersonaPreference();
     setupPersonaEventListeners();
     updatePersonaUI();
+    checkFirstVisit();
 }
 
 // Load saved persona preference
 function loadPersonaPreference() {
-    const savedPersona = localStorage.getItem('preferred-persona');
+    let savedPersona = null;
+    
+    // Try to get saved persona with error handling for localStorage issues
+    try {
+        savedPersona = localStorage.getItem('preferred-persona');
+    } catch (e) {
+        console.warn('localStorage not available:', e);
+    }
+    
     const urlParams = new URLSearchParams(window.location.search);
     const urlPersona = urlParams.get('persona');
     
@@ -192,8 +193,12 @@ function setActivePersona(persona) {
     // Update content based on persona
     updatePersonaContent(persona);
     
-    // Save preference
-    localStorage.setItem('preferred-persona', persona);
+    // Save preference with error handling
+    try {
+        localStorage.setItem('preferred-persona', persona);
+    } catch (e) {
+        console.warn('Could not save persona preference:', e);
+    }
     
     // Trigger custom event
     document.dispatchEvent(new CustomEvent('personaChanged', {
@@ -305,50 +310,41 @@ function updateTerminalContent(persona) {
     
     const outputs = {
         student: [
-            'shehab@learning-mode',
-            'OS: Education Environment',
-            'Kernel: Curiosity 3.0.1',
-            'Uptime: Always Growing',
-            'Packages: JavaScript, Python, C++',
-            'Shell: VS Code Student Edition',
-            'Theme: Learning [Dark]',
-            'Status: Currently Studying'
+            'shehab@learning',
+            'Uptime: Napping',
+            'Packages: Java, Python',
+            'Shell: Zsh',
+            'Theme: Dark',
+            'Status: Procrastinating'
         ],
         recruiter: [
-            'shehab@professional-mode',
+            'shehab@professional',
             'OS: Career Ready',
-            'Kernel: Experience 2.1.0',
-            'Uptime: 2+ years coding',
-            'Skills: React, Node.js, Python',
+            'Uptime: 4+ years coding',
+            'Skills: Java, Node.js, React, Python',
             'Experience: Multiple Projects',
-            'Education: Computer Science',
+            'Education: Computer Engineering',
             'Status: Open to Opportunities'
         ],
         developer: [
-            'shehab@dev-mode',
+            'shehab@dev',
             'OS: Development Environment',
-            'Kernel: Innovation 4.2.0',
-            'Uptime: Always Coding',
-            'Stack: React, Next.js, Node.js',
-            'Tools: Git, Docker, VS Code',
-            'Language: TypeScript Preferred',
+            'Uptime: Coding when I feel like it',
+            'Tools: Git, VS Code, Docker',
             'Status: Building Something Cool'
         ],
         explorer: [
             'shehab@explorer-mode',
             'OS: Discovery OS',
-            'Kernel: Creativity 5.0.0',
-            'Uptime: Always Exploring',
-            'Interests: Tech, Design, Art',
-            'Tools: Code, Design, Ideas',
-            'Mission: Building The Future',
-            'Status: Discovering New Horizons'
+            'Uptime: Exploring',
+            'Interests: Tech, Graphic Design, Gaming',
+            'Status: Gaming probably'
         ]
     };
     
     const output = outputs[persona] || outputs.developer;
     
-    // Clear and animate new content
+    // Clear and add new content without fade animation
     terminalOutput.innerHTML = '';
     
     output.forEach((line, index) => {
@@ -356,18 +352,8 @@ function updateTerminalContent(persona) {
             const lineElement = document.createElement('div');
             lineElement.className = 'output-line';
             lineElement.textContent = line;
-            lineElement.style.opacity = '0';
-            lineElement.style.transform = 'translateY(10px)';
-            
             terminalOutput.appendChild(lineElement);
-            
-            // Animate line in
-            setTimeout(() => {
-                lineElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                lineElement.style.opacity = '1';
-                lineElement.style.transform = 'translateY(0)';
-            }, 50);
-        }, index * 100);
+        }, index * 50); // Faster typing effect
     });
 }
 
@@ -465,7 +451,13 @@ function setupPersonaEventListeners() {
                 // Close modal if open
                 const modal = document.getElementById('persona-modal');
                 if (modal && modal.getAttribute('aria-hidden') === 'false') {
-                    window.PortfolioApp?.closeModal(modal);
+                    // Use PortfolioApp.closeModal if available, otherwise close directly
+                    if (window.PortfolioApp?.closeModal) {
+                        window.PortfolioApp.closeModal(modal);
+                    } else {
+                        modal.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                    }
                 }
             }
         });
@@ -513,11 +505,40 @@ function getPersonaConfig(persona) {
     return personaConfig[persona] || null;
 }
 
+// Check if this is the first visit and show persona modal
+function checkFirstVisit() {
+    let hasVisited = false;
+    
+    try {
+        hasVisited = localStorage.getItem('has-visited-before') === 'true';
+    } catch (e) {
+        console.warn('localStorage not available for first visit check:', e);
+    }
+    
+    if (!hasVisited) {
+        // Mark as visited
+        try {
+            localStorage.setItem('has-visited-before', 'true');
+        } catch (e) {
+            console.warn('Could not save visit status:', e);
+        }
+        
+        // Auto-open persona modal after a short delay
+        setTimeout(() => {
+            const modal = document.getElementById('persona-modal');
+            if (modal && window.PortfolioApp?.openModal) {
+                window.PortfolioApp.openModal(modal);
+            }
+        }, 1500); // Delay to let the page load and animations settle
+    }
+}
+
 // Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializePersonaSystem);
 } else {
-    initializePersonaSystem();
+    // If DOM is already loaded, wait a bit to ensure other scripts have initialized
+    setTimeout(initializePersonaSystem, 100);
 }
 
 // Export for external use
