@@ -66,6 +66,7 @@ const personaContentData = {
                 category: "Academic",
                 link: "https://github.com/dizzydroid/ASU_CodeForces-Tasks",
                 icon: "trophy",
+                image: "images/projects/student/CF.png",
                 status: "Completed",
                 featured: true
             },
@@ -76,6 +77,7 @@ const personaContentData = {
                 category: "Signal Processing",
                 link: "https://github.com/dizzydroid/ASU_DigitalAudioFilteringPrjct",
                 icon: "music",
+                image: "images/projects/student/audiofilter.png",
                 status: "Completed"
             },
             {
@@ -85,6 +87,7 @@ const personaContentData = {
                 category: "Software Engineering",
                 link: "https://github.com/dizzydroid/ASU_JuniorProject",
                 icon: "graduation-cap",
+                image: "images/projects/student/BW.png",
                 status: "Completed",
                 featured: true
             },
@@ -95,6 +98,7 @@ const personaContentData = {
                 category: "Machine Learning",
                 link: "https://github.com/dizzydroid/ASU_SeniorProject_ML",
                 icon: "brain",
+                image: "images/projects/student/covid19.png",
                 status: "Completed"
             },
             {
@@ -104,6 +108,7 @@ const personaContentData = {
                 category: "Operating Systems",
                 link: "https://github.com/dizzydroid/ASU_SeniorProject_OS",
                 icon: "cpu",
+                image: "images/projects/student/OS.png",
                 status: "Completed"
             },
             {
@@ -113,6 +118,7 @@ const personaContentData = {
                 category: "Data Structures",
                 link: "https://github.com/dizzydroid/ASU_SeniorProject_DSA",
                 icon: "network",
+                image: "images/projects/student/NS.png",
                 status: "Completed"
             },
             {
@@ -122,6 +128,7 @@ const personaContentData = {
                 category: "Computer Science",
                 link: "https://github.com/dizzydroid/ASU_SeniorProject_Algorithms",
                 icon: "zap",
+                image: "images/projects/student/Algo.png",
                 status: "Completed"
             },
             {
@@ -131,6 +138,7 @@ const personaContentData = {
                 category: "Academic Resources",
                 link: "https://github.com/dizzydroid/ASU_Sheets-Solutions",
                 icon: "book-open",
+                image: "images/projects/student/sheets.png",
                 status: "Completed"
             },
             {
@@ -140,6 +148,7 @@ const personaContentData = {
                 category: "Academic",
                 link: "https://github.com/dizzydroid/ASU_SophomoreProject",
                 icon: "code",
+                image: "images/projects/student/sophprjct.png",
                 status: "Completed"
             }
         ]
@@ -340,6 +349,7 @@ const personaContentData = {
                 category: "Machine Learning",
                 link: "https://github.com/dizzydroid/fraud-detection",
                 icon: "shield",
+                image: "images/projects/student/covid19.png",
                 status: "Completed",
                 featured: true
             },
@@ -359,6 +369,7 @@ const personaContentData = {
                 category: "Software",
                 link: "https://github.com/dizzydroid/ReelRec",
                 icon: "film",
+                image: "images/projects/student/BW.png",
                 status: "Completed"
             },
             {
@@ -377,6 +388,7 @@ const personaContentData = {
                 category: "Educational",
                 link: "https://github.com/dizzydroid/DesignPatternsNutshell",
                 icon: "book",
+                image: "images/projects/student/Algo.png",
                 status: "Completed"
             },
             {
@@ -480,6 +492,7 @@ const personaContentData = {
                 type: "Logo Design",
                 client: "Wildlife Conservation",
                 icon: "heart",
+                image: "images/earthday.png",
                 status: "Completed",
                 year: "2023"
             },
@@ -516,6 +529,7 @@ const personaContentData = {
                 type: "Brand Design",
                 client: "Environmental Organization",
                 icon: "leaf",
+                image: "images/earthday.jpg",
                 status: "Completed",
                 year: "2023"
             },
@@ -532,6 +546,19 @@ const personaContentData = {
                 year: "2022"
             },
             {
+                title: "Digital Portfolio Network",
+                description: "Modern web design and user interface for creative portfolio platform showcasing artistic works",
+                location: "Cairo, Egypt",
+                coordinates: { lat: 30.0444, lng: 31.2357 },
+                category: "Web Design",
+                type: "UI/UX Design",
+                client: "Tech Startup",
+                icon: "monitor",
+                image: "images/dpn.png",
+                status: "Completed",
+                year: "2024"
+            },
+            {
                 title: "Global Design Portfolio",
                 description: "Hundreds of design projects for clients worldwide spanning various industries and design disciplines",
                 location: "Worldwide",
@@ -540,6 +567,7 @@ const personaContentData = {
                 type: "Various Projects",
                 client: "International Clients",
                 icon: "globe",
+                image: "images/portfoliod.png",
                 status: "Ongoing",
                 year: "2020-Present",
                 special: true
@@ -569,6 +597,13 @@ function loadPersonaPreference() {
     
     const urlParams = new URLSearchParams(window.location.search);
     const urlPersona = urlParams.get('persona');
+    const resumeParam = urlParams.get('resume');
+    
+    // If resume parameter is present, force recruiter persona
+    if (resumeParam !== null) {
+        setActivePersona('recruiter');
+        return;
+    }
     
     // Priority: URL parameter > saved preference > default
     const activePersona = urlPersona || savedPersona || 'developer';
@@ -586,6 +621,13 @@ function setActivePersona(persona) {
     
     // Update body data attribute
     document.body.setAttribute('data-persona', persona);
+    
+    // Update URL based on persona
+    if (persona === 'recruiter') {
+        updateURLForResume();
+    } else {
+        updateURLForPersona(persona);
+    }
     
     // Update active states in UI
     updatePersonaCardStates(persona);
@@ -987,27 +1029,41 @@ function renderDesignProjectsView(container, projects) {
                 <p>My creative works have reached clients across the globe, from local businesses to international organizations.</p>
             </div>
             
-            <div class="design-projects-grid">
+            <div class="design-projects-masonry">
                 ${projects.map(project => `
-                    <div class="design-project-card ${project.special ? 'special-project' : ''}">
-                        <div class="project-image design-image ${project.image ? 'has-image' : ''}">
+                    <div class="design-project-card ${project.special ? 'special-project' : ''}" data-category="${project.category.toLowerCase().replace(/\s+/g, '-')}">
+                        <div class="project-image-container">
                             ${project.image ? 
-                                `<img src="${project.image}" alt="${project.title}" class="design-thumbnail" />` :
-                                `<i data-lucide="${project.icon}"></i>`
+                                `<img src="${project.image}" alt="${project.title}" class="design-project-image" loading="lazy" />` :
+                                `<div class="design-placeholder">
+                                    <i data-lucide="${project.icon}"></i>
+                                </div>`
                             }
-                            <div class="project-location">${project.location}</div>
+                            <div class="project-overlay">
+                                <div class="project-location">
+                                    <i data-lucide="map-pin"></i>
+                                    ${project.location}
+                                </div>
+                                <div class="project-year">${project.year}</div>
+                            </div>
                         </div>
                         <div class="project-content">
                             <div class="project-header">
                                 <h3 class="project-title">${project.title}</h3>
-                                <span class="project-year">${project.year}</span>
+                                <span class="project-status ${project.status.toLowerCase().replace(' ', '-')}">${project.status}</span>
                             </div>
                             <p class="project-description">${project.description}</p>
                             <div class="project-meta">
-                                <span class="project-type">${project.type}</span>
-                                <span class="project-client">${project.client}</span>
+                                <div class="meta-row">
+                                    <span class="meta-label">Type:</span>
+                                    <span class="project-type">${project.type}</span>
+                                </div>
+                                <div class="meta-row">
+                                    <span class="meta-label">Client:</span>
+                                    <span class="project-client">${project.client}</span>
+                                </div>
                             </div>
-                            <div class="project-category">
+                            <div class="project-tags">
                                 <span class="category-tag">${project.category}</span>
                             </div>
                         </div>
@@ -1041,7 +1097,7 @@ function renderProjectCardsView(container, projects) {
         <div class="project-card ${project.featured ? 'featured-project' : ''}">
             <div class="project-image">
                 ${project.image ? 
-                    `<img src="${project.image}" alt="${project.title}" class="project-thumbnail" />` :
+                    `<img src="${project.image}" alt="${project.title}" class="project-thumbnail" loading="lazy" />` :
                     `<i data-lucide="${project.icon}"></i>`
                 }
             </div>
@@ -1070,6 +1126,25 @@ function renderProjectCardsView(container, projects) {
             </div>
         </div>
     `).join('');
+}
+
+// Helper function to update URL for resume view
+function updateURLForResume() {
+    const currentURL = new URL(window.location);
+    currentURL.searchParams.set('resume', '');
+    window.history.replaceState({}, '', currentURL);
+}
+
+// Helper function to update URL for persona
+function updateURLForPersona(persona) {
+    const currentURL = new URL(window.location);
+    currentURL.searchParams.delete('resume');
+    if (persona !== 'developer') {
+        currentURL.searchParams.set('persona', persona);
+    } else {
+        currentURL.searchParams.delete('persona');
+    }
+    window.history.replaceState({}, '', currentURL);
 }
 
 // Setup event listeners for persona interactions
@@ -1148,22 +1223,41 @@ function checkFirstVisit() {
         console.warn('localStorage not available for first visit check:', e);
     }
     
-    if (!hasVisited) {
-        // Mark as visited
+    // Don't show modal if user has specific intent via URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const hasResumeParam = urlParams.has('resume');
+    const hasPersonaParam = urlParams.has('persona');
+    const isProjectsPage = window.location.pathname.includes('projects.html');
+    
+    // Skip modal if:
+    // - User has visited before
+    // - URL has resume parameter (they want to see resume specifically)
+    // - URL has persona parameter (they have a specific persona in mind)
+    // - They're on projects page (they're looking for projects specifically)
+    if (hasVisited || hasResumeParam || hasPersonaParam || isProjectsPage) {
+        // Still mark as visited for future visits
         try {
             localStorage.setItem('has-visited-before', 'true');
         } catch (e) {
             console.warn('Could not save visit status:', e);
         }
-        
-        // Auto-open persona modal after a short delay
-        setTimeout(() => {
-            const modal = document.getElementById('persona-modal');
-            if (modal && window.PortfolioApp?.openModal) {
-                window.PortfolioApp.openModal(modal);
-            }
-        }, 1500); // Delay to let the page load and animations settle
+        return;
     }
+    
+    // Mark as visited
+    try {
+        localStorage.setItem('has-visited-before', 'true');
+    } catch (e) {
+        console.warn('Could not save visit status:', e);
+    }
+    
+    // Auto-open persona modal after a short delay (only for homepage first visits)
+    setTimeout(() => {
+        const modal = document.getElementById('persona-modal');
+        if (modal && window.PortfolioApp?.openModal) {
+            window.PortfolioApp.openModal(modal);
+        }
+    }, 1500); // Delay to let the page load and animations settle
 }
 
 // Initialize when DOM is ready

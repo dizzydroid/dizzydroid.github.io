@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Test - dizzydroid</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .test-btn {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .test-btn:hover {
+            background: #555;
+        }
+        
+        .info {
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Projects Page Test</h1>
+    
+    <div class="info">
+        <h3>Test the Enhanced Projects Page</h3>
+        <p>This test page allows you to verify the new features:</p>
+        <ul>
+            <li><strong>Student & Developer personas:</strong> Now show 800x600px project images</li>
+            <li><strong>Recruiter persona:</strong> Accessible via ?resume query parameter</li>
+            <li><strong>Explorer persona:</strong> Flexible image sizes in masonry layout</li>
+        </ul>
+    </div>
+    
+    <div class="test-buttons">
+        <a href="../projects.html?persona=student" class="test-btn">Student Projects (with images)</a>
+        <a href="../projects.html?persona=developer" class="test-btn">Developer Projects (with images)</a>
+        <a href="../projects.html?resume" class="test-btn">Resume View (Recruiter)</a>
+        <a href="../projects.html?persona=explorer" class="test-btn">Explorer Projects (masonry)</a>
+    </div>
+    
+    <div class="info">
+        <h3>Features Added:</h3>
+        <ul>
+            <li>✅ Added image paths to all student projects using existing 800x600 images</li>
+            <li>✅ Added images to developer projects reusing student images</li>
+            <li>✅ Added ?resume query parameter for direct recruiter access</li>
+            <li>✅ Enhanced explorer view with masonry layout for variable image sizes</li>
+            <li>✅ Added hover overlays and better responsive design</li>
+            <li>✅ Improved image loading with lazy loading</li>
+        </ul>
+    </div>
+    
+    <div class="info">
+        <h3>Available Project Images:</h3>
+        <p>Located in <code>images/projects/student/</code>:</p>
+        <ul>
+            <li>Algo.png - Algorithm Visualizers</li>
+            <li>audiofilter.png - Digital Audio Filtering</li>
+            <li>BW.png - ByteWise Platform</li>
+            <li>CF.png - CodeForces Tasks</li>
+            <li>covid19.png - COVID-19 ML Prediction</li>
+            <li>NS.png - NodeScope XML Editor</li>
+            <li>OS.png - CHRONOS CPU Scheduler</li>
+            <li>sheets.png - Programming Sheets</li>
+            <li>sophprjct.png - Sophomore Project</li>
+        </ul>
+    </div>
+</body>
+</html>
