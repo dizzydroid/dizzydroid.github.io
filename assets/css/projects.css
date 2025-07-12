@@ -296,12 +296,12 @@
     transition: var(--transition-standard);
 }
 
-/* Student and Developer personas - preserve aspect ratio for 800x600 images */
+/* Student and Developer personas - preserve aspect ratio for 800x300 images */
 [data-persona="student"] .project-image,
 [data-persona="developer"] .project-image {
     height: auto;
-    min-height: 180px;
-    aspect-ratio: 4/3; /* 800x600 ratio */
+    min-height: 120px;
+    aspect-ratio: 8/3; /* 800x300 ratio */
 }
 
 [data-persona="student"] .project-image img,

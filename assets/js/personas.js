@@ -60,13 +60,13 @@ const personaContentData = {
         ],
         projects: [
             {
-                title: "ASU CodeForces Tasks",
-                description: "Solutions for competitive programming problems, showcasing algorithmic thinking and problem-solving skills.",
-                tech: ["C++", "Algorithms", "Data Structures", "Problem Solving"],
-                category: "Academic",
-                link: "https://github.com/dizzydroid/ASU_CodeForces-Tasks",
-                icon: "trophy",
-                image: "images/projects/student/CF.png",
+                title: "ByteWise Educational Platform",
+                description: "Java-based desktop application: An educational platform with different roles, and dynamic pages.",
+                tech: ["Java", "JavaFX", "OOP", "GUI Design"],
+                category: "Software Engineering",
+                link: "https://github.com/dizzydroid/ASU_JuniorProject",
+                icon: "graduation-cap",
+                image: "images/projects/student/BW.png",
                 status: "Completed",
                 featured: true
             },
@@ -81,19 +81,8 @@ const personaContentData = {
                 status: "Completed"
             },
             {
-                title: "ByteWise Educational Platform",
-                description: "Java-based platform connecting students and instructors for CSE231s course collaboration.",
-                tech: ["Java", "JavaFX", "OOP", "GUI Design"],
-                category: "Software Engineering",
-                link: "https://github.com/dizzydroid/ASU_JuniorProject",
-                icon: "graduation-cap",
-                image: "images/projects/student/BW.png",
-                status: "Completed",
-                featured: true
-            },
-            {
                 title: "COVID-19 ML Prediction",
-                description: "Machine learning models for COVID-19 outcome prediction, comparing different classification algorithms.",
+                description: "Machine learning model assessment for COVID-19 outcome prediction, comparing different classification algorithms.",
                 tech: ["Python", "Scikit-learn", "Pandas", "Machine Learning"],
                 category: "Machine Learning",
                 link: "https://github.com/dizzydroid/ASU_SeniorProject_ML",
@@ -119,7 +108,8 @@ const personaContentData = {
                 link: "https://github.com/dizzydroid/ASU_SeniorProject_DSA",
                 icon: "network",
                 image: "images/projects/student/NS.png",
-                status: "Completed"
+                status: "Completed",
+                featured: true,
             },
             {
                 title: "Algorithm Visualizers",
@@ -143,13 +133,23 @@ const personaContentData = {
             },
             {
                 title: "Sophomore Year Project",
-                description: "Multi-language software project demonstrating object-oriented programming concepts and software engineering principles.",
-                tech: ["C++", "Java", "OOP", "Software Engineering"],
+                description: "C++ terminal-based electric circuit solver.",
+                tech: ["C++", "Software Engineering"],
                 category: "Academic",
                 link: "https://github.com/dizzydroid/ASU_SophomoreProject",
                 icon: "code",
                 image: "images/projects/student/sophprjct.png",
                 status: "Completed"
+            },
+            {
+                title: "ASU CodeForces Tasks",
+                description: "Solutions for programming problems, as part of the Programming course curriculum.",
+                tech: ["C++", "Python", "Data Structures", "Problem Solving"],
+                category: "Academic",
+                link: "https://github.com/dizzydroid/ASU_CodeForces-Tasks",
+                icon: "trophy",
+                image: "images/projects/student/CF.png",
+                status: "Completed",
             }
         ]
     },
@@ -195,7 +195,7 @@ const personaContentData = {
             education: {
                 degree: "BSc in Computer Engineering",
                 university: "Faculty of Engineering - Ain Shams University",
-                period: "2021 – Present"
+                period: "2021 - Present"
             },
             projects: [
                 {
@@ -247,7 +247,7 @@ const personaContentData = {
                     role: "Media Team Head",
                     company: "IEEE | ASUSB",
                     companyHtml: '<a href="https://www.linkedin.com/company/ieee-asusb/" target="_blank">IEEE | ASUSB</a>',
-                    period: "2024 – Present",
+                    period: "2024 - Present",
                     achievements: [
                         "Led a team of 7 editors, driving content strategy and production, which resulted in a 30% increase in brand recognition across digital platforms.",
                         "Managed end-to-end content creation, improving content delivery speed by 70% and enhancing the quality of materials published.",
@@ -259,7 +259,7 @@ const personaContentData = {
                     role: "Multimedia Designer",
                     company: "Google Developer Student Clubs (GDSC) — ASU",
                     companyHtml: '<a href="https://www.linkedin.com/company/gdsc-asu-eng/" target="_blank">Google Developer Student Clubs (GDSC) — ASU</a>',
-                    period: "2023 – 2024",
+                    period: "2023 - 2024",
                     achievements: [
                         "Created high-impact digital content, including graphics and videos, using Adobe Creative Cloud, leading to a 60% increase in audience engagement for key events.",
                         'Contributed to event promotion and planning as a key organizer for <a href="https://gdg.community.dev/events/details/google-gdg-cairo-presents-devfest-cairo-2023/" target="_blank">DEVFEST Cairo 2023</a>, which proved successful and was recognized by Google for its outstanding promotion.',
@@ -331,27 +331,14 @@ const personaContentData = {
         ],
         projects: [
             {
-                title: "Portfolio Website",
-                description: "Modern, responsive portfolio with persona-based theming and clean design built with vanilla JavaScript.",
-                tech: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-                category: "Web Development",
-                link: "https://github.com/dizzydroid/dizzydroid.github.io",
-                liveLink: "https://dizzydroid.github.io",
-                icon: "globe",
-                status: "Active",
-                featured: true,
-                image: "images/portfoliod.png"
-            },
-            {
                 title: "Fraud Detection System",
                 description: "Python implementation of Chung & Lee's 2023 fraud detection ensemble approach with 93%+ recall on PaySim dataset.",
                 tech: ["Python", "Scikit-learn", "Ensemble Methods", "Data Science"],
                 category: "Machine Learning",
                 link: "https://github.com/dizzydroid/fraud-detection",
                 icon: "shield",
-                image: "images/projects/student/covid19.png",
+                image: "images/projects/dev/fraudDet.png",
                 status: "Completed",
-                featured: true
             },
             {
                 title: "Learning Not to Learn",
@@ -360,7 +347,8 @@ const personaContentData = {
                 category: "AI Research",
                 link: "https://github.com/dizzydroid/learning-not-to-learn",
                 icon: "brain",
-                status: "Research"
+                image: "images/projects/dev/learningNotToLearn.png",
+                status: "Completed"
             },
             {
                 title: "ReelRec Movie Recommender",
@@ -369,7 +357,7 @@ const personaContentData = {
                 category: "Software",
                 link: "https://github.com/dizzydroid/ReelRec",
                 icon: "film",
-                image: "images/projects/student/BW.png",
+                image: "images/projects/dev/reelrec.png",
                 status: "Completed"
             },
             {
@@ -379,6 +367,7 @@ const personaContentData = {
                 category: "Desktop Software",
                 link: "https://github.com/dizzydroid/InvMan",
                 icon: "package",
+                image:"images/projects/dev/invman.png",
                 status: "Completed"
             },
             {
@@ -388,58 +377,40 @@ const personaContentData = {
                 category: "Educational",
                 link: "https://github.com/dizzydroid/DesignPatternsNutshell",
                 icon: "book",
-                image: "images/projects/student/Algo.png",
-                status: "Completed"
-            },
-            {
-                title: "Python Weather App",
-                description: "Simple yet elegant weather application built with Python, featuring real-time weather data and clean UI.",
-                tech: ["Python", "API Integration", "GUI", "Weather Data"],
-                category: "Desktop App",
-                link: "https://github.com/dizzydroid/PythonWeatherApp",
-                icon: "cloud",
-                status: "Completed"
-            },
-            {
-                title: "Wallster - Random Wallpapers",
-                description: "Web app generating unlimited collection of random wallpapers with customizable parameters and download options.",
-                tech: ["JavaScript", "Canvas API", "Procedural Generation", "Web APIs"],
-                category: "Web Experiment",
-                link: "https://github.com/dizzydroid/Wallster",
-                liveLink: "https://dizzydroid.github.io/Wallster",
-                icon: "image",
+                image: "images/projects/dev/dpnutshell.png",
                 status: "Completed"
             },
             {
                 title: "Skimble Arcade Game",
-                description: "Simple arcade-style web game with great personality and engaging gameplay mechanics.",
+                description: "Simple arcade-style web game with great personality :D",
                 tech: ["JavaScript", "HTML5 Canvas", "Game Development", "Animation"],
                 category: "Game Development",
                 link: "https://github.com/dizzydroid/skimble",
                 liveLink: "https://dizzydroid.github.io/skimble",
                 icon: "gamepad-2",
                 status: "Completed",
-                image: "images/skimblegif.gif"
+                image: "images/projects/dev/skmbl.png"
             },
             {
-                title: "Random Quotes Generator",
-                description: "Simple website that generates inspirational and thought-provoking random quotes with beautiful typography.",
+                title: "The Quotes Website",
+                description: "Simple website that generates random quotes.",
                 tech: ["JavaScript", "CSS3", "Typography", "API"],
                 category: "Web Experiment",
                 link: "https://github.com/dizzydroid/quotes",
                 liveLink: "https://dizzydroid.github.io/quotes",
                 icon: "quote",
                 status: "Completed",
-                image: "images/quotes.png"
+                image: "images/projects/dev/quotes.png"
             },
             {
                 title: "Earth Day Quiz 2023",
-                description: "Interactive 15-question quiz for Earth Day 2023 promoting environmental awareness and education.",
+                description: "Interactive 15-question quiz for Earth Day 2023.",
                 tech: ["JavaScript", "HTML5", "CSS3", "Interactive Quiz"],
-                category: "Educational Web",
+                category: "Web Experiment",
                 link: "https://github.com/dizzydroid/earth-day-quiz",
                 liveLink: "https://dizzydroid.github.io/earth-day-quiz",
                 icon: "earth",
+                image:"images/projects/dev/earthday.png",
                 status: "Completed"
             },
             {
@@ -450,6 +421,7 @@ const personaContentData = {
                 link: "https://github.com/dizzydroid/portfoliod",
                 liveLink: "https://dizzydroid.github.io/portfoliod",
                 icon: "layout",
+                image: "images/projects/dev/portfoliod.png",
                 status: "Completed"
             }
         ]
